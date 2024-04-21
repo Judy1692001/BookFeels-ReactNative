@@ -15,9 +15,28 @@ import KeyboardAvoidingWrapper from './../Components/KeyboardAvoidingWrapper';
 
 //color
 const { secondary,text,heading ,dark_primary} = Colors;
+
+//API
+import axios from 'axios';
 const Login = ({navigation}) => {
-    //hide password or not hook
-    const[hidePassword,sethidePassword]=useState(true)
+    //hide password or not hook.
+    const [hidePassword, sethidePassword] = useState(true)
+    // //state variable to store the error message.
+    // const [message, setMessage] = useState();
+    // //error message,success message
+    // const [messageType, setMessageType] = useState();
+    
+    // const HandleLogin = (credentials) => {
+    //     const url = '';
+    //     axios.post(url, credentials)
+    //         .then((response) => { 
+    //             const result = response.data;
+    //             const { } = data;
+
+    //         })
+    //         .catch(error => { console.log(error.JSON); })
+
+  //  }
     return (
         <KeyboardAvoidingWrapper>
         <Container>

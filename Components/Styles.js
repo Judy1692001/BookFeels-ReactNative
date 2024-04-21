@@ -56,7 +56,7 @@ export const WelcomePageLogo = styled.Image`
     width: 314px;
    margin-top:150px
 
-`
+`;
 export const PageLogo = styled.Image`
     height: 150px;
     width: 300px;
@@ -66,13 +66,13 @@ export const HeaderImage1 = styled.Image`
       height: 90px;
     
       
-`
+`;
 export const HeaderImage2 = styled.Image`
     width: 100px;
     height: 160px;
     bottom:100px;
     
-`
+`;
 export const HeadingStyle = styled.Text`
     padding: 10px;
     fontSize: 30px;
