@@ -7,9 +7,9 @@ import RootNavigator from './Navigation/RootNaviagtor';
 import Discover from './Screens/Discover';
 
 export default function App() {
+  
   return (
-    <RootNavigator/>
-    //<Discover/>
+      <RootNavigator/>
    
   );
   
