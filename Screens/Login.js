@@ -13,7 +13,7 @@ import { Octicons,Ionicons,Fontisto } from '@expo/vector-icons';
 
 
 import KeyboardAvoidingWrapper from './../Components/KeyboardAvoidingWrapper';
-
+import { useNavigation } from '@react-navigation/native';
 // Yup is a JavaScript schema builder for value parsing and validation.
 import * as Yup from 'yup';
 //color
@@ -55,7 +55,8 @@ const Login = ({navigation,onFocus = () => {}}) => {
     const [message, setMessage] = useState();
     //error message,success message
     const [messageType, setMessageType] = useState();
-    
+    const navi = useNavigation();
+
     const handleLogin = async (credentials, setSubmitting, navigation) => {
         //clear the message whenever the button is pressed
         HandleMessage(null);
@@ -87,15 +88,16 @@ const Login = ({navigation,onFocus = () => {}}) => {
                     console.log("Message:", res.data.message);
                     HandleMessage(res.data.message, res.data.status);
                     // Optionally show the message to the user
-                }
-                navigation.navigate('WelcomeScreen',{...res.data.data[0]});
+                    navi.navigate('Homepage');
+                } 
                  
             }
             
         }).catch((err) => {
-            console.log("Error", err.res);
-            setSubmitting(false);
-            //HandleMessage("An Error Occurred! Check your network and try again ");
+            console.log("ERROR", err.response);
+                let op = err?.response?.data?.errors?.message;
+                setSubmitting(false);
+                HandleMessage(op);
             
         })
     }

@@ -51,36 +51,12 @@ const Signup = ({navigation}) => {
     //error message,success message
     const [messageType, setMessageType] = useState();
     //const [isLoading, setIsLoading] = useState(false);
-
+    //const {goBack,navigate,re} = useNavigation();
+    const navi = useNavigation();
 
     
-    // const HandleSignup = (credentials, setSubmitting) => {
-    //     //clear the message whenever the button is pressed
-    //     //HandleMessage(null);
-    //     const url = 'http://127.0.0.1:8000/api/register/';
-    //     //it reaturns a promise
-    //     axios.post(url, credentials)
-    //         .then((response) => { 
-    //             // const result = response.data;
-    //             // //destructure from the result.
-    //             // const {user,token,status} = result;
-
-    //             // if (status !== "SUCCESS") {
-    //             //     HandleMessage(message, status);
-    //             // } else {
-    //             //     //move to homepage
-    //             // }
-    //             setSubmitting(false);
-    //             navigation.navigate('Login');
- 
-    //         })
-    //         .catch(error => {
-    //             //console.log(error.JSON());
-    //             setSubmitting(false);
-    //             //HandleMessage("An error occurred. Check your network and try again");
-    //         })
-    // }
-    const HandleSignup = async(credentials, setSubmitting,navigation) => {
+   
+    const HandleSignup = async(credentials, setSubmitting) => {
        //clear the message whenever the button is pressed
        HandleMessage(null);
         setSubmitting(false);
@@ -113,29 +89,21 @@ const Signup = ({navigation}) => {
                         console.log("Message:", res.data.message);
                         HandleMessage(res.data.message, res.data.status);
                         // Optionally show the message to the user
+                        navigation.replace('Homepage');
                     }
-                    navigation.navigate('WelcomeScreen');
+                    
                 }
                // setSubmitting(false);
             }).catch((err) => {
-                console.log("Error", err.res);
-                // setSubmitting(false);
-                // HandleMessage("An Error Occurred! Check your network and try again ");
+                console.log("ERROR", err);
+                let op = err?.response?.data?.errors;
+                let val = op[Object.keys(op)[0]][0]
+                console.log("Val", val);
+                //console.log("Error", err?.response?.Error?.data?.errors);
+                setSubmitting(false);
+                HandleMessage(val);
             })
-    //         setSubmitting(false);
-    //         console.log("response",response)
-
-    //         if (response.status === 200 || response.status === 201) {
-    //            navigation.navigate('Login');
-    //            Alert.alert('Registration successful');
-    //        } else {
-    //            Alert.alert('Registration failed. Please try again.');
-    //        }
-    //    // } catch (error) {
-    //         console.error('Error:', error);   
-    //         setSubmitting(false);
-    //         Alert.alert('An error occurred. Check your network and try again');
-    //   //  }
+    
     };
     //Function to handle the message
     const HandleMessage = (message,type='FAILED') => {
