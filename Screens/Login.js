@@ -1,42 +1,109 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, StyleSheet, Image, Pressable,Button } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import {
     Container, PageContent, HeadingStyle, PageTitle,PageLogo, SubTitle, StyleForm,
     StyleInputLabel, StyleLeftIcon, StyleRightIcon, StyleTextInput, Colors, ButtonText, ButtonWrapper,
-    NavBox,Line,GoogleButton,GoogleButtonText,Link,TextLink,StylingLinkView,StylingLinkText
+    NavBox,Line,GoogleButton,GoogleButtonText,Link,TextLink,StylingLinkView,StylingLinkText,ValidationText
   
 } from '../Components/Styles';
 import { Formik } from 'formik';
 //icons
 import { Octicons,Ionicons,Fontisto } from '@expo/vector-icons';
 
+
 import KeyboardAvoidingWrapper from './../Components/KeyboardAvoidingWrapper';
 
+// Yup is a JavaScript schema builder for value parsing and validation.
+import * as Yup from 'yup';
 //color
 const { secondary,text,heading ,dark_primary} = Colors;
 
 //API
 import axios from 'axios';
-const Login = ({navigation}) => {
+
+//Login validation
+const LoginSchema = Yup.object().shape({
+    username_or_email: Yup.string()
+        .required("Please Enter your Full Name."),
+    password: Yup.string()
+        .min(8)
+        .required("Please Enter your Password.")
+        .matches("^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$",
+            "Must contain minimum 8 characters, at least one uppercase letter, one lowercase letter, one special character and one number .")
+    
+});
+// const validate = async () => {
+//     Keyboard.dismiss();
+//     let isValid = true;
+//     if (!inputs.email) {
+//       handleError('Please input email', 'email');
+//       isValid = false;
+//     }
+//     if (!inputs.password) {
+//       handleError('Please input password', 'password');
+//       isValid = false;
+//     }
+//     if (isValid) {
+//       Login();
+//     }
+//   };
+const Login = ({navigation,onFocus = () => {}}) => {
     //hide password or not hook.
     const [hidePassword, sethidePassword] = useState(true)
-    // //state variable to store the error message.
-    // const [message, setMessage] = useState();
-    // //error message,success message
-    // const [messageType, setMessageType] = useState();
+    //state variable to store the error message.
+    const [message, setMessage] = useState();
+    //error message,success message
+    const [messageType, setMessageType] = useState();
     
-    // const HandleLogin = (credentials) => {
-    //     const url = '';
-    //     axios.post(url, credentials)
-    //         .then((response) => { 
-    //             const result = response.data;
-    //             const { } = data;
-
-    //         })
-    //         .catch(error => { console.log(error.JSON); })
-
-  //  }
+    const handleLogin = async (credentials, setSubmitting, navigation) => {
+        //clear the message whenever the button is pressed
+        HandleMessage(null);
+        setSubmitting(false);
+        const url = 'http://192.168.1.4:8000/api/login/';
+        console.log("credintials", credentials);
+        //  try {
+        let formdata = new FormData();
+       
+        formdata.append("username_or_email", credentials.username_or_email)
+        formdata.append("password", credentials.password)
+       
+        console.log("formdata", formdata);
+        axios.post(url, formdata, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        }).then((res) => {
+            console.log("res", res);
+            setSubmitting(false);
+            //const result = res.data;
+            //destructure from the result.
+            //const {user,token,status,message} = result;
+            if (res.data.status !== "SUCCESS") {
+                console.log("Error Message:", res.data.message);
+                HandleMessage(res.data.message, res.data.status);
+            } else {
+                if (res.data.message) {
+                    console.log("Message:", res.data.message);
+                    HandleMessage(res.data.message, res.data.status);
+                    // Optionally show the message to the user
+                }
+                navigation.navigate('WelcomeScreen',{...res.data.data[0]});
+                 
+            }
+            
+        }).catch((err) => {
+            console.log("Error", err.res);
+            setSubmitting(false);
+            //HandleMessage("An Error Occurred! Check your network and try again ");
+            
+        })
+    }
+    //Function to handle the message
+    const HandleMessage = (message,type='FAILED') => {
+        setMessage(message);
+        setMessageType(type);
+    }
     return (
         <KeyboardAvoidingWrapper>
         <Container>
@@ -46,39 +113,61 @@ const Login = ({navigation}) => {
                 <PageTitle>BookFeels</PageTitle>
                 <SubTitle>Login</SubTitle>
                 <Formik
-                    initialValues={{ email: '', password: '' }}
-                    onSubmit={values => { console.log(values); }}
+                        initialValues={{ username_or_email: '', password: '' }}
+                        validationSchema={LoginSchema}
+                        onSubmit={(values,{ setSubmitting }) => {
+                            // if (values.ername_or_email == '' || values.password == '') {
+                            //     // After handling submission, reset form and submission state
+                            //   //  resetForm();
+                            //     HandleMessage("Please fill all fields");
+                            //     setSubmitting(false);
+                            //} else {
+                                handleLogin(values,setSubmitting);
+                            }
+                        }
+                   // }
                 >
-                    {({ handleChange, handleBlur, handleSubmit, values }) => (<StyleForm>
-                        <LoginTextInput
-                            label="Email Address"
-                            icon="mail"
-                            placeholder="Enter your email address"
+                        {({ handleChange, handleBlur, handleSubmit,
+                            values, isSubmitting, errors, setFieldTouched, touched, isValid    }) => (<StyleForm>
+                                <LoginTextInput
+                            label="Full Name"
+                            icon="person"
+                            placeholder="Enter your full name"
                             placeholderTextColor={text}
-                            onChangeText={handleChange('email')}
-                            onBlur={handleBlur('email')}
-                            value={values.email}
-                            keyboardType="email-address"
-                        />
+                            onChangeText={handleChange('username_or_email')}
+                            onBlur={()=>{setFieldTouched('username_or_email')}}
+                            //onBlur={handleBlur('hhh')}
+                            value={values.username_or_email}
+                            //autoCapitalize={false}
+                            />
+                            {touched.username_or_email && errors.username_or_email && <ValidationText>{errors.username_or_email}</ValidationText>}
                          <LoginTextInput
                             label="Password"
                             icon="lock"
                             placeholder="Enter your password"
                             placeholderTextColor={text}
                             onChangeText={handleChange('password')}
-                            onBlur={handleBlur('password')}
+                            onBlur={()=>{setFieldTouched('password')}}
+                            //onBlur={handleBlur('password')}
                             value={values.password}
                             secureTextEntry={hidePassword}
                             isPassword={true}
                             hidePassword={hidePassword}
                             sethidePassword={sethidePassword}
-                        />
-                        <NavBox>...</NavBox>
-                        <ButtonWrapper onPress={handleSubmit}>
-                            <ButtonText>
-                                Login
-                            </ButtonText>
-                        </ButtonWrapper>
+                            autoCapitalize={false}
+                            />
+                            {touched.password && errors.password && <ValidationText>{errors.password}</ValidationText>}
+                            {/* msg box to output the msg */}
+                            <NavBox type={messageType}>{message}</NavBox>
+                            {!isSubmitting && <ButtonWrapper onPress={handleSubmit} disabled={!isValid}>
+                                <ButtonText>
+                                    Login
+                                </ButtonText>
+                            </ButtonWrapper>}
+
+                            {isSubmitting && (<ButtonWrapper disabled={true}>
+                                <ActivityIndicator size="large" color={secondary} />
+                            </ButtonWrapper>)}
                         <Line />
                         <GoogleButton google={true} onPress={handleSubmit}>
                             <Fontisto name='google' size={25} color={heading}/>
@@ -103,7 +192,7 @@ const Login = ({navigation}) => {
 
 const LoginTextInput = ({ label, icon,isPassword,hidePassword,sethidePassword, ...props }) => {
     return (
-        <View>
+        <View >
             <StyleLeftIcon>
                 <Octicons name={icon} size={30} color={text} />
             </StyleLeftIcon>

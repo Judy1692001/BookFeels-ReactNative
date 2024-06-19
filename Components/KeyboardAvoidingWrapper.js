@@ -2,7 +2,7 @@ import React from 'react';
 
 
 import { KeyboardAvoidingView, ScrollView, Keyboard, TouchableWithoutFeedback } from 'react-native';
-//TouchableWithoutFeedback to mack sure that the keyboard will automatically
+//TouchableWithoutFeedback to make sure that the keyboard will automatically
 ///closes whenever the user thouches anywhere on the screen.
 // Keyboard to close the keyboard.
 const KeyboardAvoidingWrapper =({children}) => {

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { View, Text, Image, TextInput,TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
 import { Octicons, Ionicons, Fontisto } from '@expo/vector-icons';
@@ -17,17 +17,20 @@ export const Colors = {
     text: '#343434',
     //for input textboxes
     inText: '#FFFFFF',
-    dark_primary:'gray'
+    dark_primary: 'gray',
+    notvalid: ' #CBC3E3' ,
+    notvalidtxt:'#ff0000'
 };
 
-const { primary, secondary, heading, text,inText,dark_primary } = Colors;
+const { primary, secondary, heading, text,inText,dark_primary,notvalid , notvalidtxt} = Colors;
 
 export const Container = styled.View`
 flex: 1;
 padding: 24px;
 padding-top:${StatusBarHeight + 10}px; 
 backgroundColor:${primary};
-justifyContent: 'space-between';
+contentContainerStyle={{ justifyContent: 'space-between' }}
+
 
 `;
 export const PageContainer = styled.View`
@@ -94,9 +97,10 @@ export const ButtonWrapper = styled.TouchableOpacity`
     flexDirection: 'row';
     justify-content: center;
     alignItems:center;
-    background-color: ${secondary};
+    background-color: ${({ disabled }) => (disabled ? notvalid : secondary)};
     margin-vertical:5px;
     height:60px;
+    
 `;
 
 export const ButtonText = styled.Text`
@@ -186,10 +190,11 @@ top:33px;
 position:absolute;
 z-index:1;
 `;
-//dots in the middle of the screen
+//Success or Failed message in the middle of the screen
 export const NavBox = styled.Text`
 text-align:center;
-font-size:13px;
+font-size:18px;
+color: ${(props)=>(props.type=='SUCCESS' ? '#00FF00' : '#FF0000')};
 `;
 
 //will be displayed after pressing the login button 
@@ -223,4 +228,9 @@ align-items:center;
 export const TextLink = styled.Text`
 font-size:18px;
 color:${secondary};
+`;
+
+export const ValidationText = styled.Text`
+font-size:10px;
+color:${notvalidtxt};
 `;
