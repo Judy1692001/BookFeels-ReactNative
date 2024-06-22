@@ -34,7 +34,7 @@ const { primary, secondary, heading, text,inText,dark_primary, notvalid , notval
 
 export const Container = styled.View`
 flex: 1;
-padding: 24px;
+padding: 10px; 
 padding-top:${StatusBarHeight + 10}px; 
 backgroundColor:${primary};
 contentContainerStyle={{ justifyContent: 'space-between' }};
@@ -638,3 +638,16 @@ background-color: ${moreColor};
 margin-left: 25px;
 margin-bottom: 15px;
 `;
+
+export const DiscoverPageContainer = styled.View`
+   flex: 1;
+  padding: 20px;
+  background-color: ${primary};
+  border-radius: 10px;
+  shadow-color: ${secondary};
+  shadow-offset: {width: 0, height: 2};
+  shadow-opacity: 0.25;
+  shadow-radius: 3.84px;
+  //elevation: 5;
+`;
+

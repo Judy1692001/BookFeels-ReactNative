@@ -27,7 +27,7 @@ import axios from 'axios';
 //Sign up validation
 const SignupSchema = Yup.object().shape({
     username: Yup.string()
-        .required("Please Enter your Full Name."),
+        .required("Please Enter your Full Name without spaces."),
     email: Yup.string()
         .email("Invalid Email")
         .required("Please Enter your Email AAddress."),

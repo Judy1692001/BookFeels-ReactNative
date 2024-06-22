@@ -8,7 +8,7 @@ import HomePage from '../Screens/HomePage';
 import Profile from '../Screens/Profile';
 import Recommend from '../Screens/Recommend';
 import MyBooks from '../Screens/MyBooks';
-import Discover from '../Screens/Discover';
+import DiscoverBooks from '../Screens/DiscoverBooks';
 import More from '../Screens/More';
 import { Colors } from './../Components/Styles';
 //color
@@ -40,7 +40,7 @@ export default function RootNavigator () {
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Recommend" component={Recommend} />
           <Stack.Screen name="MyBooks" component={MyBooks} />
-          <Stack.Screen name="Discover" component={Discover} />
+          <Stack.Screen name="Discover" component={DiscoverBooks} />
           <Stack.Screen name="More" component={More} />
           
      </Stack.Navigator>

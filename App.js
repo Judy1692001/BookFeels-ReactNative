@@ -4,12 +4,13 @@ import WelcomeScreen from './Screens/WelcomeScreen';
 import Login from './Screens/Login';
 import Signup from './Screens/Signup';
 import RootNavigator from './Navigation/RootNaviagtor';
-import Discover from './Screens/Discover';
+import DiscoverBooks from './Screens/DiscoverBooks';
 
 export default function App() {
   
   return (
-      <RootNavigator/>
+    <RootNavigator/>
+    //<DiscoverBooks/>
    
   );
   
