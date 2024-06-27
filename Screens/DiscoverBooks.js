@@ -27,6 +27,7 @@ import axios from "axios";
 import { Searchbar } from "react-native-paper";
 import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
+import { baseURL } from "../config";
 //color
 const { secondary, text, primary, inText } = Colors;
 
@@ -71,7 +72,7 @@ const DiscoverBooks = () => {
     setLoading(true);
     const nextPage = currentPage + 1;
 
-    const URL = `http://192.168.1.3:8000/api/search/?page=${nextPage}${
+    const URL = `${baseURL}api/search/?page=${nextPage}${
       searchQuery ? `&query=${searchQuery}` : ""
     }`;
     await axios

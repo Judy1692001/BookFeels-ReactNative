@@ -25,6 +25,7 @@ const { secondary,text,heading ,dark_primary} = Colors;
 
 //API
 import axios from 'axios';
+import { baseURL } from '../config';
 
 
 //Login validation
@@ -69,7 +70,7 @@ const Login = ({navigation,onFocus = () => {}}) => {
         //clear the message whenever the button is pressed
         HandleMessage(null);
         setSubmitting(false);
-        const url = 'http://192.168.1.3:8000/api/login/';
+        const url = `${baseURL}api/login/`;
         console.log("credintials", credentials);
         //  try {
         let formdata = new FormData();

@@ -33,6 +33,8 @@ import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useTheme } from "react-native-paper"; // Correct import for useTheme
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { baseURL } from "../config";
+
 // import { BlurView } from "@react-native-community/blur";
 // import StarRating from 'react-native-star-rating';
 const { secondary, text, primary, inText, heading } = Colors;
@@ -64,7 +66,7 @@ const BookDetails = ({ route }) => {
   const fetchBookDetails = async () => {
     setLoading(true);
 
-    const URL = `http://192.168.1.3:8000/api/bookdetails/${bookTitle}`;
+    const URL = `${baseURL}api/bookdetails/${bookTitle}`;
     await axios
       .get(URL)
       .then((response) => {
@@ -111,7 +113,7 @@ const BookDetails = ({ route }) => {
     console.log("UserData", userData);
     console.log("Name", userData.username);
 
-    const url = `http://192.168.1.3:8000/api/bookshelf/${userData.username}/add/`;
+    const url = `${baseURL}api/bookshelf/${userData.username}/add/`;
     console.log("credintials", bookTitle);
      axios.post(url, {"title" : bookTitle},{
         headers: {
@@ -150,7 +152,7 @@ const BookDetails = ({ route }) => {
     console.log("UserData", userData);
     console.log("Name", userData.username);
 
-    const url = `http://192.168.1.3:8000/api/bookshelf/${userData.username}/remove/`;
+    const url = `${baseURL}api/bookshelf/${userData.username}/remove/`;
     console.log("credintials", bookTitle);
      axios.post(url, {"title" : bookTitle},{
         headers: {
