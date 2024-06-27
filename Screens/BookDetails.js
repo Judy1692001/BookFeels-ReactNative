@@ -32,6 +32,7 @@ import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useTheme } from "react-native-paper"; // Correct import for useTheme
+import AsyncStorage from "@react-native-async-storage/async-storage";
 // import { BlurView } from "@react-native-community/blur";
 // import StarRating from 'react-native-star-rating';
 const { secondary, text, primary, inText, heading } = Colors;
@@ -46,6 +47,9 @@ const BookDetails = ({ route }) => {
   const [messageType, setMessageType] = useState();
   // //states for rating part
   // const [rating, setRating] = useState(0);
+
+  const [userData, setUserData] = useState({});
+
   //Function to handle the message
   const HandleMessage = (message, type = "FAILED") => {
     setMessage(message);
@@ -88,6 +92,98 @@ const BookDetails = ({ route }) => {
       });
   };
 
+    
+    useEffect(() => {
+      const user = AsyncStorage.getItem("BookFeelsCredentials").then((res) => {
+        console.log("res", res);
+        const userdata = JSON.parse(res);
+        console.log("USERDATA", userdata);
+        setUserData(userdata);
+          
+         
+    }); // Get the user data from AsyncStorage
+  }, []);
+    
+  const HandleAddToBookShelf = async () => {
+    //clear the message whenever the button is pressed
+    HandleMessage(null);
+    setLoading(true);
+    console.log("UserData", userData);
+    console.log("Name", userData.username);
+
+    const url = `http://192.168.1.3:8000/api/bookshelf/${userData.username}/add/`;
+    console.log("credintials", bookTitle);
+     axios.post(url, {"title" : bookTitle},{
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then((res) => {
+        console.log("res", res);
+        setLoading(false);
+        if (res.data.status !== "SUCCESS") {
+          console.log("Error Message:", res.data.message);
+          HandleMessage(res.data.message, res.data.status);
+        } else {
+          if (res.data.message) {
+            console.log("Message:", res.data.message);
+            HandleMessage(res.data.message, res.data.status);
+            console.log("Books", res.data.data.books);
+            console.log("Bookshelf", bookTitle, "user", userData.username);
+            // Optionally show the message to the user
+            // navigation.replace('Homepage');
+          }
+        }
+        // setSubmitting(false);
+      })
+      .catch((err) => {
+        console.log("ERROR", err);
+        console.log("res", res);
+        setLoading(false);
+        HandleMessage(err);
+      });
+  }
+   
+  const HandleRemoveFromBookShelf = async () => {
+    //clear the message whenever the button is pressed
+    HandleMessage(null);
+    setLoading(true);
+    console.log("UserData", userData);
+    console.log("Name", userData.username);
+
+    const url = `http://192.168.1.3:8000/api/bookshelf/${userData.username}/remove/`;
+    console.log("credintials", bookTitle);
+     axios.post(url, {"title" : bookTitle},{
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then((res) => {
+        console.log("res", res);
+        setLoading(false);
+        if (res.data.status !== "SUCCESS") {
+          console.log("Error Message:", res.data.message);
+          HandleMessage(res.data.message, res.data.status);
+        } else {
+          if (res.data.message) {
+            console.log("Message:", res.data.message);
+            HandleMessage(res.data.message, res.data.status);
+            console.log("Books", res.data.data.books);
+            console.log("Bookshelf", bookTitle, "user", userData.username);
+            // Optionally show the message to the user
+            // navigation.replace('Homepage');
+          }
+        }
+        // setSubmitting(false);
+      })
+      .catch((err) => {
+        console.log("ERROR", err);
+        console.log("res", res);
+        setLoading(false);
+        HandleMessage(err);
+      });
+  }
+        
+  
+
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
       <Container>
@@ -128,11 +224,11 @@ const BookDetails = ({ route }) => {
             </Text>
           </View>
           <View style={styles.buttoncontainer}>
-            <Button
+           <Button
               title="Add to BookShelf"
               mode="outlined"
               color="#A67FBF"
-              onPress={() => console.log("Pressed")}
+              onPress={ HandleRemoveFromBookShelf }
               style={styles.button}
             ></Button>
           </View>

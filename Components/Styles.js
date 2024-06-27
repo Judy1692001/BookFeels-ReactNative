@@ -27,10 +27,11 @@ export const Colors = {
     moreColor: '#F5F1F8',
     nameColor: '#424866',
     notvalid: ' #CBC3E3' ,
-    notvalidtxt:'#ff0000'
+    notvalidtxt:'#ff0000' ,
+    historyColor: '#424866'
 };
 
-const { primary, secondary, heading, text,inText,dark_primary, notvalid , notvalidtxt, light_primary, Bio, Follow, subHeader, groupBox, quoteBox, moreColor, nameColor } = Colors;
+const { primary, secondary, heading, text,inText,dark_primary, notvalid , notvalidtxt, light_primary, Bio, Follow, subHeader, groupBox, quoteBox, moreColor, nameColor, historyColor } = Colors;
 
 export const Container = styled.View`
 flex: 1;
@@ -652,3 +653,70 @@ export const DiscoverPageContainer = styled.View`
   //elevation: 5;
 `;
 
+export const HistoryFlex1 = styled.TouchableOpacity`
+flex-direction: column;
+width: 80%;
+height: 22%;
+border: 1px solid #424866;
+margin-top: 100px;
+margin-left: 32px;
+background-color: ${moreColor};
+border-radius: 15px;
+`;
+
+export const HistoryFlex2 = styled.TouchableOpacity`
+flex-direction: column;
+width: 80%;
+height: 22%;
+border: 1px solid #424866;
+margin-top: 30px;
+margin-left: 32px;
+background-color: ${moreColor};
+border-radius: 15px;
+`;
+
+
+export const HistoryFlexRow = styled.View`
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+width: 1vw;
+height: 0.25vh;
+margin: 3%;
+`;
+
+export const HistoryText = styled.Text`
+font-size: 15px;
+color: ${historyColor};
+`;
+
+export const StarFlex = styled.View`
+flex-direction: row;
+`;
+
+export const FavoritesFlex = styled.View`
+flex-direction: column;
+width: 80%;
+height: 100%;
+margin-top: 80px;
+margin-left: 32px;
+`;
+
+export const FavoritesFlexRow = styled.View`
+flex-direction: row;
+justify-content: space-around;
+width: 100%;
+height: 40%;
+margin-top: 25px;
+padding-top: 10px;
+`;
+
+
+
+export const FavoritesBox = styled.View`
+width: 90px;
+height: 100px;
+background-color: ${groupBox};
+padding-top: 38px;
+padding-left: 38px;
+`;

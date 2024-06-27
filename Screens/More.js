@@ -94,7 +94,7 @@ export default function More({navigation}){
 
                     <BookManagement>
                         
-                        <Flex2>
+                        <Flex2 onPress={() => navigation.navigate('ActivityHistory')}>
 
                             <Theme2>Emotional States History</Theme2>
 
@@ -106,7 +106,7 @@ export default function More({navigation}){
 
                         </Flex2>
 
-                        <Flex2>
+                        <Flex2 onPress={() => navigation.navigate('Favorites')}>
 
                             <Theme2>Favorite Books</Theme2>
 
@@ -122,7 +122,7 @@ export default function More({navigation}){
 
                     <Tutorials>
 
-                        <Flex2>
+                        <Flex2 onPress={() => navigation.navigate('Homepage')}>
 
                             <Theme2>User Guides / Tutorials</Theme2>
 
@@ -138,7 +138,7 @@ export default function More({navigation}){
 
                     <Support>
 
-                        <Flex2>
+                        <Flex2 onPress={() => navigation.navigate('Homepage')}>
 
                             <Theme2>FAQ</Theme2>
 
@@ -150,7 +150,7 @@ export default function More({navigation}){
 
                         </Flex2>
 
-                        <Flex2>
+                        <Flex2 onPress={() => navigation.navigate('Homepage')}>
 
                             <Theme2>About</Theme2>
 
@@ -162,7 +162,7 @@ export default function More({navigation}){
 
                         </Flex2>
 
-                        <Flex2>
+                        <Flex2 onPress={() => navigation.navigate('Homepage')}>
 
                             <Theme2>Rate the App</Theme2>
 
