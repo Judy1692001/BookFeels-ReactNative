@@ -60,7 +60,7 @@ const Signup = ({navigation}) => {
        //clear the message whenever the button is pressed
        HandleMessage(null);
         setSubmitting(false);
-        const url = 'http://192.168.1.4:8000/api/register/';
+        const url = 'http://192.168.220.102:8000/api/register/';
         console.log("credintials", credentials);
         //  try {
         let formdata = new FormData();

@@ -10,6 +10,8 @@ import Recommend from '../Screens/Recommend';
 import MyBooks from '../Screens/MyBooks';
 import Discover from '../Screens/Discover';
 import More from '../Screens/More';
+import ActivityHistory from '../Screens/ActivityHistory'
+import Favorites from '../Screens/Favorites'
 import { Colors } from './../Components/Styles';
 //color
 const { secondary,text,heading ,dark_primary} = Colors;
@@ -42,6 +44,8 @@ export default function RootNavigator () {
           <Stack.Screen name="MyBooks" component={MyBooks} />
           <Stack.Screen name="Discover" component={Discover} />
           <Stack.Screen name="More" component={More} />
+          <Stack.Screen name="ActivityHistory" component={ActivityHistory} />
+          <Stack.Screen name="Favorites" component={Favorites} />
           
      </Stack.Navigator>
     </NavigationContainer>
