@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext, useEffect, useState } from "react";
 import {View, KeyboardAvoidingView, Platform, ScrollView, Switch } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import {
@@ -10,21 +10,33 @@ import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Searchbar } from 'react-native-paper';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const {inText} = Colors;
 
 export default function More({navigation}){
-
-    const [searchQuery, setSearchQuery] = React.useState('');
+  
+    const [searchQuery, setSearchQuery] = useState('');
+    const [userData, setUserData] = useState({});
+    const [isEnabled, setIsEnabled] = useState(false);
 
     const onChangeSearch = query => {
         setSearchQuery(query);
     };
-
-    const [isEnabled, setIsEnabled] = React.useState(false);
-
+    const handleFocus = () => {
+        navigation.navigate("Discover");
+      };
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
+    useEffect(() => {
+        const user = AsyncStorage.getItem("BookFeelsCredentials").then((res) => {
+          console.log("res", res);
+          const userdata = JSON.parse(res);
+  
+          console.log("USERDATA", userdata);
+          setUserData(userdata);
+          
+       // const username = userData.username;
+      }); // Get the user data from AsyncStorage
+    }, []);
     return (
         <KeyboardAvoidingView style={{ flex: 1 }}
             behavior={Platform.OS === "ios" ? "padding" : "height"}>
@@ -42,7 +54,8 @@ export default function More({navigation}){
                         <Searchbar
                             placeholder="Search"
                             placeholderTextColor="gray"
-                            onChangeText={onChangeSearch}
+                                onChangeText={onChangeSearch}
+                                onFocus={handleFocus}
                             value={searchQuery}
                             style={{ flex: 1, margin: 20, backgroundColor: inText}} 
                         />
@@ -57,7 +70,7 @@ export default function More({navigation}){
 
                         </ProfilePicture2>
 
-                        <UserName2>Judy Soliman</UserName2>
+                            <UserName2>{userData.username}</UserName2>
 
                     </ProfileInfo>
 

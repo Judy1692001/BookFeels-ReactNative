@@ -43,7 +43,7 @@ justifyContent: 'space-between';
 `;
 export const PageContainer = styled.View`
 flex: 1;
-padding-bottom: 20px; 
+padding-bottom: 24px; 
 backgroundColor:${primary};
 justifyContent: 'space-between';
 
@@ -211,6 +211,7 @@ height:1px;
 width:100%;
 backgroundColor:${inText};
 margin-vertical:10px;
+
 `; 
 
 export const StylingLinkView = styled.View`
@@ -506,12 +507,12 @@ color: ${subHeader};
 `;
 
 export const Line4 = styled.View`
-height:1px;
+height:2px;
 width:47%;
 margin-vertical:10px;
-margin-bottom:100px;
-margin-left: 110px;
-background-color: black;
+margin-bottom:10px;
+margin-left: 90px;
+background-color: ${text};
 `;
 
 export const EditGroup = styled.TouchableOpacity`

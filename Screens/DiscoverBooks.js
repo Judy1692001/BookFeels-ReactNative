@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   View,
@@ -10,6 +10,7 @@ import {
   Button,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Alert,
 } from "react-native";
 import {
   Container,
@@ -23,54 +24,54 @@ import {
 } from "../Components/Styles";
 //API
 import axios from "axios";
-import Icon from "react-native-vector-icons/MaterialIcons";
 import { Searchbar } from "react-native-paper";
 import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
-import KeyboardAvoidingWrapper from "./../Components/KeyboardAvoidingWrapper";
+import { useNavigation } from '@react-navigation/native';
 //color
-const { secondary, text, heading, dark_primary, notvalid, primary, inText } =
-  Colors;
+const { secondary, text, primary, inText } = Colors;
 
-const DiscoverBooks = ({ navigation }) => {
+const DiscoverBooks = () => {
+  const navigation = useNavigation();
+
   //state variable to store the error message.
   const [message, setMessage] = useState();
   //error message,success message
   const [messageType, setMessageType] = useState();
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [nextURL, setNextURL] = useState(null);
-  const [prevURL, setPrevURL] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const DiscoverRef = useRef(null);
+
+  const focusKeyboard = () => {
+    DiscoverRef.current?.focus();
+  };
+
+  //focus the keyboard when the component mounts
+  useEffect(() => {
+    focusKeyboard();
+  }, []);
 
   const onChangeSearch = (query) => {
     setCurrentPage(0); //with any search query go back to page 1
     setSearchQuery(query);
     // fetchBooks();//to get data after
   };
+
+  //useeffect is a listener
   useEffect(() => {
     fetchBooks();
-  }, [searchQuery]);
+  }, [searchQuery]); // because we want it to run after every search update
   //useEffect takes arrow function and an empty array as a parameters
   useEffect(() => {
     fetchBooks();
-  }, []); // array because we want it to run after every search
-  //if empty array (will run after the initial render)
+  }, []); // empty array (will run once after the initial render)
 
   const fetchBooks = async () => {
-    //try {
     setLoading(true);
     const nextPage = currentPage + 1;
-    // //search APT
-    // const searchResponse = await axios.get(
-    //   `http://192.168.1.4:8000/api/search/?page=${nextPage}&query=${searchQuery}`
-    // );
-    // setSearchResults(searchResponse.data.results);
-    // console.log("Search", searchResponse.data.results);
 
-    //Discover page APT to show all books
-    const URL = `http://192.168.1.4:8000/api/search/?page=${nextPage}${
+    const URL = `http://192.168.1.3:8000/api/search/?page=${nextPage}${
       searchQuery ? `&query=${searchQuery}` : ""
     }`;
     await axios
@@ -95,9 +96,6 @@ const DiscoverBooks = ({ navigation }) => {
           setBooks((books) => [...books, ...data.results] || []);
         }
         setCurrentPage(nextPage);
-
-        //setNextURL(data.next);
-        //setPrevURL(data.previous);
       })
       .catch((err) => {
         console.log("ERROR", err);
@@ -108,24 +106,27 @@ const DiscoverBooks = ({ navigation }) => {
       });
   };
 
-  const HandleMessage = (message, type = "FAILED") => {
-    setMessage(message);
-    setMessageType(type);
+  //navigates to BookDetails page
+  const handlePress = (book) => {
+    Alert.alert("Book Pressed", `You pressed ${book.Title}`);
+    navigation.navigate("BookDetails", { bookTitle: book.Title });
   };
-  //To render Discover page books
-  const renderItem = ({ item }) => (
-    <View style={styles.container}>
-      <Text style={styles.title}>{item.Title}</Text>
-      <Text style={styles.authors}>{item.authors}</Text>
-      <Image source={{ uri: item.image }} style={styles.image} />
-    </View>
-  );
+
   //To render search results.
   const renderSearchItems = ({ item }) => (
     <View style={styles.container}>
-      <Text style={styles.title}>{item.Title}</Text>
-      <Text style={styles.authors}>{item.authors}</Text>
       <Image source={{ uri: item.image }} style={styles.image} />
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{item.Title}</Text>
+        <Text style={styles.authors}>{item.authors}</Text>
+      </View>
+      <View styles={styles.button}>
+        <Button
+          title="Book Details"
+          color="#A67FBF" //secondary
+          onPress={() => handlePress(item)}
+        />
+      </View>
     </View>
   );
   return (
@@ -141,6 +142,7 @@ const DiscoverBooks = ({ navigation }) => {
           </ProfileIcon>
 
           <Searchbar
+            ref={DiscoverRef}
             placeholder="Title or author"
             placeholderTextColor="gray"
             onChangeText={onChangeSearch}
@@ -151,22 +153,7 @@ const DiscoverBooks = ({ navigation }) => {
             <MaterialCommunityIcons name="bell" size={30} color="black" />
           </NotificationIcon>
         </NavBarContainer>
-        {/* <FlatList
-          data={books}
-          renderItem={renderItem}
-          keyExtractor={(item, index) => index.toString()} //assuming each item has a unique id
-          contentContainerStyle={styles.list}
-          onEndReached={fetchBooks}
-          onEndReachedThreshold={0.1} //means that the onEndReached callback will be triggered when
-          //the user has scrolled within 10% of the bottom of the list.
-          ListFooterComponent={() => {
-            return (
-              <View style={styles.footer}>
-                {loading && <ActivityIndicator size={large} />}
-              </View>
-            );
-          }}
-        /> */}
+
         {loading && currentPage == 0 ? (
           <View style={styles.footer}>
             {loading && <ActivityIndicator size={"large"} />}
@@ -226,9 +213,25 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   image: {
-    width: 10,
-    height: 5,
+    width: 60,
+    height: 80,
     marginRight: 10,
+  },
+  button: {
+    width: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 5,
+    borderRadius: 5,
+    overflow: "hidden",
+    backgroundColor: secondary,
+    alignItems: "center",
+  },
+  textContainer: {
+    flex: 1,
+    marginRight: 10,
+    backgroundColor: primary,
+  
   },
   details: {
     flex: 1,
@@ -242,6 +245,7 @@ const styles = StyleSheet.create({
     color: text,
   },
   container: {
+    flexDirection: 'row',
     flex: 1,
     padding: 20,
     borderRadius: 10,
