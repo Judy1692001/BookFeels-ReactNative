@@ -28,10 +28,12 @@ export const Colors = {
     nameColor: '#424866',
     notvalid: ' #CBC3E3' ,
     notvalidtxt:'#ff0000' ,
-    historyColor: '#424866'
+    historyColor: '#424866' ,
+    faqPar: '#4B3B3B' ,
+    faqLine: '#C1B2B2' ,
 };
 
-const { primary, secondary, heading, text,inText,dark_primary, notvalid , notvalidtxt, light_primary, Bio, Follow, subHeader, groupBox, quoteBox, moreColor, nameColor, historyColor } = Colors;
+const { primary, secondary, heading, text,inText,dark_primary, notvalid , notvalidtxt, light_primary, Bio, Follow, subHeader, groupBox, quoteBox, moreColor, nameColor, historyColor, faqPar, faqLine } = Colors;
 
 export const Container = styled.View`
 flex: 1;
@@ -616,16 +618,7 @@ padding-right: 20px;
 export const BookManagement = styled.View`
 border-radius: 15px;
 width: 280px;
-height: 90px;
-background-color: ${moreColor};
-margin-left: 25px;
-margin-bottom: 15px;
-`;
-
-export const Tutorials = styled.View`
-border-radius: 15px;
-width: 280px;
-height: 60px;
+height: 130px;
 background-color: ${moreColor};
 margin-left: 25px;
 margin-bottom: 15px;
@@ -644,7 +637,7 @@ export const HistoryFlex1 = styled.TouchableOpacity`
 flex-direction: column;
 width: 80%;
 height: 22%;
-border: 1px solid #424866;
+border: 1px solid ${historyColor};
 margin-top: 100px;
 margin-left: 32px;
 background-color: ${moreColor};
@@ -698,8 +691,6 @@ margin-top: 25px;
 padding-top: 10px;
 `;
 
-
-
 export const FavoritesBox = styled.View`
 width: 90px;
 height: 100px;
@@ -707,3 +698,91 @@ background-color: ${groupBox};
 padding-top: 38px;
 padding-left: 38px;
 `;
+
+export const ReadingHistoryContainer = styled.View`
+flex-direction: column;
+margin-top: 25%;
+margin-left: 3%;
+height: 70%;
+width: 95%;
+`;
+
+export const ReadingHistoryFlex = styled.View`
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+margin-bottom: 20%;
+height: 40%;
+width: 100%;
+background-color: ${moreColor};
+border-radius: 15px;
+`;
+
+export const BookDetails = styled.View`
+flex-direction: column;
+margin-right: 5%;
+`;
+
+export const BookDetailsText = styled.Text`
+padding-bottom: 15%;
+`;
+
+export const StarFlex2 = styled.View`
+flex-direction: row;
+margin-left: 4%;
+`;
+
+export const FAQHeader = styled.Text`
+font-size: 28px;
+color: ${nameColor};
+margin-top: 13%;
+`;
+
+export const FAQParagraph = styled.Text`
+font-size: 15px;
+color: ${faqPar};
+margin-top: 13%;
+`;
+
+export const FAQLine = styled.View`
+height:1px;
+width:100%;
+backgroundColor:${faqLine};
+margin-vertical:10px;
+margin-top: 30px;
+`; 
+
+export const FAQLine2 = styled.View`
+height:1px;
+width:100%;
+backgroundColor:${faqLine};
+margin-vertical:10px;
+margin-top: 15px;
+`;
+
+export const FAQQuestion = styled.Text`
+font-size: 15px;
+color: ${faqPar};
+font-weight: bold;
+margin-top: 5%;
+margin-left: 16%;
+`;
+
+export const FAQButton = styled.TouchableOpacity`
+margin-top: 30px;
+margin-left: 21%;
+margin-bottom: 5%;
+width: 60%;
+height: 50px;
+border-radius: 50px;
+background-color: ${moreColor};
+border: 1px solid ${historyColor};
+`;
+
+export const FAQSubmitText = styled.Text`
+font-size: 15px;
+color: ${faqPar};
+font-weight: bold;
+margin-top: 14px;
+margin-left: 20%;
+`; 

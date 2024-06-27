@@ -105,13 +105,9 @@ export default function More({navigation}){
 
                         </Flex2>
 
-                    </BookManagement>
+                        <Flex2 onPress={() => navigation.navigate('ReadingHistory')}>
 
-                    <Tutorials>
-
-                        <Flex2 onPress={() => navigation.navigate('Homepage')}>
-
-                            <Theme2>User Guides / Tutorials</Theme2>
+                            <Theme2>Reading History</Theme2>
 
                             <RightArrow>
 
@@ -121,11 +117,11 @@ export default function More({navigation}){
 
                         </Flex2>
 
-                    </Tutorials>
+                    </BookManagement>
 
                     <Support>
 
-                        <Flex2 onPress={() => navigation.navigate('Homepage')}>
+                        <Flex2 onPress={() => navigation.navigate('FAQ')}>
 
                             <Theme2>FAQ</Theme2>
 
