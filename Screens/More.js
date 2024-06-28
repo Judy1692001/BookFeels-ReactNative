@@ -133,7 +133,7 @@ export default function More({navigation}){
 
                         </Flex2>
 
-                        <Flex2 onPress={() => navigation.navigate('Homepage')}>
+                        <Flex2 onPress={() => navigation.navigate('About')}>
 
                             <Theme2>About</Theme2>
 
@@ -145,7 +145,7 @@ export default function More({navigation}){
 
                         </Flex2>
 
-                        <Flex2 onPress={() => navigation.navigate('Homepage')}>
+                        <Flex2 onPress={() => navigation.navigate('RateApp')}>
 
                             <Theme2>Rate the App</Theme2>
 

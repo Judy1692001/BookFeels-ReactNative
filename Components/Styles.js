@@ -786,3 +786,72 @@ font-weight: bold;
 margin-top: 14px;
 margin-left: 20%;
 `; 
+
+export const AboutImage = styled.Image`
+height: 199px;
+width: 97%;
+margin-top: 50px;
+`;
+
+export const AboutSubHeader = styled.Text`
+font-size: 36px;
+color: ${subHeader};
+font-weight: bold;
+margin-top: 25px;
+margin-left: 5px;
+`;
+
+export const AboutParagraph = styled.Text`
+font-size: 15px;
+color: ${faqPar};
+margin-top: 10%;
+margin-left: 2%;
+`;
+
+export const RateHeader = styled.Text`
+font-size: 24px;
+font-weight: bold;
+color: ${faqPar};
+margin-top: 10%;
+margin-left: 6%;
+`;
+
+export const RateParagraph = styled.Text`
+font-size: 18px;
+color: ${faqPar};
+margin-top: 10%;
+margin-left: 6%;
+text-align: center;
+`;
+
+export const StarContainer = styled.View`
+flex-direction: row;
+justify-content: space around;
+margin-top: 10%;
+margin-left: 27%;
+`;
+
+export const RateSubmitButton = styled.TouchableOpacity`
+margin-top: 30px;
+margin-left: 33%;
+margin-bottom: 5%;
+width: 35%;
+height: 38px;
+border-radius: 50px;
+background-color: ${moreColor};
+border: 1px solid ${historyColor};
+`;
+
+export const SubmitText = styled.Text`
+font-size: 20px;
+color: ${faqPar};
+text-align: center;
+padding-top: 4%;
+padding-right: 5%;
+`;
+
+export const RejectionText = styled.Text`
+font-size: 15px;
+color: ${faqPar};
+padding-left: 38.5%;
+`;

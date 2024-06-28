@@ -14,6 +14,8 @@ import ActivityHistory from '../Screens/ActivityHistory'
 import Favorites from '../Screens/Favorites'
 import ReadingHistory from '../Screens/ReadingHistory'
 import FAQ from '../Screens/FAQ'
+import About from '../Screens/About'
+import RateApp from '../Screens/RateApp'
 import { Colors } from './../Components/Styles';
 
 //color
@@ -51,6 +53,8 @@ export default function RootNavigator () {
           <Stack.Screen name="Favorites" component={Favorites} />
           <Stack.Screen name="ReadingHistory" component={ReadingHistory} />
           <Stack.Screen name="FAQ" component={FAQ} />
+          <Stack.Screen name="About" component={About} />
+          <Stack.Screen name="RateApp" component={RateApp} />
           
      </Stack.Navigator>
     </NavigationContainer>
