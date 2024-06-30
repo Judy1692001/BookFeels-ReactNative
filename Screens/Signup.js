@@ -117,7 +117,7 @@ const Signup = ({ navigation }) => {
             // Optionally show the message to the user
             // navigation.replace('Homepage');
             keepMeLogedIn(
-              { ...res.data.user },
+              { ...res.data },
               res.data.message,
               res.data.status
             );
@@ -169,17 +169,7 @@ const Signup = ({ navigation }) => {
             }}
             validationSchema={SignupSchema}
             onSubmit={(values, { setSubmitting }) => {
-              // if (values.email == '' || values.password == '' || values.username == '' || values.confirmPassword == '') {
-              //    // HandleMessage("Please fill all fields");
-              //     setSubmitting(false);
-              // } else if (password !== confirmPassword) {
-              //    // HandleMessage("Password is not correct");
-              //     setSubmitting(false);
-
-              // } else {
               HandleSignup(values, setSubmitting);
-
-              // }
             }}
           >
             {({

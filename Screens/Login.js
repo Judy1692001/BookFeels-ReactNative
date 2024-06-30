@@ -98,8 +98,8 @@ const Login = ({navigation,onFocus = () => {}}) => {
                     HandleMessage(res.data.message, res.data.status);
                     // Optionally show the message to the user
                     // navi.navigate('Homepage');
-                    console.log("User:", res.data.data.user);
-                    keepMeLogedIn({... res.data.data.user }, res.data.message, res.data.status);
+                    console.log("User:", res.data.data);
+                    keepMeLogedIn({... res.data.data }, res.data.message, res.data.status);
                 } 
                  
             }
@@ -124,7 +124,7 @@ const Login = ({navigation,onFocus = () => {}}) => {
             .then(() => { 
                 HandleMessage(message, status);
                 setStoredCredentials(credentials);
-                console.log("Stored Credentials", storedCredentials);
+               // console.log("Stored Credentials", storedCredentials);
               //  storedCredentials = credentials;
             })
             .catch((error) => {

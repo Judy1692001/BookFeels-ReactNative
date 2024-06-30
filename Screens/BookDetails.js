@@ -18,6 +18,7 @@ import {
   Colors,
   Line,
   Line2,
+  Line3,
   Line4,
   NavBarContainer,
   FooterContainer,
@@ -49,8 +50,11 @@ const BookDetails = ({ route }) => {
   const [messageType, setMessageType] = useState();
   // //states for rating part
   // const [rating, setRating] = useState(0);
+  const [bookInShelf, setBookInShelf] = useState(false);
+  const [readBook, setReadBook] = useState(false);
 
   const [userData, setUserData] = useState({});
+  const [userToken, setUserToken] = useState({});
 
   //Function to handle the message
   const HandleMessage = (message, type = "FAILED") => {
@@ -58,14 +62,55 @@ const BookDetails = ({ route }) => {
     setMessageType(type);
   };
 
+  const handleReadPress = () => {
+    setReadBook(!readBook);
+   // navigation.navigate('ActivityHistory');
+  };
+  const handleReviewRatePress = () => {
+    navigation.navigate("ReviewRate");
+  };
+  //to get user data
+  useEffect(() => {
+    const user = AsyncStorage.getItem("BookFeelsCredentials").then((res) => {
+      console.log("res", res);
+      const userdata = JSON.parse(res);
+      console.log("USERDATA", userdata);
+      setUserData(userdata.user);
+      setUserToken(userData.access);
+    }); // Get the user data from AsyncStorage
+  }, []);
+
   //useEffect listener for book details whenever we click on a book.
   useEffect(() => {
     fetchBookDetails();
   }, [bookTitle]); // because we want it to run after we click on a book
 
+  const saveBookShelfState = (status) => {
+    console.log("CredentialsInside", status);
+    AsyncStorage.setItem("BookShelfState", JSON.stringify(status))
+      .then(() => {
+        console.log("res", res);
+        // const saveShelfState = JSON.parse(res);
+        // console.log("USERDATA", saveShelfState);
+        setBookInShelf(status);
+        
+      })
+      .catch((error) => {
+        console.log("ERROR in save", error);
+      });
+  };
+  console.log("Stored state", bookInShelf);
+  useEffect(() => {
+    const shelfState = AsyncStorage.getItem("BookShelfState").then((res) => {
+      console.log("res", res);
+      const storedStatus = JSON.parse(res);
+      console.log("stored status", storedStatus);
+      setBookInShelf(JSON.parse(storedStatus));
+    });
+  }, []);
+
   const fetchBookDetails = async () => {
     setLoading(true);
-
     const URL = `${baseURL}api/bookdetails/${bookTitle}`;
     await axios
       .get(URL)
@@ -94,33 +139,29 @@ const BookDetails = ({ route }) => {
       });
   };
 
-    
-    useEffect(() => {
-      const user = AsyncStorage.getItem("BookFeelsCredentials").then((res) => {
-        console.log("res", res);
-        const userdata = JSON.parse(res);
-        console.log("USERDATA", userdata);
-        setUserData(userdata);
-          
-         
-    }); // Get the user data from AsyncStorage
-  }, []);
-    
   const HandleAddToBookShelf = async () => {
+    Alert.alert("inside add shelf");
     //clear the message whenever the button is pressed
     HandleMessage(null);
     setLoading(true);
-    console.log("UserData", userData);
-    console.log("Name", userData.username);
+    // console.log("UserData", userData);
+    // console.log("Name", userData.username);
 
     const url = `${baseURL}api/bookshelf/${userData.username}/add/`;
     console.log("credintials", bookTitle);
-     axios.post(url, {"title" : bookTitle},{
-        headers: {
-          'Content-Type': 'application/json',
+    axios
+      .post(
+        url,
+        { title: bookTitle },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${userToken}`
+          },
         }
-      }).then((res) => {
-        console.log("res", res);
+      )
+      .then((res) => {
+        // console.log("res", res);
         setLoading(false);
         if (res.data.status !== "SUCCESS") {
           console.log("Error Message:", res.data.message);
@@ -131,11 +172,9 @@ const BookDetails = ({ route }) => {
             HandleMessage(res.data.message, res.data.status);
             console.log("Books", res.data.data.books);
             console.log("Bookshelf", bookTitle, "user", userData.username);
-            // Optionally show the message to the user
-            // navigation.replace('Homepage');
+            saveBookShelfState(true); //to ensure that the book is added to bookshelf
           }
         }
-        // setSubmitting(false);
       })
       .catch((err) => {
         console.log("ERROR", err);
@@ -143,8 +182,8 @@ const BookDetails = ({ route }) => {
         setLoading(false);
         HandleMessage(err);
       });
-  }
-   
+  };
+
   const HandleRemoveFromBookShelf = async () => {
     //clear the message whenever the button is pressed
     HandleMessage(null);
@@ -152,14 +191,21 @@ const BookDetails = ({ route }) => {
     console.log("UserData", userData);
     console.log("Name", userData.username);
 
-    const url = `${baseURL}api/bookshelf/${userData.username}/remove/`;
+    const url = `${baseURL}api/bookshelf/remove/`;
     console.log("credintials", bookTitle);
-     axios.post(url, {"title" : bookTitle},{
-        headers: {
-          'Content-Type': 'application/json',
+    axios
+      .post(
+        url,
+        { title: bookTitle },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${userToken}`
+          },
         }
-      }).then((res) => {
-        console.log("res", res);
+      )
+      .then((res) => {
+        // console.log("res", res);
         setLoading(false);
         if (res.data.status !== "SUCCESS") {
           console.log("Error Message:", res.data.message);
@@ -170,11 +216,10 @@ const BookDetails = ({ route }) => {
             HandleMessage(res.data.message, res.data.status);
             console.log("Books", res.data.data.books);
             console.log("Bookshelf", bookTitle, "user", userData.username);
-            // Optionally show the message to the user
-            // navigation.replace('Homepage');
+            saveBookShelfState(false); //to ensure that the book is removed from bookshelf
           }
         }
-        // setSubmitting(false);
+        //return res.data.data.books;
       })
       .catch((err) => {
         console.log("ERROR", err);
@@ -182,9 +227,7 @@ const BookDetails = ({ route }) => {
         setLoading(false);
         HandleMessage(err);
       });
-  }
-        
-  
+  };
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
@@ -225,16 +268,50 @@ const BookDetails = ({ route }) => {
               Book Genre : {bookDetails.categories}
             </Text>
           </View>
+          <Line></Line>
+          <Text style={styles.description}>To read this book later...</Text>
           <View style={styles.buttoncontainer}>
-           <Button
-              title="Add to BookShelf"
+            {/* this ensure that button is rendered only when bookdetails are fetched successfully */}
+            {bookDetails && (
+              <Button
+                title={
+                  bookInShelf ? "Remove From BookShelf" : "Add To BookShelf"
+                }
+                mode="outlined"
+                color={bookInShelf ? "gray" : "#A67FBF"} // if true dark_Primary else secondary
+                onPress={
+                  bookInShelf ? HandleRemoveFromBookShelf : HandleAddToBookShelf
+                }
+                style={styles.button}
+              ></Button>
+            )}
+          </View>
+          <Line3></Line3>
+          <Text style={styles.description}>Already read this book before!</Text>
+          <Text style={styles.description}>Click this button</Text>
+          <View style={styles.buttoncontainer}>
+            <Button
+              title={readBook ? "Read" : "Not Read"}
               mode="outlined"
-              color="#A67FBF"
-              onPress={ HandleRemoveFromBookShelf }
+              color={readBook ? "gray" : "#A67FBF"} // if true dark_Primary else secondary
+              onPress={handleReadPress}
               style={styles.button}
             ></Button>
           </View>
+          <Line></Line>
+          <Text style={styles.description}>
+            Rate and Review the Book to get better Recommendations
+          </Text>
 
+          <View style={styles.buttoncontainer}>
+            <Button
+              title={"Review and Rate"}
+              mode="outlined"
+              color={"#A67FBF"} // if true dark_Primary else secondary
+              onPress={handleReviewRatePress}
+              style={styles.button}
+            ></Button>
+          </View>
         </ScrollView>
         <FooterContainer>
           <IconButton onPress={() => navigation.navigate("Homepage")}>

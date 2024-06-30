@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {View, KeyboardAvoidingView, Platform, ScrollView, Switch } from 'react-native'
+import {View, KeyboardAvoidingView, Platform, ScrollView, Switch, Pressable } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import {
     Container, NavBarContainer, PageContent, ProfileIcon, NotificationIcon, HeadingStyle, EmotionContainer,
@@ -26,6 +26,7 @@ export default function More({navigation}){
         navigation.navigate("Discover");
       };
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
     useEffect(() => {
         const user = AsyncStorage.getItem("BookFeelsCredentials").then((res) => {
           console.log("res", res);
@@ -37,6 +38,12 @@ export default function More({navigation}){
        // const username = userData.username;
       }); // Get the user data from AsyncStorage
     }, []);
+
+    //to navigate to profilepage when the name is pressed
+    const handlePress = () => {
+        navigation.navigate('Profile', { username: userData.username });
+    };
+
     return (
         <KeyboardAvoidingView style={{ flex: 1 }}
             behavior={Platform.OS === "ios" ? "padding" : "height"}>
@@ -69,8 +76,9 @@ export default function More({navigation}){
                             <Ionicons name="camera" size={20} color="black" />
 
                         </ProfilePicture2>
-
-                            <UserName2>{userData.username}</UserName2>
+                           <Pressable onPress={handlePress}>
+                                <UserName2>{userData.username}</UserName2>
+                            </Pressable>
 
                     </ProfileInfo>
 

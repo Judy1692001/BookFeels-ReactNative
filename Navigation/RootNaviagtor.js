@@ -17,6 +17,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { CredentialsContext } from "../Components/CredentialsContext";
 import ActivityHistory from '../Screens/ActivityHistory'
 import Favorites from '../Screens/Favorites'
+import ReviewRate from '../Screens/ReviewRate';
 //color
 const { secondary, text, heading, dark_primary } = Colors;
 const Stack = createNativeStackNavigator();
@@ -78,6 +79,7 @@ export default function RootNavigator() {
               <Stack.Screen name="BookDetails" component={BookDetails} />
               <Stack.Screen name="ActivityHistory" component={ActivityHistory} />
               <Stack.Screen name="Favorites" component={Favorites} />
+              <Stack.Screen name="ReviewRate" component={ReviewRate} />
             </Stack.Navigator>
           </NavigationContainer>
         </GestureHandlerRootView>

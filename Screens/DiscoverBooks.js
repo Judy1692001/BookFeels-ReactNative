@@ -28,6 +28,7 @@ import { Searchbar } from "react-native-paper";
 import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 import { baseURL } from "../config";
+import Profile from "./Profile";
 //color
 const { secondary, text, primary, inText } = Colors;
 

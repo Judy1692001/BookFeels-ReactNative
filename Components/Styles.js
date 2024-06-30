@@ -481,16 +481,29 @@ padding-top: 38px;
 padding-left: 38px;
 `;
 
-export const FavoriteGroupBoxName = styled.Text`
-font-size: 15px;
+export const FavoriteGroupBoxTitle = styled.Text`
+${'' /* fontWeight:bold; */}
+fontSize: 20px;
 text-align: center;
-padding-top: 15px;
+${'' /* font-size: 15px; */}
+${'' /* text-align: center; */}
+padding-top: 10px;
+`;
+export const FavoriteGroupBoxAuthor = styled.Text`
+${'' /* fontWeight:bold; */}
+fontSize: 17px;
+text-align: center;
+color:${dark_primary};
+${'' /* font-size: 15px; */}
+${'' /* text-align: center; */}
+padding-top: 10px;
 `;
 
 export const FlewRow = styled.View`
 flex-direction: row;
 width: 100%;
-height: 120px;
+height: 100px;
+align-content: center; 
 `;
 
 export const SubHeaderGroup = styled.View`
@@ -523,15 +536,16 @@ width: 30%;
 padding-top: 52px;
 `;
 
-export const QuoteBox = styled.TouchableOpacity`
+export const QuoteBox = styled.TextInput`
 flex-direction: row;
 justify-content: space-around;
-align-items: center;
+align-items: center; 
+
 border-radius: 5px;
-width: 350px;
+${'' /* width: 300px; */}
 height: 109px;
 background-color: ${quoteBox};
-margin-left: 40px;
+${'' /* margin-left: 10px; */}
 padding: 40px;
 `;
 
@@ -703,20 +717,24 @@ margin-left: 32px;
 `;
 
 export const FavoritesFlexRow = styled.View`
-flex-direction: row;
-justify-content: space-around;
+${'' /* flex-direction: row; */}
+${'' /* justify-content: space-around; */}
 width: 100%;
 height: 40%;
 margin-top: 25px;
 padding-top: 10px;
 `;
 
+export const FavoritesImage = styled.Image`
+    height: 100px;
+    width: 100px;
+   margin-top:150px;
+   margin-right:10px;
 
+`;
 
 export const FavoritesBox = styled.View`
-width: 90px;
-height: 100px;
-background-color: ${groupBox};
-padding-top: 38px;
-padding-left: 38px;
+${'' /* flex:1px; //caused problem. */}
+backgroundColor: ${primary};
+marginTop: 10;
 `;
