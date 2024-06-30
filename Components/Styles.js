@@ -37,7 +37,7 @@ const { primary, secondary, heading, text,inText,dark_primary, notvalid , notval
 
 export const Container = styled.View`
 flex: 1;
-padding: 24px;
+padding: 10px; 
 padding-top:${StatusBarHeight + 10}px; 
 backgroundColor:${primary};
 contentContainerStyle={{ justifyContent: 'space-between' }};
@@ -46,7 +46,7 @@ justifyContent: 'space-between';
 `;
 export const PageContainer = styled.View`
 flex: 1;
-padding-bottom: 20px; 
+padding-bottom: 24px; 
 backgroundColor:${primary};
 justifyContent: 'space-between';
 
@@ -214,6 +214,7 @@ height:1px;
 width:100%;
 backgroundColor:${inText};
 margin-vertical:10px;
+
 `; 
 
 export const StylingLinkView = styled.View`
@@ -482,16 +483,29 @@ padding-top: 38px;
 padding-left: 38px;
 `;
 
-export const FavoriteGroupBoxName = styled.Text`
-font-size: 15px;
+export const FavoriteGroupBoxTitle = styled.Text`
+${'' /* fontWeight:bold; */}
+fontSize: 20px;
 text-align: center;
-padding-top: 15px;
+${'' /* font-size: 15px; */}
+${'' /* text-align: center; */}
+padding-top: 10px;
+`;
+export const FavoriteGroupBoxAuthor = styled.Text`
+${'' /* fontWeight:bold; */}
+fontSize: 17px;
+text-align: center;
+color:${dark_primary};
+${'' /* font-size: 15px; */}
+${'' /* text-align: center; */}
+padding-top: 10px;
 `;
 
 export const FlewRow = styled.View`
 flex-direction: row;
 width: 100%;
-height: 120px;
+height: 100px;
+align-content: center; 
 `;
 
 export const SubHeaderGroup = styled.View`
@@ -509,12 +523,12 @@ color: ${subHeader};
 `;
 
 export const Line4 = styled.View`
-height:1px;
+height:2px;
 width:47%;
 margin-vertical:10px;
-margin-bottom:100px;
-margin-left: 110px;
-background-color: black;
+margin-bottom:10px;
+margin-left: 90px;
+background-color: ${text};
 `;
 
 export const EditGroup = styled.TouchableOpacity`
@@ -524,15 +538,16 @@ width: 30%;
 padding-top: 52px;
 `;
 
-export const QuoteBox = styled.TouchableOpacity`
+export const QuoteBox = styled.TextInput`
 flex-direction: row;
 justify-content: space-around;
-align-items: center;
+align-items: center; 
+
 border-radius: 5px;
-width: 350px;
+${'' /* width: 300px; */}
 height: 109px;
 background-color: ${quoteBox};
-margin-left: 40px;
+${'' /* margin-left: 10px; */}
 padding: 40px;
 `;
 
@@ -633,6 +648,18 @@ margin-left: 25px;
 margin-bottom: 15px;
 `;
 
+export const DiscoverPageContainer = styled.View`
+   flex: 1;
+  padding: 20px;
+  background-color: ${primary};
+  border-radius: 10px;
+  shadow-color: ${secondary};
+  shadow-offset: {width: 0, height: 2};
+  shadow-opacity: 0.25;
+  shadow-radius: 3.84px;
+  //elevation: 5;
+`;
+
 export const HistoryFlex1 = styled.TouchableOpacity`
 flex-direction: column;
 width: 80%;
@@ -683,20 +710,26 @@ margin-left: 32px;
 `;
 
 export const FavoritesFlexRow = styled.View`
-flex-direction: row;
-justify-content: space-around;
+${'' /* flex-direction: row; */}
+${'' /* justify-content: space-around; */}
 width: 100%;
 height: 40%;
 margin-top: 25px;
 padding-top: 10px;
 `;
 
+export const FavoritesImage = styled.Image`
+    height: 100px;
+    width: 100px;
+   margin-top:150px;
+   margin-right:10px;
+
+`;
+
 export const FavoritesBox = styled.View`
-width: 90px;
-height: 100px;
-background-color: ${groupBox};
-padding-top: 38px;
-padding-left: 38px;
+${'' /* flex:1px; //caused problem. */}
+backgroundColor: ${primary};
+marginTop: 10;
 `;
 
 export const ReadingHistoryContainer = styled.View`

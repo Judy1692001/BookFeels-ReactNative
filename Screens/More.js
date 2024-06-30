@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {View, KeyboardAvoidingView, Platform, ScrollView, Switch } from 'react-native'
+import React, { useContext, useEffect, useState } from "react";
+import {View, KeyboardAvoidingView, Platform, ScrollView, Switch, Pressable } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import {
     Container, NavBarContainer, PageContent, ProfileIcon, NotificationIcon, HeadingStyle, EmotionContainer,
@@ -10,20 +10,39 @@ import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Searchbar } from 'react-native-paper';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const {inText} = Colors;
 
 export default function More({navigation}){
-
-    const [searchQuery, setSearchQuery] = React.useState('');
+  
+    const [searchQuery, setSearchQuery] = useState('');
+    const [userData, setUserData] = useState({});
+    const [isEnabled, setIsEnabled] = useState(false);
 
     const onChangeSearch = query => {
         setSearchQuery(query);
     };
-
-    const [isEnabled, setIsEnabled] = React.useState(false);
-
+    const handleFocus = () => {
+        navigation.navigate("Discover");
+      };
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+    useEffect(() => {
+        const user = AsyncStorage.getItem("BookFeelsCredentials").then((res) => {
+          console.log("res", res);
+          const userdata = JSON.parse(res);
+  
+          console.log("USERDATA", userdata);
+          setUserData(userdata);
+          
+       // const username = userData.username;
+      }); // Get the user data from AsyncStorage
+    }, []);
+
+    //to navigate to profilepage when the name is pressed
+    const handlePress = () => {
+        navigation.navigate('Profile', { username: userData.username });
+    };
 
     return (
         <KeyboardAvoidingView style={{ flex: 1 }}
@@ -42,7 +61,8 @@ export default function More({navigation}){
                         <Searchbar
                             placeholder="Search"
                             placeholderTextColor="gray"
-                            onChangeText={onChangeSearch}
+                                onChangeText={onChangeSearch}
+                                onFocus={handleFocus}
                             value={searchQuery}
                             style={{ flex: 1, margin: 20, backgroundColor: inText}} 
                         />
@@ -56,8 +76,9 @@ export default function More({navigation}){
                             <Ionicons name="camera" size={20} color="black" />
 
                         </ProfilePicture2>
-
-                        <UserName2>Judy Soliman</UserName2>
+                           <Pressable onPress={handlePress}>
+                                <UserName2>{userData.username}</UserName2>
+                            </Pressable>
 
                     </ProfileInfo>
 

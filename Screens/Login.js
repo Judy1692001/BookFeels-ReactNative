@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View, ActivityIndicator } from 'react-native';
 import {
@@ -14,6 +14,10 @@ import { Octicons,Ionicons,Fontisto } from '@expo/vector-icons';
 
 import KeyboardAvoidingWrapper from './../Components/KeyboardAvoidingWrapper';
 import { useNavigation } from '@react-navigation/native';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CredentialsContext } from '../Components/CredentialsContext';
+
 // Yup is a JavaScript schema builder for value parsing and validation.
 import * as Yup from 'yup';
 //color
@@ -21,6 +25,8 @@ const { secondary,text,heading ,dark_primary} = Colors;
 
 //API
 import axios from 'axios';
+import { baseURL } from '../config';
+
 
 //Login validation
 const LoginSchema = Yup.object().shape({
@@ -29,7 +35,7 @@ const LoginSchema = Yup.object().shape({
     password: Yup.string()
         .min(8)
         .required("Please Enter your Password.")
-        .matches("^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$",
+        .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
             "Must contain minimum 8 characters, at least one uppercase letter, one lowercase letter, one special character and one number .")
     
 });
@@ -55,6 +61,9 @@ const Login = ({navigation,onFocus = () => {}}) => {
     const [message, setMessage] = useState();
     //error message,success message
     const [messageType, setMessageType] = useState();
+
+    //Destructure the values stored in Credentials using useContext
+    const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext);
     const navi = useNavigation();
 
     const handleLogin = async (credentials, setSubmitting, navigation) => {
@@ -88,7 +97,9 @@ const Login = ({navigation,onFocus = () => {}}) => {
                     console.log("Message:", res.data.message);
                     HandleMessage(res.data.message, res.data.status);
                     // Optionally show the message to the user
-                    navi.navigate('Homepage');
+                    // navi.navigate('Homepage');
+                    console.log("User:", res.data.data);
+                    keepMeLogedIn({... res.data.data }, res.data.message, res.data.status);
                 } 
                  
             }
@@ -106,6 +117,22 @@ const Login = ({navigation,onFocus = () => {}}) => {
         setMessage(message);
         setMessageType(type);
     }
+
+    const keepMeLogedIn = (credentials, message, status) => {
+        console.log("CredentialsInside", credentials);
+        AsyncStorage.setItem("BookFeelsCredentials", JSON.stringify(credentials))
+            .then(() => { 
+                HandleMessage(message, status);
+                setStoredCredentials(credentials);
+               // console.log("Stored Credentials", storedCredentials);
+              //  storedCredentials = credentials;
+            })
+            .catch((error) => {
+                console.log("ERROR", error);
+                HandleMessage("Failed to keep you logged in");
+            }
+            )
+    }
     return (
         <KeyboardAvoidingWrapper>
         <Container>
@@ -118,12 +145,6 @@ const Login = ({navigation,onFocus = () => {}}) => {
                         initialValues={{ username_or_email: '', password: '' }}
                         validationSchema={LoginSchema}
                         onSubmit={(values,{ setSubmitting }) => {
-                            // if (values.ername_or_email == '' || values.password == '') {
-                            //     // After handling submission, reset form and submission state
-                            //   //  resetForm();
-                            //     HandleMessage("Please fill all fields");
-                            //     setSubmitting(false);
-                            //} else {
                                 handleLogin(values,setSubmitting);
                             }
                         }
@@ -138,9 +159,8 @@ const Login = ({navigation,onFocus = () => {}}) => {
                             placeholderTextColor={text}
                             onChangeText={handleChange('username_or_email')}
                             onBlur={()=>{setFieldTouched('username_or_email')}}
-                            //onBlur={handleBlur('hhh')}
                             value={values.username_or_email}
-                            //autoCapitalize={false}
+                          
                             />
                             {touched.username_or_email && errors.username_or_email && <ValidationText>{errors.username_or_email}</ValidationText>}
                          <LoginTextInput
@@ -150,7 +170,6 @@ const Login = ({navigation,onFocus = () => {}}) => {
                             placeholderTextColor={text}
                             onChangeText={handleChange('password')}
                             onBlur={()=>{setFieldTouched('password')}}
-                            //onBlur={handleBlur('password')}
                             value={values.password}
                             secureTextEntry={hidePassword}
                             isPassword={true}
