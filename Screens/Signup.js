@@ -22,6 +22,7 @@ const { secondary, text, heading, dark_primary,notvalid } = Colors;
 
 //API 
 import axios from 'axios';
+import { baseURL } from '../config';
 
 
 //Sign up validation
@@ -60,7 +61,7 @@ const Signup = ({navigation}) => {
        //clear the message whenever the button is pressed
        HandleMessage(null);
         setSubmitting(false);
-        const url = 'http://192.168.220.102:8000/api/register/';
+        const url = `${baseURL}api/register/`;
         console.log("credintials", credentials);
         //  try {
         let formdata = new FormData();

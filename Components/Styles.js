@@ -850,6 +850,12 @@ padding-top: 4%;
 padding-right: 5%;
 `;
 
+export const RejectionTextContainer = styled.TouchableOpacity`
+width: 50%;
+margin-top: 3%;
+margin-left: 19%;
+`;
+
 export const RejectionText = styled.Text`
 font-size: 15px;
 color: ${faqPar};
