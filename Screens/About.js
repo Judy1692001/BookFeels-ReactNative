@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import {KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import { Container, NavBarContainer, PageContent, FooterContainer, IconButton, TextStyle2, TextStyle, FlewRow, HistoryFlex, HistoryFlexRow, HistoryText, HistoryFlex2, HistoryFlex1, StarFlex, AboutImage, AboutSubHeader, AboutParagraph, FAQLine } from '../Components/Styles';
@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 
-export default function ActivityHistory({navigation}){
+export default function About({navigation}){
 
     return (
 

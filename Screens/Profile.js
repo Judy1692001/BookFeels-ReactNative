@@ -202,14 +202,16 @@ export default function Profile({ navigation }) {
 
         <ScrollView>
           <PageContent>
-            <NavBarContainer2>
+            {/* <NavBarContainer2>
               <SearchIcon onPress={navigateToDiscover}>
                 <Ionicons name="search" size={30} color="black" />
               </SearchIcon>
-            </NavBarContainer2>
+            </NavBarContainer2> */}
 
             <BioSection>
+
               <LeftFlex>
+
                 <ProfilePicture>
                   <Ionicons name="camera" size={24} color="black" />
                 </ProfilePicture>
@@ -217,6 +219,7 @@ export default function Profile({ navigation }) {
                 <FollowButton>
                   <FollowText>Follow</FollowText>
                 </FollowButton>
+
               </LeftFlex>
 
               <RightFlex>
@@ -283,7 +286,9 @@ export default function Profile({ navigation }) {
                 <SubHeader2>{userData.username}'s Quote</SubHeader2>
 
                 <Line4 />
+
               </SubHeaderGroup>
+
                <FlewRow>
               <EditGroup onPress={() => { setEditOrAdd(true); AddQuotes()}}>
                 <MaterialIcons name="add" size={24} color="black" />

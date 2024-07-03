@@ -6,6 +6,7 @@ import Login from "./../Screens/Login";
 import Signup from "./../Screens/Signup";
 import HomePage from "../Screens/HomePage";
 import Profile from "../Screens/Profile";
+import MyBooks from "../Screens/MyBooks";
 import Recommend from "../Screens/Recommend";
 import DiscoverBooks from "../Screens/DiscoverBooks";
 import More from "../Screens/More";
@@ -20,7 +21,6 @@ import ReadingHistory from '../Screens/ReadingHistory'
 import FAQ from '../Screens/FAQ'
 import About from '../Screens/About'
 import RateApp from '../Screens/RateApp'
-import { Colors } from './../Components/Styles';
 import ReviewRate from '../Screens/ReviewRate';
 
 //color
@@ -56,7 +56,7 @@ export default function RootNavigator() {
                 headerTransparent: true,
                 headerTitle: "",
                 headerLeftContainerStyle: {
-                  pddingLeft: 20,
+                paddingLeft: 20,
                 },
               }}
               initialRouteName="Get Started"
@@ -87,6 +87,8 @@ export default function RootNavigator() {
               <Stack.Screen name="ReviewRate" component={ReviewRate} />
               <Stack.Screen name="FAQ" component={FAQ} />
               <Stack.Screen name="About" component={About} />
+              <Stack.Screen name="RateApp" component={RateApp} />
+              <Stack.Screen name="ReadingHistory" component={ReadingHistory} />
             </Stack.Navigator>
           </NavigationContainer>
         </GestureHandlerRootView>
