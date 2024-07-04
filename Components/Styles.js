@@ -28,11 +28,14 @@ export const Colors = {
     nameColor: '#424866',
     notvalid: ' #CBC3E3' ,
     notvalidtxt:'#ff0000' ,
-    historyColor: '#424866'
+    historyColor: '#424866' ,
+    faqPar: '#4B3B3B' ,
+    faqLine: '#C1B2B2' ,
 };
 
-const { primary, secondary, heading, text,inText,dark_primary, notvalid , notvalidtxt, light_primary, Bio, Follow, subHeader, groupBox, quoteBox, moreColor, nameColor, historyColor } = Colors;
+const { primary, secondary, heading, text,inText,dark_primary, notvalid , notvalidtxt, light_primary, Bio, Follow, subHeader, groupBox, quoteBox, moreColor, nameColor, historyColor, faqPar, faqLine } = Colors;
 
+//used
 export const Container = styled.View`
 flex: 1;
 padding: 10px; 
@@ -40,8 +43,9 @@ padding-top:${StatusBarHeight + 10}px;
 backgroundColor:${primary};
 contentContainerStyle={{ justifyContent: 'space-between' }};
 justifyContent: 'space-between';
-
 `;
+
+//used
 export const PageContainer = styled.View`
 flex: 1;
 padding-bottom: 24px; 
@@ -63,11 +67,13 @@ export const PageContent = styled.View`
     
     
 `;
-export const WelcomePageLogo = styled.Image`
+
+//used
+export const WelcomePageLogo = styled.Image` 
     height: 199px;
     width: 314px;
-   margin-top:150px
-
+    margin-top:150px;
+    margin-left: 9%;
 `;
 export const PageLogo = styled.Image`
     height: 150px;
@@ -85,9 +91,12 @@ export const HeaderImage2 = styled.Image`
     bottom:100px;
     
 `;
+
+//used
 export const HeadingStyle = styled.Text`
-    padding: 10px;
-    fontSize: 30px;
+    padding-top: 20%;
+    padding-left: 4%;
+    fontSize: 25%;
     color: ${heading};
     text-align: center;
     font-weight: 700;
@@ -245,7 +254,9 @@ font-size:10px;
 color:${notvalidtxt};
 `;
 
+//used
 export const NavBarContainer = styled.View`;
+width: 100%;
 flex-direction: row;
 align-items: center;
 justify-content: space-between;
@@ -253,43 +264,87 @@ padding: 10px;
 background-color: ${primary};
 `; 
 
+//used
 export const ProfileIcon = styled.TouchableOpacity`
-  padding: 5px;
+  padding-top: 5%;
+  padding-left: 5%;
 `;
 
-export const NotificationIcon = styled.TouchableOpacity` 
+/* export const NotificationIcon = styled.TouchableOpacity` 
   padding: 5px;
-`; 
+`;  */
 
+//used
 export const EmotionContainer = styled.View`
 align-items: center;
 flex-direction: 'row';
+height: 50%;
+`;
+
+//used
+export const RowContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 100px;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-top: 20%;
 `; 
 
+//used
+export const EmotionImage1 = styled.Image`
+  width: 50%;
+  height: 130%;
+`;
+
+//used
+export const EmotionImage2 = styled.Image`
+  width: 50%;
+  height: 130%;
+`; 
+
+//used
+export const EmotionImage3 = styled.Image`
+  width: 60%;
+  height: 130%;
+`; 
+
+//used
+export const EmotionImage4 = styled.Image`
+  width: 50%;
+  height: 130%;
+`; 
+
+//used
 export const EmotionText = styled.Text`
-  font-size: 40px;
+  font-size: 20px;
   color: ${text};
+  margin-top: 10%;
 `; 
 
-export const EmotionName = styled.Text`
+/* export const EmotionName = styled.Text`
   font-size: 16px;
   padding-top: 10px;
-`; 
+`;  */
 
+//used
 export const StyleOr = styled.Text`
 color: ${text};
 padding: 20px;
-padding-left: 150px;
+padding-left: 47%;
 `; 
 
+//used
 export const Line2 = styled.View`
 height:1px;
 width:100%;
 backgroundColor:${inText};
 margin-vertical:10px;
-margin-top: 30px;
+margin-top: 20%;
 `; 
 
+//used
 export const InsightInput = styled.TextInput`
   flex: 1;
   border-radius: 15px;
@@ -298,10 +353,12 @@ export const InsightInput = styled.TextInput`
   backgroundColor: ${inText};
   height: 80px;
   margin-left: 70px;
-  margin-right: 10px;
+  margin-right: 5%;
+  margin-bottom: 10%;
 
 `;
 
+//used
 export const FooterContainer = styled.View`
   padding: 10px 0;
   flex-direction: row;
@@ -309,30 +366,24 @@ export const FooterContainer = styled.View`
   margin-top: 40px;
 `; 
 
+//used
 export const IconButton = styled(TouchableOpacity)`
   flex: 1;
   align-items: center;
 `;
 
-export const RowContainer = styled.View`
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    height: 50px;
-    justify-content: center; /* Align emojis horizontally at the center */
-    margin-bottom: 40px;
-    margin-top: 40px;
-`; 
-
 export const Emotion = styled(TouchableOpacity)`
     align-items: center;
-    flex: 1; /* Equal flex for each Emotion to distribute space evenly */
+    flex: 1;
 `; 
 
+//used
 export const CorrectIcon = styled(TouchableOpacity)`
-margin-right: 35px;
+margin-right: 14%;
+margin-bottom: 10%;
 `; 
 
+//used
 export const TextStyle2 = styled.Text`
     padding-top: 10px;
     fontSize: 15px;
@@ -359,17 +410,21 @@ padding-top: 40px;
 padding-left: 250px;
 `;
 
+//used
 export const BioSection = styled.View`
 flex-direction: row;
-padding-left: 10px;
+padding-left: 10%;
+padding-top: 20%;
 `;
 
+//used
 export const LeftFlex = styled.View`
 flex-direction: column;
 justify-content: space-between;
-margin-right: 10px;
+margin-right: 10%;
 `;
 
+//used
 export const ProfilePicture = styled.View`
 border-radius: 50px;
 width: 98px;
@@ -379,6 +434,7 @@ padding: 37px;
 margin-bottom: 20px;
 `;
 
+//used
 export const FollowButton = styled.TouchableOpacity`
 border-radius: 50px;
 width: 85px;
@@ -390,20 +446,24 @@ padding-left: 22px;
 background-color: ${Follow};
 `;
 
+//used
 export const FollowText = styled.Text`
 font-size: 15px;
 font-weight: semi-bold;
 `;
 
+//used
 export const RightFlex = styled.View`
 flex-direction: column;
 justify-content: space-between;
 `;
 
+//used
 export const TopFlex = styled.View`
 flex-direction: column;
 `;
 
+//used
 export const UserName = styled.Text`
 font-size: 15px;
 font-weight: bold;
@@ -411,12 +471,14 @@ padding-top: 15px;
 padding-left: 25px;
 `;
 
+//used
 export const BioText = styled.Text`
 color: ${Bio};
 padding-top: 20px;
 padding-left: 27px;
 `;
 
+//used
 export const BottomFlex = styled.View`
 flex-direction: row;
 justify-content: space-around;
@@ -425,38 +487,43 @@ width: 200px;
 margin-left: 10px;
 `;
 
+//used
 export const Group = styled.View`
 flex-direction: column;
 justify-content: space-between;
 flex-wrap: wrap;
 `;
 
+//used
 export const Number = styled.Text`
 font-size: 15px;
 font-weight: bold;
 text-align: center;
 `;
 
+//used
 export const GroupText = styled.Text`
 font-size: 13px;
 font-weight: semi-bold;
 text-align: center;
 `;
 
+//used
 export const SubHeader = styled.Text`
 font-size: 15px;
 font-weight: bold;
-margin-top: 50px;
-margin-left: 100px;
+margin-top: 20%;
+margin-left: 31%;
 color: ${subHeader};
 `;
 
+//used
 export const Line3 = styled.View`
 height:1px;
-width:40%;
+width:39.5%;
 margin-vertical:10px;
 margin-top: 10px;
-margin-left: 100px;
+margin-left: 30%;
 background-color: black;
 `;
 
@@ -490,6 +557,7 @@ ${'' /* text-align: center; */}
 padding-top: 10px;
 padding-left: 10px;
 `;
+
 export const FavoriteGroupBoxAuthor = styled.Text`
 ${'' /* fontWeight:bold; */}
 fontSize: 16px;
@@ -500,43 +568,48 @@ ${'' /* text-align: center; */}
 padding-top: 10px;
 `;
 
+//used
 export const FlewRow = styled.View`
 flex-direction: row;
 width: 100%;
 height: 100px;
 align-content: center; 
+margin-left: 4%;
+margin-top: 8%;
 `;
 
+//used
 export const SubHeaderGroup = styled.View`
 flex-direction: column;
 width: 70%;
 `;
 
+//used
 export const SubHeader2 = styled.Text`
 font-size: 15px;
 font-weight: bold;
 margin-top: 50px;
-margin-left: 110px;
+margin-left: 50%;
 color: ${subHeader};
 
 `;
 
+//used
 export const Line4 = styled.View`
 height:2px;
 width:47%;
 margin-vertical:10px;
 margin-bottom:10px;
-margin-left: 90px;
+margin-left: 47%;
 background-color: ${text};
 `;
 
+//used
 export const EditGroup = styled.TouchableOpacity`
-flex-direction: row;
-justify-content: space-between;
 width: 30%;
-padding-top: 52px;
 `;
 
+//used
 export const QuoteBox = styled.TextInput`
 flex-direction: row;
 justify-content: space-around;
@@ -548,41 +621,46 @@ height: 109px;
 background-color: ${quoteBox};
 ${'' /* margin-left: 10px; */}
 padding: 40px;
+margin-left: 23%;
 `;
 
+//used
 export const ProfileInfo = styled.View`
 flex-direction: row;
-justify-content: space-around;
 align-items: center;
 border-radius: 15px;
-width: 280px;
+width: 85%;
 height: 75px;
 background-color: ${moreColor};
-margin-top: 15px;
-margin-left: 25px;
+margin-top: 25%;
+margin-left: 7%;
 margin-bottom: 50px;
 padding-top: 30px;
 padding-left: 30px;
 `;
 
+//used
 export const ProfilePicture2 = styled.TouchableOpacity`
 border-radius: 50px;
 width: 50px;
 height: 50px;
 background-color: ${light_primary};
 padding: 15px;
-margin-right: 30px;
+margin-left: 15%;
+margin-right: 15%;
 margin-bottom: 30px;
 `;
 
+//used
 export const UserName2 = styled.Text`
 font-size: 15px;
 font-weight: bold;
 padding-bottom: 30px;
-padding-right: 45px;
+padding-right: 50%;
 color: ${nameColor};
 `;
 
+//used
 export const Flex1 = styled.View`
 flex-direction: row;
 justify-content: space-between;
@@ -590,6 +668,7 @@ align-items: center;
 margin: 8px;
 `;
 
+//used
 export const Flex2 = styled.TouchableOpacity`
 flex-direction: row;
 justify-content: space-between;
@@ -598,18 +677,20 @@ margin-top: 20px;
 margin-left: 10px;
 `;
 
+//used
 export const Preferences = styled.View`
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
 border-radius: 15px;
-width: 280px;
+width: 85%;
 height: 80px;
 background-color: ${moreColor};
-margin-left: 25px;
+margin-left: 7%;
 margin-bottom: 15px;
 `;
 
+//used
 export const Theme = styled.Text`
 font-size: 13px;
 font-weight: bold;
@@ -618,6 +699,7 @@ padding-right: 25px;
 color: ${nameColor};
 `;
 
+//used
 export const Theme2 = styled.Text`
 font-size: 13px;
 font-weight: bold;
@@ -625,35 +707,47 @@ color: ${nameColor};
 padding-left: 25px;
 `;
 
+//used
 export const RightArrow = styled.View`
 padding-right: 20px;
 `;
 
+//used
 export const BookManagement = styled.View`
 border-radius: 15px;
-width: 280px;
-height: 90px;
-background-color: ${moreColor};
-margin-left: 25px;
-margin-bottom: 15px;
-`;
-
-export const Tutorials = styled.View`
-border-radius: 15px;
-width: 280px;
-height: 60px;
-background-color: ${moreColor};
-margin-left: 25px;
-margin-bottom: 15px;
-`;
-
-export const Support = styled.View`
-border-radius: 15px;
-width: 280px;
+width: 85%;
 height: 130px;
 background-color: ${moreColor};
-margin-left: 25px;
+margin-left: 7%;
 margin-bottom: 15px;
+`;
+
+//used
+export const Support = styled.View`
+border-radius: 15px;
+width: 85%;
+height: 130px;
+background-color: ${moreColor};
+margin-left: 7%;
+margin-bottom: 15px;
+`;
+
+//used
+export const LogOut = styled.View`
+border-radius: 15px;
+width: 85%;
+height: 55px;
+background-color: ${moreColor};
+margin-left: 7%;
+margin-bottom: 15px;
+`;
+
+//used
+export const LogOutFlex = styled.TouchableOpacity`
+flex-direction: row;
+align-items: center;
+margin-top: 5%;
+margin-left: 10%;
 `;
 
 export const DiscoverPageContainer = styled.View`
@@ -683,9 +777,9 @@ export const HistoryFlex2 = styled.TouchableOpacity`
 flex-direction: column;
 width: 80%;
 height: 22%;
-border: 1px solid #424866;
+border: 1px solid ${historyColor};
 margin-top: 30px;
-margin-left: 32px;
+margin-left: 35px;
 background-color: ${moreColor};
 border-radius: 15px;
 `;
@@ -739,9 +833,168 @@ marginTop: 10;
 justify-content:center;
 `;
 
+export const ReadingHistoryContainer = styled.View`
+flex-direction: column;
+margin-top: 25%;
+margin-left: 3%;
+height: 70%;
+width: 95%;
+`;
+
+export const ReadingHistoryFlex = styled.View`
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+margin-bottom: 20%;
+height: 40%;
+width: 100%;
+background-color: ${moreColor};
+border-radius: 15px;
+`;
+
+export const BookDetails = styled.View`
+flex-direction: column;
+margin-right: 5%;
+`;
+
+export const BookDetailsText = styled.Text`
+padding-bottom: 15%;
+`;
+
+export const StarFlex2 = styled.View`
+flex-direction: row;
+margin-left: 4%;
+`;
+
+export const FAQHeader = styled.Text`
+font-size: 28px;
+color: ${nameColor};
+margin-top: 13%;
+margin-left: 3%;
+`;
+
+export const FAQParagraph = styled.Text`
+font-size: 15px;
+color: ${faqPar};
+margin-top: 13%;
+margin-left: 3%;
+`;
+
+export const FAQLine = styled.View`
+height:1px;
+width:100%;
+backgroundColor:${faqLine};
+margin-vertical:10px;
+margin-top: 30px;
+`; 
+
+export const FAQLine2 = styled.View`
+height:1px;
+width:100%;
+backgroundColor:${faqLine};
+margin-vertical:10px;
+margin-top: 15px;
+`;
+
+export const FAQQuestion = styled.Text`
+font-size: 15px;
+color: ${faqPar};
+font-weight: bold;
+margin-top: 5%;
+margin-left: 19%;
+`;
+
+export const FAQButton = styled.TouchableOpacity`
+margin-top: 30px;
+margin-left: 21%;
+margin-bottom: 5%;
+width: 60%;
+height: 50px;
+border-radius: 50px;
+background-color: ${moreColor};
+border: 1px solid ${historyColor};
+`;
+
+export const FAQSubmitText = styled.Text`
+font-size: 15px;
+color: ${faqPar};
+font-weight: bold;
+margin-top: 14px;
+margin-left: 20%;
+`; 
+
+export const AboutImage = styled.Image`
+height: 199px;
+width: 97%;
+margin-top: 50px;
+margin-left: 1.5%;
+`;
+
+export const AboutSubHeader = styled.Text`
+font-size: 36px;
+color: ${subHeader};
+font-weight: bold;
+margin-top: 25px;
+margin-left: 1.5%;
+`;
+
+export const AboutParagraph = styled.Text`
+font-size: 15px;
+color: ${faqPar};
+margin-top: 10%;
+margin-left: 1.5%;
+`;
+
+export const RateHeader = styled.Text`
+font-size: 24px;
+font-weight: bold;
+color: ${faqPar};
+margin-top: 10%;
+margin-left: 6%;
+`;
+
+export const RateParagraph = styled.Text`
+font-size: 18px;
+color: ${faqPar};
+margin-top: 10%;
+margin-left: 6%;
+text-align: center;
+`;
+
 export const StarContainer = styled.View`
 flex-direction: row;
 justify-content: space around;
 margin-top: 10%;
 margin-left: 27%;
+`;
+
+export const RateSubmitButton = styled.TouchableOpacity`
+margin-top: 30px;
+margin-left: 33%;
+margin-bottom: 5%;
+width: 35%;
+height: 38px;
+border-radius: 50px;
+background-color: ${moreColor};
+border: 1px solid ${historyColor};
+`;
+
+export const SubmitText = styled.Text`
+font-size: 20px;
+color: ${faqPar};
+text-align: center;
+padding-top: 4%;
+padding-right: 5%;
+`;
+
+export const RejectionTextContainer = styled.TouchableOpacity`
+width: 50%;
+margin-top: 3%;
+margin-left: 19%;
+`;
+
+export const RejectionText = styled.Text`
+font-size: 15px;
+color: ${faqPar};
+padding-left: 38.5%;
 `;

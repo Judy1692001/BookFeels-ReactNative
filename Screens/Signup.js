@@ -40,11 +40,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CredentialsContext } from "../Components/CredentialsContext";
 
 //color
-const { secondary, text, heading, dark_primary, notvalid } = Colors;
+const { secondary, text, heading, dark_primary,notvalid } = Colors;
 
-//API
-import axios from "axios";
-import { baseURL } from "../config";
+//API 
+import axios from 'axios';
+import { baseURL } from '../config';
+
+
 
 //Sign up validation
 const SignupSchema = Yup.object().shape({
