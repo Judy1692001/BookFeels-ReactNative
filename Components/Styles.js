@@ -483,15 +483,16 @@ padding-left: 38px;
 
 export const FavoriteGroupBoxTitle = styled.Text`
 ${'' /* fontWeight:bold; */}
-fontSize: 20px;
+fontSize: 17px;
 text-align: center;
 ${'' /* font-size: 15px; */}
 ${'' /* text-align: center; */}
 padding-top: 10px;
+padding-left: 10px;
 `;
 export const FavoriteGroupBoxAuthor = styled.Text`
 ${'' /* fontWeight:bold; */}
-fontSize: 17px;
+fontSize: 16px;
 text-align: center;
 color:${dark_primary};
 ${'' /* font-size: 15px; */}
@@ -667,12 +668,12 @@ export const DiscoverPageContainer = styled.View`
   //elevation: 5;
 `;
 
-export const HistoryFlex1 = styled.TouchableOpacity`
+export const HistoryFlex1 = styled.View`
 flex-direction: column;
 width: 80%;
-height: 22%;
+height: 90%;
 border: 1px solid #424866;
-margin-top: 100px;
+margin-top: 10px;
 margin-left: 32px;
 background-color: ${moreColor};
 border-radius: 15px;
@@ -717,19 +718,17 @@ margin-left: 32px;
 `;
 
 export const FavoritesFlexRow = styled.View`
-${'' /* flex-direction: row; */}
+flex-direction: row;
 ${'' /* justify-content: space-around; */}
-width: 100%;
-height: 40%;
-margin-top: 25px;
-padding-top: 10px;
+width: 75%;
+height: 50%;
+margin-top: 10px;
+
 `;
 
 export const FavoritesImage = styled.Image`
-    height: 100px;
+    height: 150px;
     width: 100px;
-   margin-top:150px;
-   margin-right:10px;
 
 `;
 
@@ -737,4 +736,12 @@ export const FavoritesBox = styled.View`
 ${'' /* flex:1px; //caused problem. */}
 backgroundColor: ${primary};
 marginTop: 10;
+justify-content:center;
+`;
+
+export const StarContainer = styled.View`
+flex-direction: row;
+justify-content: space around;
+margin-top: 10%;
+margin-left: 27%;
 `;

@@ -34,7 +34,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useTheme } from "react-native-paper"; // Correct import for useTheme
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { baseURL } from "../config";
+import { RemoveFromBookShelf, baseURL } from "../config";
 
 // import { BlurView } from "@react-native-community/blur";
 // import StarRating from 'react-native-star-rating';
@@ -50,7 +50,7 @@ const BookDetails = ({ route }) => {
   const [messageType, setMessageType] = useState();
   // //states for rating part
   // const [rating, setRating] = useState(0);
-  const [bookInShelf, setBookInShelf] = useState(false);
+  const [bookInShelf, setBookInShelf] = useState(0);
   const [readBook, setReadBook] = useState(false);
 
   const [userData, setUserData] = useState({});
@@ -64,10 +64,13 @@ const BookDetails = ({ route }) => {
 
   const handleReadPress = () => {
     setReadBook(!readBook);
-   // navigation.navigate('ActivityHistory');
+    // navigation.navigate('ActivityHistory');
   };
   const handleReviewRatePress = () => {
-    navigation.navigate("ReviewRate");
+    navigation.navigate("ReviewRate", {
+      bookTitle: bookDetails.Title,
+      bookImage: bookDetails.image,
+    });
   };
   //to get user data
   useEffect(() => {
@@ -76,7 +79,7 @@ const BookDetails = ({ route }) => {
       const userdata = JSON.parse(res);
       console.log("USERDATA", userdata);
       setUserData(userdata.user);
-      setUserToken(userData.access);
+      setUserToken(userdata.access);
     }); // Get the user data from AsyncStorage
   }, []);
 
@@ -88,12 +91,12 @@ const BookDetails = ({ route }) => {
   const saveBookShelfState = (status) => {
     console.log("CredentialsInside", status);
     AsyncStorage.setItem("BookShelfState", JSON.stringify(status))
-      .then(() => {
+      .then((res) => {
         console.log("res", res);
         // const saveShelfState = JSON.parse(res);
         // console.log("USERDATA", saveShelfState);
         setBookInShelf(status);
-        
+
       })
       .catch((error) => {
         console.log("ERROR in save", error);
@@ -104,11 +107,10 @@ const BookDetails = ({ route }) => {
     const shelfState = AsyncStorage.getItem("BookShelfState").then((res) => {
       console.log("res", res);
       const storedStatus = JSON.parse(res);
-      console.log("stored status", storedStatus);
       setBookInShelf(JSON.parse(storedStatus));
     });
   }, []);
-
+  console.log("stored status", bookInShelf);
   const fetchBookDetails = async () => {
     setLoading(true);
     const URL = `${baseURL}api/bookdetails/${bookTitle}`;
@@ -140,14 +142,15 @@ const BookDetails = ({ route }) => {
   };
 
   const HandleAddToBookShelf = async () => {
-    Alert.alert("inside add shelf");
+    // Alert.alert("inside add shelf");
     //clear the message whenever the button is pressed
     HandleMessage(null);
     setLoading(true);
-    // console.log("UserData", userData);
-    // console.log("Name", userData.username);
+    console.log("UserData", userData);
+    console.log("Name", userData.username);
+    console.log("token", userToken);
 
-    const url = `${baseURL}api/bookshelf/${userData.username}/add/`;
+    const url = `${baseURL}api/bookshelf/add/`;
     console.log("credintials", bookTitle);
     axios
       .post(
@@ -156,7 +159,7 @@ const BookDetails = ({ route }) => {
         {
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${userToken}`
+            Authorization: `Bearer ${userToken}`,
           },
         }
       )
@@ -170,9 +173,11 @@ const BookDetails = ({ route }) => {
           if (res.data.message) {
             console.log("Message:", res.data.message);
             HandleMessage(res.data.message, res.data.status);
-            console.log("Books", res.data.data.books);
+            console.log("Books", res.data.data);
             console.log("Bookshelf", bookTitle, "user", userData.username);
-            saveBookShelfState(true); //to ensure that the book is added to bookshelf
+            console.log("Book In Shelf", res.data.data.is_on_shelf);
+            //setBookInShelf(res.data.data.is_on_shelf);
+           saveBookShelfState(res.data.data.is_on_shelf); //to ensure that the book is added to bookshelf
           }
         }
       })
@@ -185,48 +190,67 @@ const BookDetails = ({ route }) => {
   };
 
   const HandleRemoveFromBookShelf = async () => {
-    //clear the message whenever the button is pressed
-    HandleMessage(null);
     setLoading(true);
-    console.log("UserData", userData);
-    console.log("Name", userData.username);
+    // console.log("UserData", userData);
+    // console.log("Name", userData.username);
 
-    const url = `${baseURL}api/bookshelf/remove/`;
-    console.log("credintials", bookTitle);
-    axios
-      .post(
-        url,
-        { title: bookTitle },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${userToken}`
-          },
-        }
-      )
-      .then((res) => {
-        // console.log("res", res);
-        setLoading(false);
-        if (res.data.status !== "SUCCESS") {
-          console.log("Error Message:", res.data.message);
-          HandleMessage(res.data.message, res.data.status);
-        } else {
-          if (res.data.message) {
-            console.log("Message:", res.data.message);
-            HandleMessage(res.data.message, res.data.status);
-            console.log("Books", res.data.data.books);
-            console.log("Bookshelf", bookTitle, "user", userData.username);
-            saveBookShelfState(false); //to ensure that the book is removed from bookshelf
-          }
-        }
-        //return res.data.data.books;
-      })
-      .catch((err) => {
-        console.log("ERROR", err);
-        console.log("res", res);
-        setLoading(false);
-        HandleMessage(err);
-      });
+    // const url = `${baseURL}api/bookshelf/remove/`;
+    // console.log("credintials", bookTitle);
+    // axios
+    //   .post(
+    //     url,
+    //     { "title": bookTitle },
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         "Authorization": `Bearer ${userToken}`
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     // console.log("res", res);
+    //     setLoading(false);
+    //     if (res.data.status !== "SUCCESS") {
+    //       console.log("Error Message:", res.data.message);
+    //       HandleMessage(res.data.message, res.data.status);
+    //     } else {
+    //       if (res.data.message) {
+    //         console.log("Message:", res.data.message);
+    //         HandleMessage(res.data.message, res.data.status);
+    //         console.log("Books", res.data.data);
+    //         console.log("Bookshelf", bookTitle, "user", userData.username);
+    //         console.log("Book In Shelf", res.data.data.is_on_shelf);
+    //         setBookInShelf(res.data.data.is_on_shelf);
+    //         //to ensure that the book is removed from bookshelf
+    //       }
+    //     }
+    //     //return res.data.data.books;
+    //   })
+    //   .catch((err) => {
+    //     console.log("ERROR", err);
+    //     console.log("res", res);
+    //     setLoading(false);
+    //     HandleMessage(err);
+    //   });
+
+    try {
+      //this res is carrying res.data
+      const res = await RemoveFromBookShelf(userToken, bookTitle);
+      if (res.status !== "SUCCESS") {
+        console.log("Error Message:", res.message);
+      } else {
+        console.log("res:", res);
+        console.log("Bookshelf", bookTitle, "user", userData.username);
+        console.log("Book In Shelf", res.data.is_on_shelf);
+       // setBookInShelf(res.data.is_on_shelf);
+        saveBookShelfState(res.data.is_on_shelf);
+        //to ensure that the book is removed from bookshelf
+      }
+    } catch (error) {
+      console.log("ERROR", error);
+      console.log("res", res);
+      setLoading(false);
+    }
   };
 
   return (
@@ -286,21 +310,10 @@ const BookDetails = ({ route }) => {
               ></Button>
             )}
           </View>
-          <Line3></Line3>
-          <Text style={styles.description}>Already read this book before!</Text>
-          <Text style={styles.description}>Click this button</Text>
-          <View style={styles.buttoncontainer}>
-            <Button
-              title={readBook ? "Read" : "Not Read"}
-              mode="outlined"
-              color={readBook ? "gray" : "#A67FBF"} // if true dark_Primary else secondary
-              onPress={handleReadPress}
-              style={styles.button}
-            ></Button>
-          </View>
           <Line></Line>
+          <Text style={styles.description}>Already read this book!</Text>
           <Text style={styles.description}>
-            Rate and Review the Book to get better Recommendations
+            Rate and Review it to get better Recommendations
           </Text>
 
           <View style={styles.buttoncontainer}>
@@ -366,13 +379,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 40,
-    borderRadius: 80,
-    shadowColor: secondary,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 10, //to control the drop shadow of a component.
+    marginTop: 10,
+    // borderRadius: 80,
+    // shadowColor: secondary,
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.2,
+    // // shadowRadius: 4,
+    // elevation: 10, //to control the drop shadow of a component.
   },
   button: {
     width: 100,

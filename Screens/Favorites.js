@@ -33,10 +33,9 @@ import {
 import { Colors } from "../Components/Styles";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { baseURL } from "../config";
+import { RemoveFromBookShelf, baseURL } from "../config";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { HandleRemoveFromBookShelf } from "../Screens/BookDetails";
 const { secondary, text, primary, inText, heading } = Colors;
 
 //colors
@@ -46,7 +45,7 @@ export default function Favorites({ navigation }) {
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({});
   const [userToken, setUserToken] = useState("");
-
+  const [bookTitle, setBookTitle] = useState("");
   //to get userdata
   useEffect(() => {
     const user = AsyncStorage.getItem("BookFeelsCredentials").then((res) => {
@@ -81,6 +80,7 @@ export default function Favorites({ navigation }) {
           console.log("No results found or 'results' is not an array.");
         }
         setBooks(res.data.data.books || []);
+        setBookTitle(res.data.data.books.Title);
       })
       .catch((err) => {
         console.log("ERRROR", err);
@@ -90,7 +90,27 @@ export default function Favorites({ navigation }) {
         setLoading(false);
       });
   };
-
+  // console.log("BookTitle before entering remove", bookTitle);
+  // const HandleRemoveFromBookShelf = async () => {
+  //   setLoading(true);
+  //   try {
+  //     //this res is carrying res.data
+  //     const res = await RemoveFromBookShelf(userToken, bookTitle);
+  //     if (res.status !== "SUCCESS") {
+  //       console.log("Error Message:", res.message);
+  //     } else {
+  //       console.log("res:", res);
+  //       console.log("Bookshelf", bookTitle, "user", userData.username);
+  //       console.log("Book In Shelf", res.data.is_on_shelf);
+  //       setBookInShelf(res.data.is_on_shelf);
+  //       //to ensure that the book is removed from bookshelf
+  //     }
+  //   } catch (error) {
+  //     console.log("ERROR", error);
+  //     console.log("res", res);
+  //     setLoading(false);
+  //   }
+  // }
   //To render search results.
   const renderBookShelf = ({ item }) => (
     <View style={styles.container}>
@@ -101,11 +121,11 @@ export default function Favorites({ navigation }) {
             <FavoriteGroupBoxAuthor>by {item.authors}</FavoriteGroupBoxAuthor>
         </FavoritesBox>
         <View styles={styles.button}>
-        <Button
+        {/* <Button
           title="Remove Book from Bookshelf"
           color="#A67FBF" //secondary
           onPress={HandleRemoveFromBookShelf}
-        />
+        /> */}
       </View>
       </FavoritesFlexRow> 
      </View>

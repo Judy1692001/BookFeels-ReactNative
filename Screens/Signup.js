@@ -115,7 +115,7 @@ const Signup = ({ navigation }) => {
             console.log("Message:", res.data.message);
             HandleMessage(res.data.message, res.data.status);
             // Optionally show the message to the user
-            // navigation.replace('Homepage');
+           navigation.replace('Homepage');
             keepMeLogedIn(
               { ...res.data },
               res.data.message,

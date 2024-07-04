@@ -133,19 +133,24 @@ export default function Profile({ navigation }) {
     setLoading(true);
     await axios
       .delete(`${baseURL}api/removequote/`, { headers: { "Authorization": `Bearer ${userToken}` } })
-    try{
-    if (status !== "SUCCESS") {
-      console.log("Error Message:", message);
-    } else {
-      console.log("Message:", message);
-      Alert.alert("Quote Deleted Successfully")
-      setQuote('');
-      ViewQuotes();
-    }
-  }catch(err) {
+      .then((res) => {
+        if (res.data.status !== "SUCCESS") {
+          console.log("Error Message:", res.data.message);
+          Aler.alert(res.data.message);
+        } else {
+          console.log("Message:", res.data.message);
+          Alert.alert(res.data.message);
+          setQuote('');
+          ViewQuotes();
+        }
+      }).catch((err) => {
         console.log("ERROR Del", err); //it entered this part and deleted the quote 
         setLoading(false);
-      }
+      }).finally(() => {
+        setLoading(false);
+    })
+       
+      
   }
   
   const EditQuotes = async() => {
