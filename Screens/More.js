@@ -6,6 +6,8 @@ import { Colors } from '../Components/Styles';
 import { AntDesign,  Feather } from '@expo/vector-icons';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CredentialsContext } from '../Components/CredentialsContext';
+import axios from 'axios';
+import { baseURL } from "../config";
 
 const { inText } = Colors;
 
@@ -44,6 +46,42 @@ export default function More({ navigation }) {
       });
     }).catch(error => console.error(error));
   };
+
+/*   const handleLogout = async () => {
+  try {
+    // Get the stored credentials
+    const jsonValue = await AsyncStorage.getItem("BookFeelsCredentials");
+    if (jsonValue !== null) {
+      const userdata = JSON.parse(jsonValue);
+
+      // Make a request to the logout endpoint
+      const response = await axios.post(`${baseURL}api/logout/`, {
+        refresh: userdata.refresh_token, // Use the correct key based on your backend expectation
+      }, {
+        headers: {
+          'Authorization': `Bearer ${userdata.token}`, // Send the access token in the headers
+        }
+      });
+
+      // Check if the response status is success
+      if (response.status === 205) {
+        // Remove credentials from storage and update context
+        await AsyncStorage.removeItem("BookFeelsCredentials");
+        setStoredCredentials(null);
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Get Started' }],
+        });
+      } else {
+        console.error("Logout failed:", response.data);
+      }
+    }
+  } catch (error) {
+    console.error("Error logging out:", error);
+  }
+}; */
+
+
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
