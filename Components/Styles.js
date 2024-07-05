@@ -96,7 +96,7 @@ export const HeaderImage2 = styled.Image`
 export const HeadingStyle = styled.Text`
     padding-top: 20%;
     padding-left: 4%;
-    fontSize: 25%;
+    fontSize: 20px;
     color: ${heading};
     text-align: center;
     font-weight: 700;
