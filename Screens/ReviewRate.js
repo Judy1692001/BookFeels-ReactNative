@@ -118,6 +118,7 @@ const ReviewRate = ({ route }) => {
           console.log("Message:", res.data.message);
           console.log("ReviewData", res.data.data);
           console.log("InsideReview Data", res.data.data.user);
+          Alert.alert(res.data.message, "To edit your review, write your changes and then click the pen icon. To delete your review, click the recycle bin icon.");
           setRating(res.data.data.rating);
           setReview(res.data.data.review_text);
           setUserName(res.data.data.user);

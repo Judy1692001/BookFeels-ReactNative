@@ -62,10 +62,6 @@ const BookDetails = ({ route }) => {
     setMessageType(type);
   };
 
-  const handleReadPress = () => {
-    setReadBook(!readBook);
-    // navigation.navigate('ActivityHistory');
-  };
   const handleReviewRatePress = () => {
     navigation.navigate("ReviewRate", {
       bookTitle: bookDetails.Title,
@@ -88,29 +84,30 @@ const BookDetails = ({ route }) => {
     fetchBookDetails();
   }, [bookTitle]); // because we want it to run after we click on a book
 
-  const saveBookShelfState = (status) => {
-    console.log("CredentialsInside", status);
-    AsyncStorage.setItem("BookShelfState", JSON.stringify(status))
-      .then((res) => {
-        console.log("res", res);
-        // const saveShelfState = JSON.parse(res);
-        // console.log("USERDATA", saveShelfState);
-        setBookInShelf(status);
+  // const saveBookShelfState = (status) => {
+  //   console.log("CredentialsInside", status);
+  //   AsyncStorage.setItem("BookShelfState", JSON.stringify(status))
+  //     .then((res) => {
+  //       console.log("res", res);
+  //       // const saveShelfState = JSON.parse(res);
+  //       // console.log("USERDATA", saveShelfState);
+  //       setBookInShelf(status);
 
-      })
-      .catch((error) => {
-        console.log("ERROR in save", error);
-      });
-  };
-  console.log("Stored state", bookInShelf);
-  useEffect(() => {
-    const shelfState = AsyncStorage.getItem("BookShelfState").then((res) => {
-      console.log("res", res);
-      const storedStatus = JSON.parse(res);
-      setBookInShelf(JSON.parse(storedStatus));
-    });
-  }, []);
-  console.log("stored status", bookInShelf);
+  //     })
+  //     .catch((error) => {
+  //       console.log("ERROR in save", error);
+  //     });
+  // };
+  // console.log("Stored state", bookInShelf);
+  // useEffect(() => {
+  //   const shelfState = AsyncStorage.getItem("BookShelfState").then((res) => {
+  //     console.log("res", res);
+  //     const storedStatus = JSON.parse(res);
+  //     setBookInShelf(JSON.parse(storedStatus));
+  //   });
+  // }, []);
+
+  // console.log("stored status", bookInShelf);
   const fetchBookDetails = async () => {
     setLoading(true);
     const URL = `${baseURL}api/bookdetails/${bookTitle}`;
@@ -176,8 +173,8 @@ const BookDetails = ({ route }) => {
             console.log("Books", res.data.data);
             console.log("Bookshelf", bookTitle, "user", userData.username);
             console.log("Book In Shelf", res.data.data.is_on_shelf);
-            //setBookInShelf(res.data.data.is_on_shelf);
-           saveBookShelfState(res.data.data.is_on_shelf); //to ensure that the book is added to bookshelf
+            setBookInShelf(res.data.data.is_on_shelf);
+           //saveBookShelfState(res.data.data.is_on_shelf); //to ensure that the book is added to bookshelf
           }
         }
       })
@@ -242,8 +239,8 @@ const BookDetails = ({ route }) => {
         console.log("res:", res);
         console.log("Bookshelf", bookTitle, "user", userData.username);
         console.log("Book In Shelf", res.data.is_on_shelf);
-       // setBookInShelf(res.data.is_on_shelf);
-        saveBookShelfState(res.data.is_on_shelf);
+        setBookInShelf(res.data.is_on_shelf);
+       // saveBookShelfState(res.data.is_on_shelf);
         //to ensure that the book is removed from bookshelf
       }
     } catch (error) {

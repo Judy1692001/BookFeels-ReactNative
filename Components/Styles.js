@@ -340,8 +340,8 @@ export const Line2 = styled.View`
 height:1px;
 width:100%;
 backgroundColor:${inText};
-margin-vertical:10px;
-margin-top: 20%;
+${'' /* margin-vertical:10px; */}
+margin-top: 10%;
 `; 
 
 //used
@@ -354,7 +354,7 @@ export const InsightInput = styled.TextInput`
   height: 80px;
   margin-left: 70px;
   margin-right: 5%;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 
 `;
 
@@ -363,7 +363,7 @@ export const FooterContainer = styled.View`
   padding: 10px 0;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 40px;
+  ${'' /* margin-top: 10px; */}
 `; 
 
 //used
@@ -773,7 +773,7 @@ background-color: ${moreColor};
 border-radius: 15px;
 `;
 
-export const HistoryFlex2 = styled.TouchableOpacity`
+export const HistoryFlex2 = styled.View`
 flex-direction: column;
 width: 80%;
 height: 22%;
@@ -787,7 +787,7 @@ border-radius: 15px;
 
 export const HistoryFlexRow = styled.View`
 flex-direction: row;
-justify-content: space-between;
+${'' /* justify-content: space-between; */}
 align-items: center;
 width: 1vw;
 height: 0.25vh;

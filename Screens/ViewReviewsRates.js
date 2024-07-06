@@ -132,13 +132,7 @@ const ViewReviewsRates = ({ route }) => {
       });
   };
 
-  // const RenderAllReviews = ({item}) => {
-  //   <View style={styles.reviewItem}>
-  //     <Text>{item.user}</Text>
-  //     <Text>{item.review_text}</Text>
-  //     <Text>{item.rating}</Text>
-  //   </View>
-  // };
+
   const RenderAllReviews = ({ item }) => (
     <ScrollView>
       <HistoryFlex1>
