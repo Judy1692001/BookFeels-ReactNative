@@ -191,7 +191,7 @@ export default function HomePage({ navigation }) {
  */
 
 import React, { useContext } from "react";
-import { View, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { View, KeyboardAvoidingView, Platform, ScrollView, Text } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
   Container,
@@ -213,7 +213,9 @@ import {
   EmotionImage1,
   EmotionImage2,
   EmotionImage3,
-  EmotionImage4
+  EmotionImage4,
+  Emoji,
+  IconButton2
 } from "../Components/Styles";
 import { Colors } from "../Components/Styles";
 import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
@@ -275,29 +277,29 @@ export default function HomePage({ navigation }) {
             <EmotionContainer>
               <RowContainer>
                 <Emotion onPress={() => console.log("Happiness emotion is chosen")}>
-                  <EmotionImage1 source={require('../assets/happiness.png')} />
-                  <EmotionText> Happiness </EmotionText>
+                  <Text style={{ fontSize: 50 }}>😊</Text>
+                  <EmotionText>Happiness</EmotionText>
                 </Emotion>
                 <Emotion onPress={() => console.log("Sadness emotion is chosen")}>
-                  <EmotionImage2 source={require('../assets/sadness.png')} />
-                  <EmotionText> Sadness </EmotionText>
+                  <Text style={{ fontSize: 50 }}>😢</Text>
+                  <EmotionText>Sadness</EmotionText>
                 </Emotion>
               </RowContainer>
               <RowContainer>
                 <Emotion onPress={() => console.log("Love emotion is chosen")}>
-                  <EmotionImage3 source={require('../assets/love.png')} />
-                  <EmotionText> Love </EmotionText>
+                  <Text style={{ fontSize: 50 }}>❤️</Text>
+                  <EmotionText>Love</EmotionText>
                 </Emotion>
                 <Emotion onPress={() => console.log("Fear emotion is chosen")}>
-                  <EmotionImage4 source={require('../assets/fear.png')} />
-                  <EmotionText> Fear </EmotionText>
+                  <Text style={{ fontSize: 50 }}>😱</Text>
+                  <EmotionText>Fear</EmotionText>
                 </Emotion>
               </RowContainer>
             </EmotionContainer>
 
             <Line2 />
 
-            <StyleOr>or</StyleOr>
+            <StyleOr>or try to maximize it</StyleOr> 
 
             <View
               style={{
@@ -307,15 +309,15 @@ export default function HomePage({ navigation }) {
               }}
             >
               <InsightInput
-                placeholder="Enter your insights here...."
+                placeholder="Enter your insights here..."
                 placeholderTextColor="gray"
                 onChangeText={(query) => setInsightQuery(query)}
                 value={insightQuery}
                 style={{ textAlign: "left" }}
               />
-              <IconButton onPress={() => console.log("Insight submitted")}>
+              <IconButton2 onPress={() => console.log("Insight submitted")}>
                 <MaterialCommunityIcons name="check" size={24} color="black" />
-              </IconButton>
+              </IconButton2>
             </View>
           </PageContent>
         </ScrollView>

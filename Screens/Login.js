@@ -4,7 +4,7 @@ import { View, ActivityIndicator } from 'react-native';
 import {
     Container, PageContent, HeadingStyle, PageTitle,PageLogo, SubTitle, StyleForm,
     StyleInputLabel, StyleLeftIcon, StyleRightIcon, StyleTextInput, Colors, ButtonText, ButtonWrapper,
-    NavBox,Line,GoogleButton,GoogleButtonText,Link,TextLink,StylingLinkView,StylingLinkText,ValidationText
+    NavBox,Line,GoogleButton,GoogleButtonText,Link,TextLink,StylingLinkView,StylingLinkText,ValidationText, ButtonWrapper2
   
 } from '../Components/Styles';
 import { Formik } from 'formik';
@@ -148,7 +148,7 @@ const Login = ({navigation,onFocus = () => {}}) => {
                                 handleLogin(values,setSubmitting);
                             }
                         }
-                   // }
+                   // } //try oval borders
                 >
                         {({ handleChange, handleBlur, handleSubmit,
                             values, isSubmitting, errors, setFieldTouched, touched, isValid    }) => (<StyleForm>
@@ -176,26 +176,26 @@ const Login = ({navigation,onFocus = () => {}}) => {
                             hidePassword={hidePassword}
                             sethidePassword={sethidePassword}
                             autoCapitalize={false}
-                            />
+                            /> 
                             {touched.password && errors.password && <ValidationText>{errors.password}</ValidationText>}
                             {/* msg box to output the msg */}
                             <NavBox type={messageType}>{message}</NavBox>
-                            {!isSubmitting && <ButtonWrapper onPress={handleSubmit} disabled={!isValid}>
-                                <ButtonText>
+                            {!isSubmitting && <ButtonWrapper2 onPress={handleSubmit} disabled={!isValid}>
+                                <ButtonText> 
                                     Login
                                 </ButtonText>
-                            </ButtonWrapper>}
+                            </ButtonWrapper2>} 
 
-                            {isSubmitting && (<ButtonWrapper disabled={true}>
+                            {isSubmitting && (<ButtonWrapper2 disabled={true}>
                                 <ActivityIndicator size="large" color={secondary} />
-                            </ButtonWrapper>)}
+                            </ButtonWrapper2>)}
                         <Line />
-                        <GoogleButton google={true} onPress={handleSubmit}>
+                        {/* <GoogleButton google={true} onPress={handleSubmit}>
                             <Fontisto name='google' size={25} color={heading}/>
                             <GoogleButtonText google={true}>
                                 Login with Google
                             </GoogleButtonText>
-                        </GoogleButton>
+                        </GoogleButton> */}
                         <StylingLinkView>
                             <StylingLinkText>Don't have an account?</StylingLinkText>
                             <Link>

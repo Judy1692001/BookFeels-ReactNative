@@ -25,6 +25,7 @@ import {
   StylingLinkView,
   StylingLinkText,
   ValidationText,
+  ButtonWrapper2,
 } from "../Components/Styles";
 import { Formik } from "formik";
 
@@ -262,14 +263,14 @@ const Signup = ({ navigation }) => {
                 {/* msg box to output the msg   disabled={!isValid}*/}
                 <NavBox type={messageType}>{message}</NavBox>
                 {!isSubmitting && (
-                  <ButtonWrapper onPress={handleSubmit} disabled={!isValid}>
+                  <ButtonWrapper2 onPress={handleSubmit} disabled={!isValid}>
                     <ButtonText>Signup</ButtonText>
-                  </ButtonWrapper>
+                  </ButtonWrapper2>
                 )}
                 {isSubmitting && (
-                  <ButtonWrapper disabled={true}>
+                  <ButtonWrapper2 disabled={true}>
                     <ActivityIndicator size="large" color={secondary} />
-                  </ButtonWrapper>
+                  </ButtonWrapper2>
                 )}
                 <Line />
                 <GoogleButton google={true} onPress={handleSubmit}>

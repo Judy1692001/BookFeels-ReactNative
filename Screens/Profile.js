@@ -253,7 +253,7 @@ export default function Profile({ navigation }) {
 
             <SubHeader>{userData.username}'s Favourites</SubHeader>
 
-            <Line3 />
+            {/* <Line3 /> */}
 
             {/* <FavouritesFlex>
               <FavoriteGroup>
@@ -285,7 +285,7 @@ export default function Profile({ navigation }) {
               <SubHeaderGroup>
                 <SubHeader2>{userData.username}'s Quote</SubHeader2>
 
-                <Line4 />
+                {/* <Line4 /> */}
 
               </SubHeaderGroup>
 

@@ -22,6 +22,7 @@ import FAQ from '../Screens/FAQ'
 import About from '../Screens/About'
 import RateApp from '../Screens/RateApp'
 import ReviewRate from '../Screens/ReviewRate';
+import Feedback from '../Screens/Feedback';
 
 //color
 const { secondary, text, heading, dark_primary } = Colors;
@@ -89,6 +90,7 @@ export default function RootNavigator() {
               <Stack.Screen name="About" component={About} />
               <Stack.Screen name="RateApp" component={RateApp} />
               <Stack.Screen name="ReadingHistory" component={ReadingHistory} />
+              <Stack.Screen name="Feedback" component={Feedback} />
             </Stack.Navigator>
           </NavigationContainer>
         </GestureHandlerRootView>

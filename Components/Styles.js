@@ -75,9 +75,12 @@ export const WelcomePageLogo = styled.Image`
     margin-top:150px;
     margin-left: 9%;
 `;
+
+//used
 export const PageLogo = styled.Image`
     height: 150px;
     width: 300px;
+    margin-left: 50px;
 `;
 export const HeaderImage1 = styled.Image`
       width: 200px;
@@ -95,32 +98,52 @@ export const HeaderImage2 = styled.Image`
 //used
 export const HeadingStyle = styled.Text`
     padding-top: 20%;
-    padding-left: 4%;
+    padding-left: 14%;
     fontSize: 25%;
     color: ${heading};
     text-align: center;
     font-weight: 700;
 `;
 
+//used
 export const TextStyle = styled.Text`
-    padding: 10px;
+    padding: 25px;
     fontSize: 20px;
     color: ${text};
     text-align: center;
 `;
 
+//used
 export const ButtonWrapper = styled.TouchableOpacity`
+    width: 250px;
     border-radius: 5px;
     padding: 15px;
     flexDirection: 'row';
     justify-content: center;
     alignItems:center;
     background-color: ${({ disabled }) => (disabled ? notvalid : secondary)};
-    margin-vertical:5px;
+    margin-left:72px;
+    margin-bottom: 100px;
     height:60px;
     
 `;
 
+//used
+export const ButtonWrapper2 = styled.TouchableOpacity`
+    width: 150px;
+    border-radius: 5px;
+    flexDirection: 'row';
+    justify-content: center;
+    alignItems:center;
+    background-color: ${({ disabled }) => (disabled ? notvalid : secondary)};
+    margin-left:110px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    height:60px;
+    
+`;
+
+//used
 export const ButtonText = styled.Text`
     font-size: 25px;
     color: ${heading};
@@ -128,6 +151,8 @@ export const ButtonText = styled.Text`
     font-weight: 700;
 
 `;
+
+//used
 export const GoogleButton = styled.TouchableOpacity`
    border-radius: 5px;
     padding: 15px;
@@ -139,8 +164,13 @@ export const GoogleButton = styled.TouchableOpacity`
     background-color:${dark_primary};
     flex-direction:row;
     justify-content:center;
+    width: 290px;
+    margin-left: 30px;
+    margin-bottom:20px;
     
  `;
+
+ //used
  export const GoogleButtonText = styled.Text`
     font-size: 25px;
     color: ${heading};
@@ -151,27 +181,32 @@ export const GoogleButton = styled.TouchableOpacity`
    
 `;
 
+//used
 export const PageTitle = styled.Text`
     font-size:40px;
     color: ${secondary};
     text-align: center;
     font-weight: 700;
-    padding:10px;
+    padding-left: 110px;
     margin-bottom:5px;
 
 `;
 
+//used
 export const SubTitle = styled.Text`
-    font-size:30px;
+    font-size:40px;
     color: ${heading};
-    text-align: center;
     font-weight: 700;
-    margin-bottom:5px;
+    margin-bottom:30px;
     letter-spacing:1px;
+    margin-top: 25px;
+    margin-left: 140px;
 `;
 
+//used
 export const StyleForm = styled.View`
-   width:100%;
+   width:90%;
+   margin-left: 20px;
 `;
 
 export const StyleTextInput = styled.TextInput`
@@ -185,8 +220,6 @@ margin-bottom:10px;
 fontSize:16px;
 height:60px;
 color:${text};
-
-
 `;
 
 export const StyleInputLabel = styled.Text`
@@ -216,11 +249,13 @@ color: ${(props)=>(props.type=='SUCCESS' ? '#00FF00' : '#FF0000')};
 `;
 
 //will be displayed after pressing the login button 
+//used
 export const Line = styled.View`
 height:1px;
 width:100%;
 backgroundColor:${inText};
-margin-vertical:10px;
+margin-top:5px;
+margin-bottom:25px;
 
 `; 
 
@@ -231,11 +266,13 @@ export const StylingLinkView = styled.View`
     align-items:center;
 `;
 
+//used
 export const StylingLinkText = styled.Text`
 justify-content: center;
 font-size:18px;
 align-content:center;
 color:${text};
+margin-bottom: 10px;
 `;
 
 export const Link = styled.TouchableOpacity`
@@ -293,40 +330,11 @@ export const RowContainer = styled.View`
 `; 
 
 //used
-export const EmotionImage1 = styled.Image`
-  width: 50%;
-  height: 130%;
-`;
-
-//used
-export const EmotionImage2 = styled.Image`
-  width: 50%;
-  height: 130%;
-`; 
-
-//used
-export const EmotionImage3 = styled.Image`
-  width: 60%;
-  height: 130%;
-`; 
-
-//used
-export const EmotionImage4 = styled.Image`
-  width: 50%;
-  height: 130%;
-`; 
-
-//used
 export const EmotionText = styled.Text`
   font-size: 20px;
   color: ${text};
   margin-top: 10%;
 `; 
-
-/* export const EmotionName = styled.Text`
-  font-size: 16px;
-  padding-top: 10px;
-`;  */
 
 //used
 export const StyleOr = styled.Text`
@@ -341,7 +349,7 @@ height:1px;
 width:100%;
 backgroundColor:${inText};
 margin-vertical:10px;
-margin-top: 20%;
+margin-top: 5%;
 `; 
 
 //used
@@ -352,10 +360,8 @@ export const InsightInput = styled.TextInput`
   padding-left: 15px;
   backgroundColor: ${inText};
   height: 80px;
-  margin-left: 70px;
-  margin-right: 5%;
+  margin-left: 90px;
   margin-bottom: 10%;
-
 `;
 
 //used
@@ -363,7 +369,8 @@ export const FooterContainer = styled.View`
   padding: 10px 0;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `; 
 
 //used
@@ -372,16 +379,22 @@ export const IconButton = styled(TouchableOpacity)`
   align-items: center;
 `;
 
+//used
+export const IconButton2 = styled(TouchableOpacity)`
+  margin-left: 10%;
+  margin-bottom: 11%;
+  margin-right: 10%;
+`;
+
 export const Emotion = styled(TouchableOpacity)`
     align-items: center;
     flex: 1;
 `; 
 
-//used
-export const CorrectIcon = styled(TouchableOpacity)`
-margin-right: 14%;
-margin-bottom: 10%;
-`; 
+/* export const CorrectIcon = styled(TouchableOpacity)`
+margin-right: 19%;
+margin-bottom: 18%;
+`; */ 
 
 //used
 export const TextStyle2 = styled.Text`
@@ -413,7 +426,7 @@ padding-left: 250px;
 //used
 export const BioSection = styled.View`
 flex-direction: row;
-padding-left: 10%;
+padding-left: 8%;
 padding-top: 20%;
 `;
 
@@ -520,10 +533,10 @@ color: ${subHeader};
 //used
 export const Line3 = styled.View`
 height:1px;
-width:39.5%;
+width:41%;
 margin-vertical:10px;
 margin-top: 10px;
-margin-left: 30%;
+margin-left: 31%;
 background-color: black;
 `;
 
@@ -570,11 +583,11 @@ padding-top: 10px;
 //used
 export const FlewRow = styled.View`
 flex-direction: row;
-width: 100%;
+width: 70%;
 height: 100px;
 align-content: center; 
-margin-left: 4%;
-margin-top: 8%;
+margin-left: 13%;
+margin-top: 10%;
 `;
 
 //used
@@ -596,10 +609,20 @@ color: ${subHeader};
 //used
 export const Line4 = styled.View`
 height:2px;
-width:47%;
+width:52.5%;
 margin-vertical:10px;
 margin-bottom:10px;
 margin-left: 47%;
+background-color: ${text};
+`;
+
+//used
+export const Line5 = styled.View`
+height:2px;
+width:52.5%;
+margin-vertical:10px;
+margin-bottom:20px;
+margin-left: 24%;
 background-color: ${text};
 `;
 
@@ -718,7 +741,7 @@ width: 85%;
 height: 130px;
 background-color: ${moreColor};
 margin-left: 7%;
-margin-bottom: 15px;
+margin-bottom: 50px;
 `;
 
 //used
@@ -728,7 +751,7 @@ width: 85%;
 height: 130px;
 background-color: ${moreColor};
 margin-left: 7%;
-margin-bottom: 15px;
+margin-bottom: 50px;
 `;
 
 //used
@@ -767,8 +790,8 @@ flex-direction: column;
 width: 80%;
 height: 22%;
 border: 1px solid ${historyColor};
-margin-top: 100px;
-margin-left: 35px;
+margin-top: 110px;
+margin-left: 40px;
 background-color: ${moreColor};
 border-radius: 15px;
 `;
@@ -778,8 +801,8 @@ flex-direction: column;
 width: 80%;
 height: 22%;
 border: 1px solid ${historyColor};
-margin-top: 30px;
-margin-left: 35px;
+margin-top: 70px;
+margin-left: 40px;
 background-color: ${moreColor};
 border-radius: 15px;
 `;
@@ -846,7 +869,7 @@ export const ReadingHistoryFlex = styled.View`
 flex-direction: row;
 justify-content: space-around;
 align-items: center;
-margin-bottom: 20%;
+margin-bottom: 15%;
 height: 40%;
 width: 100%;
 background-color: ${moreColor};
@@ -870,7 +893,7 @@ margin-left: 4%;
 export const FAQHeader = styled.Text`
 font-size: 28px;
 color: ${nameColor};
-margin-top: 13%;
+margin-top: 25%;
 margin-left: 3%;
 `;
 
@@ -950,15 +973,15 @@ export const RateHeader = styled.Text`
 font-size: 24px;
 font-weight: bold;
 color: ${faqPar};
-margin-top: 10%;
-margin-left: 6%;
+margin-top: 20%;
+margin-left: 11%;
 `;
 
 export const RateParagraph = styled.Text`
 font-size: 18px;
 color: ${faqPar};
 margin-top: 10%;
-margin-left: 6%;
+margin-left: 3%;
 text-align: center;
 `;
 
@@ -966,11 +989,11 @@ export const StarContainer = styled.View`
 flex-direction: row;
 justify-content: space around;
 margin-top: 10%;
-margin-left: 27%;
+margin-left: 31%;
 `;
 
 export const RateSubmitButton = styled.TouchableOpacity`
-margin-top: 30px;
+margin-top: 40px;
 margin-left: 33%;
 margin-bottom: 5%;
 width: 35%;
@@ -990,12 +1013,39 @@ padding-right: 5%;
 
 export const RejectionTextContainer = styled.TouchableOpacity`
 width: 50%;
-margin-top: 3%;
-margin-left: 19%;
+margin-top: 1%;
+margin-left: 21%;
 `;
 
 export const RejectionText = styled.Text`
 font-size: 15px;
 color: ${faqPar};
 padding-left: 38.5%;
+`;
+
+export const FeedbackTextContainer = styled.TouchableOpacity`
+width: 100%;
+`;
+
+export const FeedbackText = styled.Text`
+font-size: 18px;
+color: ${faqPar};
+padding-top: 15%;
+padding-left: 26%;
+`;
+
+export const FeedbackTitle = styled.Text`
+    font-size:20px;
+    color: ${faqPar};
+    font-weight: 500;
+    margin-bottom:50px;
+    margin-top: 50px;
+    margin-left: 20px;
+`;
+
+export const FeedbackImage = styled.Image`
+height: 200px;
+width: 50%;
+margin-top: 80px;
+margin-left: 90px;
 `;

@@ -19,7 +19,7 @@ export default function WelcomeScreen({ navigation }) {
     <Container>
  
       <PageContent>
-        <WelcomePageLogo resizeMode="cover"
+        <WelcomePageLogo resizeMode="cover"  //try another one
           source={require('../assets/undraw_Reading_time_re_phf7-removebg-preview.png')}
           accessible={true}
           accessibilityLabel={'Reading Time Logo'}

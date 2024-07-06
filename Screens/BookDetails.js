@@ -17,6 +17,7 @@ import {
   Container,
   Colors,
   Line,
+  Line1,
   Line2,
   Line3,
   Line4,
@@ -26,6 +27,7 @@ import {
   TextStyle2,
   ProfileIcon,
   NotificationIcon,
+  Line5,
 } from "../Components/Styles";
 //API
 import axios from "axios";
@@ -252,7 +254,7 @@ const BookDetails = ({ route }) => {
             <Text style={styles.authors}>by {bookDetails.authors}</Text>
             <Line></Line>
             <Text style={styles.description}>Book Description</Text>
-            <Line4></Line4>
+            <Line5></Line5>
             <Text style={styles.descriptionContent}>
               {bookDetails.description}
             </Text>

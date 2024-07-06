@@ -220,16 +220,6 @@ export default function FAQ({ navigation }) {
 
                         <FAQLine2 />
 
-                        <FAQQuestion>
-                            Still stuck? Help is a mail away
-                        </FAQQuestion>
-
-                        <FAQButton>
-                            <FAQSubmitText>
-                                Send a message
-                            </FAQSubmitText>
-                        </FAQButton>
-
                     </PageContent>
 
                 </ScrollView>
