@@ -23,10 +23,11 @@ import {
 } from "../Components/Styles";
 import StarRating from "../Components/StarRating";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 const { secondary, text, primary, inText ,heading,historyColor} = Colors;
 export default function Recommend({ route }) {
     const { books } = route.params;
-    
+  const navigation = useNavigation();
   const RenderRecommendations = ({ item }) => (
       
       <View style={styles.container}>

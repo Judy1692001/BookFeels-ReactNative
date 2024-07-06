@@ -272,12 +272,12 @@ const Signup = ({ navigation }) => {
                   </ButtonWrapper>
                 )}
                 <Line />
-                <GoogleButton google={true} onPress={handleSubmit}>
+                {/* <GoogleButton google={true} onPress={handleSubmit}>
                   <Fontisto name="google" size={25} color={heading} />
                   <GoogleButtonText google={true}>
                     Signup with Google
                   </GoogleButtonText>
-                </GoogleButton>
+                </GoogleButton> */}
                 <StylingLinkView>
                   <StylingLinkText>Already have an account?</StylingLinkText>
                   <Link>

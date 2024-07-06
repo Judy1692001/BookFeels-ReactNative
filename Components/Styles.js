@@ -73,7 +73,7 @@ export const WelcomePageLogo = styled.Image`
     height: 199px;
     width: 314px;
     margin-top:150px;
-    margin-left: 9%;
+    margin-left: 4%;
 `;
 export const PageLogo = styled.Image`
     height: 150px;
@@ -95,8 +95,8 @@ export const HeaderImage2 = styled.Image`
 //used
 export const HeadingStyle = styled.Text`
     padding-top: 20%;
-    padding-left: 4%;
-    fontSize: 20px;
+    padding-left: 3%;
+    fontSize: 25px;
     color: ${heading};
     text-align: center;
     font-weight: 700;
@@ -278,7 +278,7 @@ export const ProfileIcon = styled.TouchableOpacity`
 export const EmotionContainer = styled.View`
 align-items: center;
 flex-direction: 'row';
-height: 50%;
+height: 40%;
 `;
 
 //used
@@ -288,7 +288,6 @@ export const RowContainer = styled.View`
     width: 100%;
     height: 100px;
     justify-content: center;
-    margin-bottom: 40px;
     margin-top: 20%;
 `; 
 
@@ -318,21 +317,22 @@ export const EmotionImage4 = styled.Image`
 
 //used
 export const EmotionText = styled.Text`
-  font-size: 20px;
+  font-size: 30px;
   color: ${text};
   margin-top: 10%;
 `; 
 
-/* export const EmotionName = styled.Text`
-  font-size: 16px;
+ export const EmotionName = styled.Text`
+  font-size: 18px;
   padding-top: 10px;
-`;  */
+`;  
 
 //used
 export const StyleOr = styled.Text`
 color: ${text};
 padding: 20px;
 padding-left: 47%;
+${'' /* fontSize:16px; */}
 `; 
 
 //used
@@ -355,6 +355,7 @@ export const InsightInput = styled.TextInput`
   margin-left: 70px;
   margin-right: 5%;
   margin-bottom: 5%;
+  fontSize:16px;
 
 `;
 
@@ -413,8 +414,8 @@ padding-left: 250px;
 //used
 export const BioSection = styled.View`
 flex-direction: row;
-padding-left: 10%;
-padding-top: 20%;
+${'' /* padding-left: 10%; */}
+padding-top: 10%;
 `;
 
 //used
@@ -425,37 +426,39 @@ margin-right: 10%;
 `;
 
 //used
-export const ProfilePicture = styled.View`
+export const ProfilePicture = styled.TouchableOpacity`
 border-radius: 50px;
-width: 98px;
-height: 98px;
+width: 95px;
+height: 95px;
 background-color: ${light_primary};
-padding: 37px;
-margin-bottom: 20px;
+padding: 35px;
+padding-bottom: px;
+
 `;
 
 //used
 export const FollowButton = styled.TouchableOpacity`
 border-radius: 50px;
-width: 85px;
-height: 33px;
-margin-top: 5px;
-margin-left: 8px;
+width: 100px;
+height: 45px;
+${'' /* margin-top: 5px; */}
+margin-left: 10px;
 padding-top: 8px;
-padding-left: 22px;
+padding-left: 26px;
 background-color: ${Follow};
 `;
 
 //used
 export const FollowText = styled.Text`
-font-size: 15px;
+font-size: 16px;
 font-weight: semi-bold;
 `;
 
 //used
 export const RightFlex = styled.View`
-flex-direction: column;
+flex-direction: row;
 justify-content: space-between;
+margin-top:30px;
 `;
 
 //used
@@ -465,10 +468,10 @@ flex-direction: column;
 
 //used
 export const UserName = styled.Text`
-font-size: 15px;
+font-size: 18px;
 font-weight: bold;
 padding-top: 15px;
-padding-left: 25px;
+padding-left: 5px;
 `;
 
 //used
@@ -480,11 +483,12 @@ padding-left: 27px;
 
 //used
 export const BottomFlex = styled.View`
-flex-direction: row;
+flex-direction: column;
 justify-content: space-around;
 height: 50px;
 width: 200px;
-margin-left: 10px;
+margin-left: 40px;
+
 `;
 
 //used
@@ -492,27 +496,29 @@ export const Group = styled.View`
 flex-direction: column;
 justify-content: space-between;
 flex-wrap: wrap;
+margin-left: 1px;
+margin-top: 7px;
 `;
 
 //used
 export const Number = styled.Text`
-font-size: 15px;
+font-size: 17px;
 font-weight: bold;
 text-align: center;
 `;
 
 //used
 export const GroupText = styled.Text`
-font-size: 13px;
+font-size: 17px;
 font-weight: semi-bold;
 text-align: center;
 `;
 
 //used
 export const SubHeader = styled.Text`
-font-size: 15px;
+font-size: 16px;
 font-weight: bold;
-margin-top: 20%;
+margin-top: 10%;
 margin-left: 31%;
 color: ${subHeader};
 `;
@@ -520,7 +526,7 @@ color: ${subHeader};
 //used
 export const Line3 = styled.View`
 height:1px;
-width:39.5%;
+width:45%;
 margin-vertical:10px;
 margin-top: 10px;
 margin-left: 30%;
@@ -556,6 +562,7 @@ ${'' /* font-size: 15px; */}
 ${'' /* text-align: center; */}
 padding-top: 10px;
 padding-left: 10px;
+font-weight: bold;
 `;
 
 export const FavoriteGroupBoxAuthor = styled.Text`
@@ -574,22 +581,23 @@ flex-direction: row;
 width: 100%;
 height: 100px;
 align-content: center; 
-margin-left: 4%;
-margin-top: 8%;
+${'' /* margin-left: 1%; */}
+margin-top: 1%;
+
 `;
 
 //used
 export const SubHeaderGroup = styled.View`
 flex-direction: column;
-width: 70%;
+width: 80%;
 `;
 
 //used
 export const SubHeader2 = styled.Text`
-font-size: 15px;
+font-size: 16px;
 font-weight: bold;
 margin-top: 50px;
-margin-left: 50%;
+margin-left: 43%;
 color: ${subHeader};
 
 `;
@@ -597,10 +605,18 @@ color: ${subHeader};
 //used
 export const Line4 = styled.View`
 height:2px;
-width:47%;
+width:57%;
 margin-vertical:10px;
 margin-bottom:10px;
-margin-left: 47%;
+margin-left: 39%;
+background-color: ${text};
+`;
+export const Line5 = styled.View`
+height:2px;
+width:57%;
+margin-vertical:10px;
+margin-bottom:10px;
+margin-left: 22%;
 background-color: ${text};
 `;
 
@@ -615,13 +631,15 @@ flex-direction: row;
 justify-content: space-around;
 align-items: center; 
 
-border-radius: 5px;
+border-radius: 50px;
 ${'' /* width: 300px; */}
 height: 109px;
 background-color: ${quoteBox};
 ${'' /* margin-left: 10px; */}
-padding: 40px;
-margin-left: 23%;
+padding: 20px;
+${'' /* margin-left: 3%; */}
+
+fontSize:17px;
 `;
 
 //used
@@ -653,9 +671,10 @@ margin-bottom: 30px;
 
 //used
 export const UserName2 = styled.Text`
-font-size: 15px;
+font-size: 16px;
 font-weight: bold;
-padding-bottom: 30px;
+padding-bottom: 20px;
+padding-right: 30px;
 padding-right: 50%;
 color: ${nameColor};
 `;
@@ -701,7 +720,7 @@ color: ${nameColor};
 
 //used
 export const Theme2 = styled.Text`
-font-size: 13px;
+font-size: 15px;
 font-weight: bold;
 color: ${nameColor};
 padding-left: 25px;
@@ -716,7 +735,7 @@ padding-right: 20px;
 export const BookManagement = styled.View`
 border-radius: 15px;
 width: 85%;
-height: 130px;
+height: 100px;
 background-color: ${moreColor};
 margin-left: 7%;
 margin-bottom: 15px;
@@ -764,11 +783,11 @@ export const DiscoverPageContainer = styled.View`
 
 export const HistoryFlex1 = styled.View`
 flex-direction: column;
-width: 80%;
+width: 90%;
 height: 90%;
 border: 1px solid #424866;
 margin-top: 10px;
-margin-left: 32px;
+margin-left: 11px;
 background-color: ${moreColor};
 border-radius: 15px;
 `;
@@ -795,7 +814,7 @@ margin: 3%;
 `;
 
 export const HistoryText = styled.Text`
-font-size: 15px;
+font-size: 16px;
 color: ${historyColor};
 `;
 
@@ -821,9 +840,9 @@ margin-top: 10px;
 `;
 
 export const FavoritesImage = styled.Image`
-    height: 150px;
-    width: 100px;
-
+    height: 140px;
+    width: 90px;
+   margin-bottom:10px;
 `;
 
 export const FavoritesBox = styled.View`
@@ -859,6 +878,9 @@ margin-right: 5%;
 
 export const BookDetailsText = styled.Text`
 padding-bottom: 15%;
+fontSize:16px;
+margin-left:9px;
+margin-top:11px;
 `;
 
 export const StarFlex2 = styled.View`
@@ -939,7 +961,7 @@ margin-left: 1.5%;
 `;
 
 export const AboutParagraph = styled.Text`
-font-size: 15px;
+font-size: 16px;
 color: ${faqPar};
 margin-top: 10%;
 margin-left: 1.5%;
@@ -950,14 +972,14 @@ font-size: 24px;
 font-weight: bold;
 color: ${faqPar};
 margin-top: 10%;
-margin-left: 6%;
+margin-left: 12%;
 `;
 
 export const RateParagraph = styled.Text`
 font-size: 18px;
 color: ${faqPar};
 margin-top: 10%;
-margin-left: 6%;
+margin-left: 3%;
 text-align: center;
 `;
 
@@ -994,7 +1016,34 @@ margin-left: 19%;
 `;
 
 export const RejectionText = styled.Text`
-font-size: 15px;
+font-size: 16px;
 color: ${faqPar};
-padding-left: 38.5%;
+padding-left: 40.5%;
+`;
+
+export const FeedbackTextContainer = styled.TouchableOpacity`
+width: 100%;
+`;
+
+export const FeedbackText = styled.Text`
+font-size: 18px;
+color: ${faqPar};
+padding-top: 15%;
+padding-left: 30%;
+`;
+
+export const FeedbackTitle = styled.Text`
+    font-size:20px;
+    color: ${faqPar};
+    font-weight: 500;
+    margin-bottom:50px;
+    margin-top: 50px;
+    margin-left: 30px;
+`;
+
+export const FeedbackImage = styled.Image`
+height: 205px;
+width: 60%;
+margin-top: 80px;
+margin-left: 70px;
 `;

@@ -58,6 +58,7 @@ import {
   HistoryFlexRow,
   HistoryText,
   StarFlex,
+  NavBarContainer,
 } from "../Components/Styles";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
@@ -132,7 +133,6 @@ const ViewReviewsRates = ({ route }) => {
       });
   };
 
-
   const RenderAllReviews = ({ item }) => (
     <ScrollView>
       <HistoryFlex1>
@@ -156,8 +156,7 @@ const ViewReviewsRates = ({ route }) => {
           </StarFlex>
         </HistoryFlexRow>
       </HistoryFlex1>
-      </ScrollView>
-    
+    </ScrollView>
   );
   return (
     <KeyboardAvoidingView
@@ -166,7 +165,10 @@ const ViewReviewsRates = ({ route }) => {
     >
       <Container>
         <PageContent>
-          <Text style={styles.title}>{bookTitle} Reviews and Rates</Text>
+          <NavBarContainer>
+            <Text style={styles.title}>{bookTitle} Reviews and Rates</Text>
+          </NavBarContainer>
+
           <View style={styles.reviewsContainer}>
             <FlatList
               data={reviews}
@@ -267,6 +269,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: {
+  color: heading,
+  marginLeft:35,
     fontWeight: "bold",
     fontSize: 18,
     textAlign: "center",

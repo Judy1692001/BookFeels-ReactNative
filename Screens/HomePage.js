@@ -174,29 +174,50 @@ export default function HomePage() {
             <EmotionContainer>
               <RowContainer>
                 <Emotion onPress={() => onChangeEmotion("happy")}>
-                  <EmotionImage1 source={require("../assets/happiness.png")} />
+                <EmotionText>😀</EmotionText>
 
-                  <EmotionText> Happiness </EmotionText>
+                  <EmotionName> Happiness </EmotionName>
                 </Emotion>
 
-                <Emotion onPress={() => onChangeEmotion("sad")}>
-                  <EmotionImage2 source={require("../assets/sadness.png")} />
+                <Emotion onPress={() => onChangeEmotion("attracted")}>
+                <EmotionText>😍</EmotionText>
 
-                  <EmotionText> Sadness </EmotionText>
+                  <EmotionName> Attracted </EmotionName>
+                </Emotion>
+                <Emotion onPress={() => onChangeEmotion("lost")}>
+                <EmotionText>😕</EmotionText>
+
+                  <EmotionName> Lost </EmotionName>
+                </Emotion>
+                <Emotion onPress={() => onChangeEmotion("focused")}>
+                <EmotionText>🎯</EmotionText>
+
+                  <EmotionName> Focused </EmotionName>
                 </Emotion>
               </RowContainer>
 
               <RowContainer>
                 <Emotion onPress={() => onChangeEmotion("love")}>
-                  <EmotionImage3 source={require("../assets/love.png")} />
+                <EmotionText>🥰</EmotionText>
 
-                  <EmotionText> Love </EmotionText>
+                  <EmotionName> Love </EmotionName>
                 </Emotion>
 
                 <Emotion onPress={() => onChangeEmotion("fear")}>
-                  <EmotionImage4 source={require("../assets/fear.png")} />
+                <EmotionText>😨</EmotionText>
 
-                  <EmotionText> Fear </EmotionText>
+                  <EmotionName> Fear </EmotionName>
+                  
+                </Emotion>
+                <Emotion onPress={() => onChangeEmotion("anxious")}>
+                <EmotionText>😰</EmotionText>
+
+                  <EmotionName> Anxious </EmotionName>
+                </Emotion>
+                <Emotion onPress={() => onChangeEmotion("attached")}>
+                <EmotionText>❤️</EmotionText>
+
+                  <EmotionName> Attached </EmotionName>
                 </Emotion>
               </RowContainer>
             </EmotionContainer>
@@ -433,7 +454,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 19,
     textAlign: "center",
   },
 });

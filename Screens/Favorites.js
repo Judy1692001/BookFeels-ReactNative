@@ -29,6 +29,7 @@ import {
     FavoritesImage,
   FollowText,
   Heart,
+  NavBarContainer,
 } from "../Components/Styles";
 import { Colors } from "../Components/Styles";
 import { Feather, Ionicons } from "@expo/vector-icons";
@@ -118,7 +119,7 @@ export default function Favorites({ navigation }) {
           <FavoritesImage source={{ uri: item.image }} />
           <FavoritesBox>
             <FavoriteGroupBoxTitle>{item.Title}</FavoriteGroupBoxTitle>
-            <FavoriteGroupBoxAuthor>by {item.authors}</FavoriteGroupBoxAuthor>
+            <FavoriteGroupBoxAuthor> by {item.authors}</FavoriteGroupBoxAuthor>
         </FavoritesBox>
         <View styles={styles.button}>
         {/* <Button
@@ -140,6 +141,11 @@ export default function Favorites({ navigation }) {
 
         {/* <ScrollView> */}
         <PageContent>
+        <NavBarContainer>
+           
+           <Text style={styles.screenTitle}>       My BookShelf </Text>
+             
+           </NavBarContainer>
           <View >
             {loading && <ActivityIndicator size={"large"} />}
           </View>
@@ -218,7 +224,13 @@ const styles = StyleSheet.create({
     details: {
       flex: 1,
       justifyContent: "center",
-    },
+  },
+  screenTitle: {
+    fontWeight: "bold",
+    fontSize: 25,
+    color: heading,
+    marginLeft: 35,
+  },
     title: {
       fontWeight: "bold",
       fontSize: 16,

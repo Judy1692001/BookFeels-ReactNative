@@ -97,7 +97,7 @@ export default function More({ navigation }) {
                 <UserName2>{userData.username}</UserName2>
               </Pressable>
             </ProfileInfo>
-            <Preferences>
+            {/* <Preferences>
               <Flex1>
                 <Theme>Theme and Appearance</Theme>
                 <Switch
@@ -108,16 +108,16 @@ export default function More({ navigation }) {
                   value={isEnabled}
                 />
               </Flex1>
-            </Preferences>
+            </Preferences> */}
             <BookManagement>
-              <Flex2 onPress={() => navigation.navigate('ActivityHistory')}>
+              {/* <Flex2 onPress={() => navigation.navigate('ActivityHistory')}>
                 <Theme2>Emotional States History</Theme2>
                 <RightArrow>
                   <AntDesign name="right" size={15} color="#424866" />
                 </RightArrow>
-              </Flex2>
+              </Flex2> */}
               <Flex2 onPress={() => navigation.navigate('Favorites')}>
-                <Theme2>Favorite Books</Theme2>
+                <Theme2>My BookShelf</Theme2>
                 <RightArrow>
                   <AntDesign name="right" size={15} color="#424866" />
                 </RightArrow>

@@ -6,16 +6,13 @@ import Login from "./../Screens/Login";
 import Signup from "./../Screens/Signup";
 import HomePage from "../Screens/HomePage";
 import Profile from "../Screens/Profile";
-import MyBooks from "../Screens/MyBooks";
 import Recommend from "../Screens/Recommend";
 import DiscoverBooks from "../Screens/DiscoverBooks";
 import More from "../Screens/More";
 import { Colors } from "./../Components/Styles";
 import BookDetails from "../Screens/BookDetails";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-
 import { CredentialsContext } from "../Components/CredentialsContext";
-import ActivityHistory from '../Screens/ActivityHistory'
 import Favorites from '../Screens/Favorites'
 import ReadingHistory from '../Screens/ReadingHistory'
 import FAQ from '../Screens/FAQ'
@@ -23,6 +20,8 @@ import About from '../Screens/About'
 import RateApp from '../Screens/RateApp'
 import ReviewRate from '../Screens/ReviewRate';
 import ViewReviewsRates from "../Screens/ViewReviewsRates.js";
+import Feedback from "../Screens/Feedback";
+// import BottomNavigator from './Navigation/BottomNaviagtor';
 //color
 const { secondary, text, heading, dark_primary } = Colors;
 const Stack = createNativeStackNavigator();
@@ -76,15 +75,15 @@ export default function RootNavigator() {
                   <Stack.Screen name="Login" component={Login} />
               <Stack.Screen name="Signup" component={Signup} />
               <Stack.Screen name="Homepage" component={HomePage} /> */}
+              {/* <Stack.Screen name="navBar" component={BottomNavigator} /> */}
               <Stack.Screen name="Profile" component={Profile} />
               <Stack.Screen name="Recommend" component={Recommend} />
-              <Stack.Screen name="MyBooks" component={MyBooks} />
               <Stack.Screen name="Discover" component={DiscoverBooks} />
               <Stack.Screen name="More" component={More} />
               <Stack.Screen name="BookDetails" component={BookDetails} />
               <Stack.Screen
-                name="ActivityHistory"
-                component={ActivityHistory}
+                name="Feedback"
+                component={Feedback}
               />
               <Stack.Screen name="Favorites" component={Favorites} />
               <Stack.Screen name="ReviewRate" component={ReviewRate} />

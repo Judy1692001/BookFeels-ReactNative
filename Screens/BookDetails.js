@@ -26,6 +26,7 @@ import {
   TextStyle2,
   ProfileIcon,
   NotificationIcon,
+  Line5,
 } from "../Components/Styles";
 //API
 import axios from "axios";
@@ -38,7 +39,7 @@ import { RemoveFromBookShelf, baseURL } from "../config";
 
 // import { BlurView } from "@react-native-community/blur";
 // import StarRating from 'react-native-star-rating';
-const { secondary, text, primary, inText, heading } = Colors;
+const { secondary, text, primary, inText, heading,historyColor } = Colors;
 const BookDetails = ({ route }) => {
   const navigation = useNavigation();
   const { bookTitle } = route.params;
@@ -273,7 +274,7 @@ const BookDetails = ({ route }) => {
             <Text style={styles.authors}>by {bookDetails.authors}</Text>
             <Line></Line>
             <Text style={styles.description}>Book Description</Text>
-            <Line4></Line4>
+            <Line5></Line5>
             <Text style={styles.descriptionContent}>
               {bookDetails.description}
             </Text>
@@ -290,7 +291,7 @@ const BookDetails = ({ route }) => {
             </Text>
           </View>
           <Line></Line>
-          <Text style={styles.description}>To read this book later...</Text>
+          <Text style={styles.textdescription}>To read this book later...</Text>
           <View style={styles.buttoncontainer}>
             {/* this ensure that button is rendered only when bookdetails are fetched successfully */}
             {bookDetails && (
@@ -308,8 +309,8 @@ const BookDetails = ({ route }) => {
             )}
           </View>
           <Line></Line>
-          <Text style={styles.description}>Already read this book!</Text>
-          <Text style={styles.description}>
+          <Text style={styles.textdescription}>Already read this book ?</Text>
+          <Text style={styles.textdescription}>
             Rate and Review it to get better Recommendations
           </Text>
 
@@ -403,6 +404,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     color: heading,
+    fontWeight: "bold",
+  },
+  textdescription: {
+    fontSize: 20,
+    textAlign: "center",
+    color: historyColor,
     fontWeight: "bold",
   },
   descriptionContent: {

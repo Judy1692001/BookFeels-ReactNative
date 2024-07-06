@@ -63,8 +63,16 @@ import { baseURL } from "../config";
 import { Rating } from "react-native-rating-element";
 import axios from "axios";
 import { TextInput } from "react-native-paper";
-const { secondary, text, primary, inText, heading, quoteBox, moreColor } =
-  Colors;
+const {
+  secondary,
+  text,
+  primary,
+  inText,
+  heading,
+  quoteBox,
+  moreColor,
+  historyColor,
+} = Colors;
 const ReviewRate = ({ route }) => {
   const navigation = useNavigation();
   const { bookTitle, bookImage } = route.params;
@@ -76,6 +84,7 @@ const ReviewRate = ({ route }) => {
   const [id, setID] = useState(0);
   const [userToken, setUserToken] = useState("");
   const [userData, setUserData] = useState({});
+  const [editOrAdd, setEditOrAdd] = useState(false);
 
   useEffect(() => {
     const user = AsyncStorage.getItem("BookFeelsCredentials").then((res) => {
@@ -99,8 +108,8 @@ const ReviewRate = ({ route }) => {
       .post(
         url,
         {
-          "review_text": review,
-          "rating": rating,
+          review_text: review,
+          rating: rating,
         },
         {
           headers: {
@@ -118,7 +127,10 @@ const ReviewRate = ({ route }) => {
           console.log("Message:", res.data.message);
           console.log("ReviewData", res.data.data);
           console.log("InsideReview Data", res.data.data.user);
-          Alert.alert(res.data.message, "To edit your review, write your changes and then click the pen icon. To delete your review, click the recycle bin icon.");
+          Alert.alert(
+            res.data.message,
+            "To edit your review, write your changes and then click the pen icon. To delete your review, click the recycle bin icon."
+          );
           setRating(res.data.data.rating);
           setReview(res.data.data.review_text);
           setUserName(res.data.data.user);
@@ -141,8 +153,8 @@ const ReviewRate = ({ route }) => {
       .put(
         `${baseURL}api/editreview/${bookTitle}/${id}/`,
         {
-          "review_text": review,
-          "rating": rating,
+          review_text: review,
+          rating: rating,
         },
         { headers: { Authorization: `Bearer ${userToken}` } }
       )
@@ -160,6 +172,7 @@ const ReviewRate = ({ route }) => {
           setUserName(res.data.data.user);
           setBooktitle(res.data.data.book_title);
           setID(res.data.data.id);
+          Alert.alert(res.data.message);
         }
       })
       .catch((err) => {
@@ -170,17 +183,39 @@ const ReviewRate = ({ route }) => {
         setLoading(false);
       });
   };
-
-  
+  const DelReviewRate = async () => {
+    setLoading(true);
+    await axios
+      .delete(`${baseURL}api/deletereview/${bookTitle}/${id}/`, {
+        headers: { Authorization: `Bearer ${userToken}` },
+      })
+      .then((res) => {
+        if (res.data.status !== "SUCCESS") {
+          console.log("Error Message:", res.data.message);
+          Alert.alert(res.data.message);
+        } else {
+          console.log("Message:", res.data.message);
+          Alert.alert(res.data.message);
+          setReview("");
+          
+        }
+      })
+      .catch((err) => {
+        console.log("ERROR Del", err); 
+        setLoading(false);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
   const handleViewReviewRate = () => {
     // useEffect(() => {
     //   ViewReviewRate();
     // }, []);
     // setShowReviews(!showReviews);
-    navigation.navigate('ViewReviewsRates', { bookTitle: bookTitle });
+    navigation.navigate("ViewReviewsRates", { bookTitle: bookTitle });
   };
- 
- 
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -196,9 +231,11 @@ const ReviewRate = ({ route }) => {
               </View>
             </View>
             <Text style={styles.title}> </Text>
-            <Text style={styles.title}>Did this book match your emotions?</Text>
+            <Text style={styles.texttitle}>
+              Did this book match your emotions?
+            </Text>
             <Text style={styles.title}> </Text>
-            <Text style={styles.title}>
+            <Text style={styles.texttitle}>
               Give Us Your Rate for better Recommendation
             </Text>
 
@@ -211,47 +248,60 @@ const ReviewRate = ({ route }) => {
                 size={30}
                 onIconTap={(position) => setRating(position)}
                 icon="star"
-              direction="row"
-              // style={styles.rating}
-            />
-              {/* {/* {[1, 2, 3, 4, 5].map((star) => (
-                <TouchableOpacity
-                  key={star}
-                  onPress={(position) => setRating(position)}
-                >
-                  <Icon
-                    name="star"
-                    size={35}
-                    color={star <= rating ? "#FFD700" : "#ccc"}
-                  />
-                </TouchableOpacity>
-              ))} */}
-           </StarContainer> 
+                direction="row"
+                // style={styles.rating}
+              />
+             
+            </StarContainer>
             <Text style={styles.text}>Write your Review</Text>
-            <TextInput
-              style={styles.textInput}
+            <QuoteBox
+              style={{ marginTop: 10, marginBottom: 30 }}
               placeholder="Write Your Review"
               multiline
               value={review}
               onChangeText={setReview}
             />
-
-            <View styles={styles.buttoncontainer}>
-                <Button
-                  title="Submit"
-                  color="#A67FBF" //secondary
-                // onPress={() => AddReviewRate()}
-                onPress={AddReviewRate}
+            <FlewRow>
+              <EditGroup
+                onPress={() => {
+                  setEditOrAdd(true);
+                  AddReviewRate();
+                }}
+              >
+                <MaterialIcons name="add" size={24} color="black" />
+              </EditGroup>
+              <EditGroup
+                onPress={() => {
+                  setEditOrAdd(true);
+                  EditReviewRate();
+                }}
+                style={{ marginLeft: 50 }}
+              >
+                <MaterialIcons name="edit" size={24} color="black" />
+              </EditGroup>
+              <EditGroup
+                onPress={() => {
+                  DelReviewRate();
+                }}
+              >
+                <MaterialIcons
+                  name="delete"
+                  size={24}
+                  color="black"
+                  style={{ marginLeft: 60 }}
                 />
-            </View>
-            <Line></Line>
-            <TouchableOpacity style={styles.button} onPress={handleViewReviewRate}>
-            {/* <Text style={styles.title}>{showReviews ? "Hide All Reviews" : "View All Reviews"}</Text> */}
-            <Text style={styles.title}>{"View All Reviews"}</Text>
+              </EditGroup>
+            </FlewRow>
+          
+            <TouchableOpacity
+              style={styles.button}
+              onPress={handleViewReviewRate}
+            >
+              {/* <Text style={styles.title}>{showReviews ? "Hide All Reviews" : "View All Reviews"}</Text> */}
+              <Text style={styles.title}>{"View All Reviews"}</Text>
             </TouchableOpacity>
-            </ScrollView>
-          </PageContent>
-        
+          </ScrollView>
+        </PageContent>
 
         <FooterContainer>
           <IconButton onPress={() => navigation.navigate("Homepage")}>
@@ -309,7 +359,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 25, // Adjust the radius to make it more or less rounded
-    alignItems: 'center',
+    alignItems: "center",
   },
   text: {
     fontSize: 18,
@@ -318,7 +368,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderColor: quoteBox,
-    borderRadius: 10,
+    borderRadius: 50,
     marginTop: 10,
     marginBottom: 30,
     minHeight: 100,
@@ -329,7 +379,7 @@ const styles = StyleSheet.create({
   },
   reviewItem: {
     borderBottomWidth: 1,
-    borderBottomColor: 'gray',
+    borderBottomColor: "gray",
     paddingVertical: 10,
   },
   textContainer: {
@@ -345,6 +395,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 18,
     textAlign: "center",
+  },
+  texttitle: {
+    fontWeight: "bold",
+    fontSize: 18,
+    textAlign: "center",
+    color: historyColor,
   },
   authors: {
     color: text,
