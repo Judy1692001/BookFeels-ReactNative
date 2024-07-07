@@ -97,7 +97,7 @@ const Login = ({navigation,onFocus = () => {}}) => {
                     console.log("Message:", res.data.message);
                     HandleMessage(res.data.message, res.data.status);
                     // Optionally show the message to the user
-                    // navi.navigate('Homepage');
+                     navi.navigate('Homepage');
                     console.log("User:", res.data.data);
                     keepMeLogedIn({... res.data.data }, res.data.message, res.data.status);
                 } 
@@ -190,12 +190,7 @@ const Login = ({navigation,onFocus = () => {}}) => {
                                 <ActivityIndicator size="large" color={secondary} />
                             </ButtonWrapper2>)}
                         <Line />
-                        {/* <GoogleButton google={true} onPress={handleSubmit}>
-                            <Fontisto name='google' size={25} color={heading}/>
-                            <GoogleButtonText google={true}>
-                                Login with Google
-                            </GoogleButtonText>
-                        </GoogleButton> */}
+                       
                         <StylingLinkView>
                             <StylingLinkText>Don't have an account?</StylingLinkText>
                             <Link>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import axios from 'axios';
-import { Container, PageContent, FooterContainer, IconButton, TextStyle2, RateHeader, RateParagraph, StarContainer, RateSubmitButton, SubmitText, RejectionText, AboutImage, RejectionTextContainer, FeedbackText, FeedbackTextContainer } from '../Components/Styles';
+import { Container, PageContent, FooterContainer, IconButton, TextStyle2, RateHeader, RateParagraph, StarContainer, RateSubmitButton, SubmitText, RejectionText, AboutImage, RejectionTextContainer, FeedbackTextContainer, FeedbackText } from '../Components/Styles';
 import { Feather } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';

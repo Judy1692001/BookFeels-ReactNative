@@ -1,79 +1,86 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   View,
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  FlatList,
+  Image,
+  Button,
+  TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  Alert,
+  ImageBackground,
   ScrollView,
-  FlatList,
-  Switch,
-  StyleSheet,
-  Image,
-  Text,
 } from "react-native";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import { StatusBar } from "expo-status-bar";
 import {
   Container,
-  NavBarContainer,
   PageContent,
-  ProfileIcon,
-  NotificationIcon,
-  HeadingStyle,
-  EmotionContainer,
-  EmotionText,
-  EmotionName,
-  StyleOr,
-  Line2,
-  InsightInput,
+  NavBarContainer2,
   FooterContainer,
   IconButton,
-  RowContainer,
-  Emotion,
-  CorrectIcon,
   TextStyle2,
-  ProfileInfo,
-  ProfilePicture2,
-  UserName2,
-  Preferences,
-  BookManagement,
-  Support,
-  Flex1,
-  Flex2,
-  Theme,
-  Theme2,
-  Tutorials,
-  RightArrow,
-  ReadingHistoryContainer,
-  ReadingHistoryFlex,
-  BookDetails,
+  SearchIcon,
+  SettingsIcon,
+  BioSection,
+  ProfilePicture,
+  UserName,
+  BioText,
+  LeftFlex,
+  FollowButton,
+  FollowText,
+  TopFlex,
+  BottomFlex,
+  Group,
+  Number,
+  GroupText,
+  RightFlex,
+  SubHeader,
+  Line3,
+  Line,
+  Line2,
+  FavouritesFlex,
+  FavoriteGroup,
   FavoriteGroupBox,
-  FavoriteGroupBoxName,
-  StarFlex,
+  SubHeader2,
+  Line4,
+  QuoteBox,
+  SubHeaderGroup,
+  EditGroup,
+  FlewRow,
+  Colors,
+  StarContainer,
+  HistoryFlex1,
+  HistoryFlexRow,
   HistoryText,
-  BookDetailsText,
-  StarFlex2,
-  FavoritesFlexRow,
-  FavoritesImage,
-  FavoriteGroupBoxTitle,
-  FavoriteGroupBoxAuthor,
-  FavoritesBox,
+  StarFlex,
+  NavBarContainer,
 } from "../Components/Styles";
-import { Colors } from "../Components/Styles";
+import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
-import { Searchbar } from "react-native-paper";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import Icon from "react-native-vector-icons/FontAwesome";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { baseURL } from "../config";
-import StarRating from "../Components/StarRating";
+import { Rating } from "react-native-rating-element";
 import axios from "axios";
-const { inText, quoteBox, moreColor, primary, text, secondary,heading } = Colors;
+import { TextInput } from "react-native-paper";
+import StarRating from "../Components/StarRating";
+const { secondary, text, primary, inText, heading, quoteBox, moreColor } =
+  Colors;
 
-export default function ReadingHistory({ navigation }) {
+const ViewReviewsRates = ({ route }) => {
+  const { bookTitle } = route.params;
   const [userToken, setUserToken] = useState("");
   const [userData, setUserData] = useState({});
+  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [history, setHistory] = useState([]);
+  const [showReviews, setShowReviews] = useState(false);
+
+  const navigation = useNavigation();
+
   useEffect(() => {
     const user = AsyncStorage.getItem("BookFeelsCredentials").then((res) => {
       console.log("res", res);
@@ -84,106 +91,72 @@ export default function ReadingHistory({ navigation }) {
       // const username = userData.username;
     }); // Get the user data from AsyncStorage
   }, []);
-  console.log("UserToken", userToken);
-  // const ViewReadingHistory = async () => {
-  //   console.log("HelloInside", "hello its me outside");
-  //   setLoading(true);
-  //   try {
-  //     const res = await axios.get(`${baseURL}api/readinghistory/`, {
-  //       headers: { Authorization: `Bearer ${userToken}` },
-  //     });
-  //     console.log("Res", res);
-  //     console.log("Res.data", res.data);
-  //     console.log("userToken3", userToken);
-  //     console.log("Developer", "NadaShoukry");
-  //     if (res.data.status !== "SUCCESS") {
-  //       console.log("Error Message:", res.data.message);
-  //     } else {
-  //       const books = res.data.data.books.map((book) => ({
-  //         ...book,
-  //         avg_rating: Number.isFinite(book.avg_rating) ? book.avg_rating : 0,
-  //       }));
-  //       console.log("Message:", res.data.message);
-  //       console.log("ViewData:", res.data.data);
-  //       console.log("ViewBooks:", books);
-  //       setHistory(books); // Ensure books is an array
-  //     }
-  //   } catch (err) {
-  //     console.log("ERROR History", err);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-  const ViewReadingHistory = async () => {
-    console.log("HelloInside", "hello its me outside");
+
+  useEffect(() => {
+    ViewReviewRate();
+  }, [userToken]);
+
+  const ViewReviewRate = async () => {
     setLoading(true);
+    // console.log("userToken3", userToken);
+    // console.log("Developer", "NadaShoukry");
     await axios
-      .get(`${baseURL}api/readinghistory/`, {
+      .get(`${baseURL}api/getreviews/${bookTitle}/`, {
         headers: { Authorization: `Bearer ${userToken}` },
       })
       .then((res) => {
         console.log("Res", res);
         console.log("Res.data", res.data);
-        console.log("userToken3", userToken);
-        console.log("Developer", "NadaShoukry");
+        //     console.log("userToken3", userToken);
+        // console.log("Developer", "NadaShoukry");
         if (res.data.status !== "SUCCESS") {
           console.log("Error Message:", res.data.message);
         } else {
+          if (res.data?.data && Array.isArray(res.data.data)) {
+            res.data.data.forEach((result, index) => {
+              console.log(`Result ${index + 1}:`, result);
+            });
+          } else {
+            console.log("No results found or 'results' is not an array.");
+          }
           console.log("Message:", res.data.message);
-          console.log("ViewData:", res.data.data);
-          console.log("ViewBooks:", res.data.data.books);
-          setHistory([...res.data.data.books] || []);
+          console.log("ViewReview:", res.data.data);
+          setReviews([...res.data.data] || []);
         }
       })
       .catch((err) => {
-        console.log("ERROR History", err);
+        console.log("ERROR View", err);
         setLoading(false);
       })
       .finally(() => {
         setLoading(false);
       });
   };
-  useEffect(() => {
-    if (userToken) {
-      ViewReadingHistory();
-    } else {
-      console.log("Error while fetching");
-    }
-  }, [userToken]);
 
-  const RenderReadingHistory = ({ item }) => (
+  const RenderAllReviews = ({ item }) => (
+    <ScrollView>
+      <HistoryFlex1>
+        <HistoryFlexRow>
+          <HistoryText> {item.user} </HistoryText>
 
-        <View style={styles.container}>
-      <FavoritesFlexRow>
-          <FavoritesImage source={{ uri: item.image }} />
-          <FavoritesBox>
-            <FavoriteGroupBoxTitle>{item.Title}</FavoriteGroupBoxTitle>
-          <FavoriteGroupBoxAuthor>by {item.authors}</FavoriteGroupBoxAuthor>
-          <BookDetailsText> Genre : {item.categories} </BookDetailsText>
-          <StarFlex2>
-              <StarRating rating={item.user_rating} />
-         </StarFlex2>
-        </FavoritesBox>
-      </FavoritesFlexRow> 
-     </View>
-      // {/* <ReadingHistoryContainer>
-      //   <ReadingHistoryFlex>
-      //     <FavoriteGroupBox>
-      //       <Image source={{ uri: item.image }} />
-      //     </FavoriteGroupBox>
+          {/* <HistoryText> Sun 02 Jun </HistoryText> */}
+        </HistoryFlexRow>
 
-      //     <BookDetails>
-      //       <BookDetailsText> {item.Title} </BookDetailsText>
+        <HistoryFlexRow>
+          <HistoryText> {item.review_text} </HistoryText>
 
-      //       <BookDetailsText> {item.categories} </BookDetailsText>
+          {/* <HistoryText> Romance </HistoryText> */}
+        </HistoryFlexRow>
 
-      //       {/* <StarFlex2>
-      //         <StarRating rating={item.rating} />
-      //       </StarFlex2> */}
-      //     {/* </BookDetails>
-      //   </ReadingHistoryFlex>
-      // </ReadingHistoryContainer> */} 
+        <HistoryFlexRow>
+          {/* <HistoryText> Feedback </HistoryText> */}
 
+          <StarFlex>
+            <StarRating rating={item.rating} />
+          </StarFlex>
+        </HistoryFlexRow>
+      </HistoryFlex1>
+    </ScrollView>
   );
   return (
     <KeyboardAvoidingView
@@ -191,16 +164,15 @@ export default function ReadingHistory({ navigation }) {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <Container>
-        <StatusBar style="dark" />
         <PageContent>
-        <NavBarContainer>
-              <Text style={styles.screenTitle}>{userData.username}'s Reading History</Text>
+          <NavBarContainer>
+            <Text style={styles.title}>{bookTitle} Reviews and Rates</Text>
           </NavBarContainer>
-          
+
           <View style={styles.reviewsContainer}>
             <FlatList
-              data={history}
-              renderItem={RenderReadingHistory}
+              data={reviews}
+              renderItem={RenderAllReviews}
               keyExtractor={(item, index) => index.toString()}
             />
           </View>
@@ -228,7 +200,8 @@ export default function ReadingHistory({ navigation }) {
       </Container>
     </KeyboardAvoidingView>
   );
-}
+};
+
 const styles = StyleSheet.create({
   list: {
     padding: 10,
@@ -241,8 +214,8 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   image: {
-    width: 70,
-    height: 90,
+    width: 60,
+    height: 80,
     marginRight: 10,
   },
   rating: {
@@ -291,17 +264,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
     backgroundColor: primary,
   },
-  screenTitle: {
-    fontWeight: "bold",
-    fontSize: 24,
-    color: heading,
-    marginLeft: 35,
-  },
   details: {
     flex: 1,
     justifyContent: "center",
   },
   title: {
+  color: heading,
+  marginLeft:35,
     fontWeight: "bold",
     fontSize: 18,
     textAlign: "center",
@@ -329,3 +298,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+
+export default ViewReviewsRates;

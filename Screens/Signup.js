@@ -118,7 +118,7 @@ const Signup = ({ navigation }) => {
             console.log("Message:", res.data.message);
             HandleMessage(res.data.message, res.data.status);
             // Optionally show the message to the user
-            // navigation.replace('Homepage');
+           navigation.replace('Homepage');
             keepMeLogedIn(
               { ...res.data },
               res.data.message,
@@ -273,12 +273,12 @@ const Signup = ({ navigation }) => {
                   </ButtonWrapper2>
                 )}
                 <Line />
-                <GoogleButton google={true} onPress={handleSubmit}>
+                {/* <GoogleButton google={true} onPress={handleSubmit}>
                   <Fontisto name="google" size={25} color={heading} />
                   <GoogleButtonText google={true}>
                     Signup with Google
                   </GoogleButtonText>
-                </GoogleButton>
+                </GoogleButton> */}
                 <StylingLinkView>
                   <StylingLinkText>Already have an account?</StylingLinkText>
                   <Link>

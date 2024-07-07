@@ -73,7 +73,7 @@ export const WelcomePageLogo = styled.Image`
     height: 199px;
     width: 314px;
     margin-top:150px;
-    margin-left: 9%;
+    margin-left: 4%;
 `;
 
 //used
@@ -98,8 +98,8 @@ export const HeaderImage2 = styled.Image`
 //used
 export const HeadingStyle = styled.Text`
     padding-top: 20%;
-    padding-left: 14%;
-    fontSize: 25%;
+    padding-left: 3%;
+    fontSize: 25px;
     color: ${heading};
     text-align: center;
     font-weight: 700;
@@ -315,7 +315,7 @@ export const ProfileIcon = styled.TouchableOpacity`
 export const EmotionContainer = styled.View`
 align-items: center;
 flex-direction: 'row';
-height: 50%;
+height: 40%;
 `;
 
 //used
@@ -325,22 +325,27 @@ export const RowContainer = styled.View`
     width: 100%;
     height: 100px;
     justify-content: center;
-    margin-bottom: 40px;
     margin-top: 20%;
 `; 
 
 //used
 export const EmotionText = styled.Text`
-  font-size: 20px;
+  font-size: 30px;
   color: ${text};
   margin-top: 10%;
 `; 
+
+ export const EmotionName = styled.Text`
+  font-size: 18px;
+  padding-top: 10px;
+`;  
 
 //used
 export const StyleOr = styled.Text`
 color: ${text};
 padding: 20px;
 padding-left: 47%;
+${'' /* fontSize:16px; */}
 `; 
 
 //used
@@ -348,8 +353,8 @@ export const Line2 = styled.View`
 height:1px;
 width:100%;
 backgroundColor:${inText};
-margin-vertical:10px;
-margin-top: 5%;
+${'' /* margin-vertical:10px; */}
+margin-top: 10%;
 `; 
 
 //used
@@ -360,8 +365,11 @@ export const InsightInput = styled.TextInput`
   padding-left: 15px;
   backgroundColor: ${inText};
   height: 80px;
-  margin-left: 90px;
-  margin-bottom: 10%;
+  margin-left: 70px;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  fontSize:16px;
+
 `;
 
 //used
@@ -369,8 +377,7 @@ export const FooterContainer = styled.View`
   padding: 10px 0;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  ${'' /* margin-top: 10px; */}
 `; 
 
 //used
@@ -426,8 +433,8 @@ padding-left: 250px;
 //used
 export const BioSection = styled.View`
 flex-direction: row;
-padding-left: 8%;
-padding-top: 20%;
+${'' /* padding-left: 10%; */}
+padding-top: 10%;
 `;
 
 //used
@@ -438,37 +445,39 @@ margin-right: 10%;
 `;
 
 //used
-export const ProfilePicture = styled.View`
+export const ProfilePicture = styled.TouchableOpacity`
 border-radius: 50px;
-width: 98px;
-height: 98px;
+width: 95px;
+height: 95px;
 background-color: ${light_primary};
-padding: 37px;
-margin-bottom: 20px;
+padding: 35px;
+padding-bottom: px;
+
 `;
 
 //used
 export const FollowButton = styled.TouchableOpacity`
 border-radius: 50px;
-width: 85px;
-height: 33px;
-margin-top: 5px;
-margin-left: 8px;
+width: 100px;
+height: 45px;
+${'' /* margin-top: 5px; */}
+margin-left: 10px;
 padding-top: 8px;
-padding-left: 22px;
+padding-left: 26px;
 background-color: ${Follow};
 `;
 
 //used
 export const FollowText = styled.Text`
-font-size: 15px;
+font-size: 16px;
 font-weight: semi-bold;
 `;
 
 //used
 export const RightFlex = styled.View`
-flex-direction: column;
+flex-direction: row;
 justify-content: space-between;
+margin-top:30px;
 `;
 
 //used
@@ -478,10 +487,10 @@ flex-direction: column;
 
 //used
 export const UserName = styled.Text`
-font-size: 15px;
+font-size: 18px;
 font-weight: bold;
 padding-top: 15px;
-padding-left: 25px;
+padding-left: 5px;
 `;
 
 //used
@@ -493,11 +502,12 @@ padding-left: 27px;
 
 //used
 export const BottomFlex = styled.View`
-flex-direction: row;
+flex-direction: column;
 justify-content: space-around;
 height: 50px;
 width: 200px;
-margin-left: 10px;
+margin-left: 40px;
+
 `;
 
 //used
@@ -505,27 +515,29 @@ export const Group = styled.View`
 flex-direction: column;
 justify-content: space-between;
 flex-wrap: wrap;
+margin-left: 1px;
+margin-top: 7px;
 `;
 
 //used
 export const Number = styled.Text`
-font-size: 15px;
+font-size: 17px;
 font-weight: bold;
 text-align: center;
 `;
 
 //used
 export const GroupText = styled.Text`
-font-size: 13px;
+font-size: 17px;
 font-weight: semi-bold;
 text-align: center;
 `;
 
 //used
 export const SubHeader = styled.Text`
-font-size: 15px;
+font-size: 16px;
 font-weight: bold;
-margin-top: 20%;
+margin-top: 10%;
 margin-left: 31%;
 color: ${subHeader};
 `;
@@ -533,7 +545,7 @@ color: ${subHeader};
 //used
 export const Line3 = styled.View`
 height:1px;
-width:41%;
+width:45%;
 margin-vertical:10px;
 margin-top: 10px;
 margin-left: 31%;
@@ -563,16 +575,18 @@ padding-left: 38px;
 
 export const FavoriteGroupBoxTitle = styled.Text`
 ${'' /* fontWeight:bold; */}
-fontSize: 20px;
+fontSize: 17px;
 text-align: center;
 ${'' /* font-size: 15px; */}
 ${'' /* text-align: center; */}
 padding-top: 10px;
+padding-left: 10px;
+font-weight: bold;
 `;
 
 export const FavoriteGroupBoxAuthor = styled.Text`
 ${'' /* fontWeight:bold; */}
-fontSize: 17px;
+fontSize: 16px;
 text-align: center;
 color:${dark_primary};
 ${'' /* font-size: 15px; */}
@@ -586,22 +600,23 @@ flex-direction: row;
 width: 70%;
 height: 100px;
 align-content: center; 
-margin-left: 13%;
-margin-top: 10%;
+${'' /* margin-left: 1%; */}
+margin-top: 1%;
+
 `;
 
 //used
 export const SubHeaderGroup = styled.View`
 flex-direction: column;
-width: 70%;
+width: 80%;
 `;
 
 //used
 export const SubHeader2 = styled.Text`
-font-size: 15px;
+font-size: 16px;
 font-weight: bold;
 margin-top: 50px;
-margin-left: 50%;
+margin-left: 43%;
 color: ${subHeader};
 
 `;
@@ -609,12 +624,21 @@ color: ${subHeader};
 //used
 export const Line4 = styled.View`
 height:2px;
-width:52.5%;
+width:57%;
 margin-vertical:10px;
 margin-bottom:10px;
-margin-left: 47%;
+margin-left: 39%;
 background-color: ${text};
 `;
+
+/* export const Line5 = styled.View`
+height:2px;
+width:57%;
+margin-vertical:10px;
+margin-bottom:10px;
+margin-left: 22%;
+background-color: ${text};
+`; */
 
 //used
 export const Line5 = styled.View`
@@ -637,13 +661,15 @@ flex-direction: row;
 justify-content: space-around;
 align-items: center; 
 
-border-radius: 5px;
+border-radius: 50px;
 ${'' /* width: 300px; */}
 height: 109px;
 background-color: ${quoteBox};
 ${'' /* margin-left: 10px; */}
-padding: 40px;
-margin-left: 23%;
+padding: 20px;
+${'' /* margin-left: 3%; */}
+
+fontSize:17px;
 `;
 
 //used
@@ -675,9 +701,10 @@ margin-bottom: 30px;
 
 //used
 export const UserName2 = styled.Text`
-font-size: 15px;
+font-size: 16px;
 font-weight: bold;
-padding-bottom: 30px;
+padding-bottom: 20px;
+padding-right: 30px;
 padding-right: 50%;
 color: ${nameColor};
 `;
@@ -723,7 +750,7 @@ color: ${nameColor};
 
 //used
 export const Theme2 = styled.Text`
-font-size: 13px;
+font-size: 15px;
 font-weight: bold;
 color: ${nameColor};
 padding-left: 25px;
@@ -738,7 +765,7 @@ padding-right: 20px;
 export const BookManagement = styled.View`
 border-radius: 15px;
 width: 85%;
-height: 130px;
+height: 100px;
 background-color: ${moreColor};
 margin-left: 7%;
 margin-bottom: 50px;
@@ -784,19 +811,18 @@ export const DiscoverPageContainer = styled.View`
   //elevation: 5;
 `;
 
-//used
-export const HistoryFlex1 = styled.TouchableOpacity`
+export const HistoryFlex1 = styled.View`
 flex-direction: column;
-width: 80%;
-height: 22%;
-border: 1px solid ${historyColor};
-margin-top: 110px;
-margin-left: 40px;
+width: 90%;
+height: 90%;
+border: 1px solid #424866;
+margin-top: 10px;
+margin-left: 11px;
 background-color: ${moreColor};
 border-radius: 15px;
 `;
 
-export const HistoryFlex2 = styled.TouchableOpacity`
+export const HistoryFlex2 = styled.View`
 flex-direction: column;
 width: 80%;
 height: 22%;
@@ -810,7 +836,7 @@ border-radius: 15px;
 
 export const HistoryFlexRow = styled.View`
 flex-direction: row;
-justify-content: space-between;
+${'' /* justify-content: space-between; */}
 align-items: center;
 width: 1vw;
 height: 0.25vh;
@@ -818,7 +844,7 @@ margin: 3%;
 `;
 
 export const HistoryText = styled.Text`
-font-size: 15px;
+font-size: 16px;
 color: ${historyColor};
 `;
 
@@ -835,26 +861,25 @@ margin-left: 32px;
 `;
 
 export const FavoritesFlexRow = styled.View`
-${'' /* flex-direction: row; */}
+flex-direction: row;
 ${'' /* justify-content: space-around; */}
-width: 100%;
-height: 40%;
-margin-top: 25px;
-padding-top: 10px;
+width: 75%;
+height: 50%;
+margin-top: 10px;
+
 `;
 
 export const FavoritesImage = styled.Image`
-    height: 100px;
-    width: 100px;
-   margin-top:150px;
-   margin-right:10px;
-
+    height: 140px;
+    width: 90px;
+   margin-bottom:10px;
 `;
 
 export const FavoritesBox = styled.View`
 ${'' /* flex:1px; //caused problem. */}
 backgroundColor: ${primary};
 marginTop: 10;
+justify-content:center;
 `;
 
 export const ReadingHistoryContainer = styled.View`
@@ -883,6 +908,9 @@ margin-right: 5%;
 
 export const BookDetailsText = styled.Text`
 padding-bottom: 15%;
+fontSize:16px;
+margin-left:9px;
+margin-top:11px;
 `;
 
 export const StarFlex2 = styled.View`
@@ -963,7 +991,7 @@ margin-left: 1.5%;
 `;
 
 export const AboutParagraph = styled.Text`
-font-size: 15px;
+font-size: 16px;
 color: ${faqPar};
 margin-top: 10%;
 margin-left: 1.5%;
@@ -973,8 +1001,8 @@ export const RateHeader = styled.Text`
 font-size: 24px;
 font-weight: bold;
 color: ${faqPar};
-margin-top: 20%;
-margin-left: 11%;
+margin-top: 10%;
+margin-left: 12%;
 `;
 
 export const RateParagraph = styled.Text`
@@ -1018,9 +1046,9 @@ margin-left: 21%;
 `;
 
 export const RejectionText = styled.Text`
-font-size: 15px;
+font-size: 16px;
 color: ${faqPar};
-padding-left: 38.5%;
+padding-left: 40.5%;
 `;
 
 export const FeedbackTextContainer = styled.TouchableOpacity`
@@ -1031,7 +1059,7 @@ export const FeedbackText = styled.Text`
 font-size: 18px;
 color: ${faqPar};
 padding-top: 15%;
-padding-left: 26%;
+padding-left: 30%;
 `;
 
 export const FeedbackTitle = styled.Text`
@@ -1040,12 +1068,12 @@ export const FeedbackTitle = styled.Text`
     font-weight: 500;
     margin-bottom:50px;
     margin-top: 50px;
-    margin-left: 20px;
+    margin-left: 30px;
 `;
 
 export const FeedbackImage = styled.Image`
-height: 200px;
-width: 50%;
+height: 205px;
+width: 60%;
 margin-top: 80px;
-margin-left: 90px;
+margin-left: 70px;
 `;
