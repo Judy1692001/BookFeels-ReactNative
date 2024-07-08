@@ -506,7 +506,7 @@ flex-direction: column;
 justify-content: space-around;
 height: 50px;
 width: 200px;
-margin-left: 40px;
+margin-left: 5px;
 
 `;
 

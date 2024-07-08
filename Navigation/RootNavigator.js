@@ -59,7 +59,7 @@ const RootNavigator = () => {
               )}
               
               <Stack.Screen name="Profile" component={Profile} />
-              
+              {/* <Stack.Screen name="HomePage" component={HomePage} /> */}
               <Stack.Screen name="Recommend" component={Recommend} />
               <Stack.Screen name="BookDetails" component={BookDetails} />
               <Stack.Screen name="Feedback" component={Feedback} />
