@@ -18,7 +18,7 @@ export default function More({ navigation }) {
   const [loading, setLoading] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
 
-  useEffect(() => {
+  /* useEffect(() => {
     // Fetch user data and token from AsyncStorage
     AsyncStorage.getItem("BookFeelsCredentials").then((res) => {
       const userdata = JSON.parse(res);
@@ -71,9 +71,9 @@ export default function More({ navigation }) {
       console.error("Error logging out:", error);
       Alert.alert('Error', 'Failed to logout. Please try again.');
     }
-  };
+  }; */
 
-  /* useEffect(() => {
+  useEffect(() => {
     const fetchUserData = async () => {
       try {
         const jsonValue = await AsyncStorage.getItem("BookFeelsCredentials");
@@ -102,9 +102,12 @@ export default function More({ navigation }) {
         routes: [{ name: 'Get Started' }],
       });
     }).catch(error => console.error(error));
-  };  */
+  }; 
 
-/*   const handleLogout = async () => {
+
+
+/* not working
+const handleLogout = async () => {
   try {
     // Get the stored credentials
     const jsonValue = await AsyncStorage.getItem("BookFeelsCredentials");
@@ -148,7 +151,7 @@ export default function More({ navigation }) {
               <ProfilePicture2>
                 <AntDesign name="camera" size={20} color="black" />
               </ProfilePicture2>
-              <Pressable onPress={handlePress}>
+              <Pressable onPress={handleLogout}>
                 <UserName2>{userData.username}</UserName2>
               </Pressable>
             </ProfileInfo>
@@ -212,20 +215,9 @@ export default function More({ navigation }) {
             </LogOut>
           </PageContent>
         </ScrollView>
-        <FooterContainer>
-          <IconButton onPress={() => navigation.navigate('Homepage')}>
-            <Feather name="home" size={24} color="black" />
-            <TextStyle2>Home</TextStyle2>
-          </IconButton>
-          <IconButton onPress={() => navigation.navigate('Discover')}>
-            <Feather name="compass" size={24} color="black" />
-            <TextStyle2>Discover</TextStyle2>
-          </IconButton>
-          <IconButton onPress={() => navigation.navigate('More')}>
-            <Feather name="menu" size={24} color="black" />
-            <TextStyle2>More</TextStyle2>
-          </IconButton>
-        </FooterContainer>
+        
+      
+
       </Container>
     </KeyboardAvoidingView>
   );

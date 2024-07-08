@@ -63,6 +63,8 @@ import { baseURL } from "../config";
 import { Rating } from "react-native-rating-element";
 import axios from "axios";
 import { TextInput } from "react-native-paper";
+
+
 const {
   secondary,
   text,
@@ -303,25 +305,7 @@ const ReviewRate = ({ route }) => {
           </ScrollView>
         </PageContent>
 
-        <FooterContainer>
-          <IconButton onPress={() => navigation.navigate("Homepage")}>
-            <Feather name="home" size={24} color="black" />
-
-            <TextStyle2>Home</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("Discover")}>
-            <Feather name="compass" size={24} color="black" />
-
-            <TextStyle2>Discover</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("More")}>
-            <Feather name="menu" size={24} color="black" />
-
-            <TextStyle2>More</TextStyle2>
-          </IconButton>
-        </FooterContainer>
+        
       </Container>
     </KeyboardAvoidingView>
   );

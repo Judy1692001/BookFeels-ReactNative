@@ -58,7 +58,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CredentialsContext } from "../Components/CredentialsContext";
 import { baseURL } from "../config";
 import axios from "axios";
+
+
 const { secondary, text, primary, inText, heading } = Colors;
+
 export default function Profile({ navigation }) {
   const [quote, setQuote] = useState("");
   const [userData, setUserData] = useState({});
@@ -361,25 +364,7 @@ export default function Profile({ navigation }) {
           </PageContent>
         </ScrollView>
 
-        <FooterContainer>
-          <IconButton onPress={() => navigation.navigate("Homepage")}>
-            <Feather name="home" size={24} color="black" />
-
-            <TextStyle2>Home</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("Discover")}>
-            <Feather name="compass" size={24} color="black" />
-
-            <TextStyle2>Discover</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("More")}>
-            <Feather name="menu" size={24} color="black" />
-
-            <TextStyle2>More</TextStyle2>
-          </IconButton>
-        </FooterContainer>
+        
       </Container>
     </KeyboardAvoidingView>
   );

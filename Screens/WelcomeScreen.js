@@ -39,8 +39,3 @@ export default function WelcomeScreen({ navigation }) {
    
   );
 }
-
-
-
- 
-

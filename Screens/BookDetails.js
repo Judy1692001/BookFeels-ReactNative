@@ -38,6 +38,8 @@ import { useTheme } from "react-native-paper"; // Correct import for useTheme
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RemoveFromBookShelf, baseURL } from "../config";
 
+
+
 // import { BlurView } from "@react-native-community/blur";
 // import StarRating from 'react-native-star-rating';
 const { secondary, text, primary, inText, heading,historyColor } = Colors;
@@ -325,25 +327,8 @@ const BookDetails = ({ route }) => {
             ></Button>
           </View>
         </ScrollView>
-        <FooterContainer>
-          <IconButton onPress={() => navigation.navigate("Homepage")}>
-            <Feather name="home" size={24} color="black" />
 
-            <TextStyle2>Home</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("Discover")}>
-            <Feather name="compass" size={24} color="black" />
-
-            <TextStyle2>Discover</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("More")}>
-            <Feather name="menu" size={24} color="black" />
-
-            <TextStyle2>More</TextStyle2>
-          </IconButton>
-        </FooterContainer>
+        
       </Container>
     </KeyboardAvoidingView>
   );

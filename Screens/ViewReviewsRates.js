@@ -68,6 +68,8 @@ import { Rating } from "react-native-rating-element";
 import axios from "axios";
 import { TextInput } from "react-native-paper";
 import StarRating from "../Components/StarRating";
+
+
 const { secondary, text, primary, inText, heading, quoteBox, moreColor } =
   Colors;
 
@@ -178,25 +180,8 @@ const ViewReviewsRates = ({ route }) => {
           </View>
         </PageContent>
 
-        <FooterContainer>
-          <IconButton onPress={() => navigation.navigate("Homepage")}>
-            <Feather name="home" size={24} color="black" />
-
-            <TextStyle2>Home</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("Discover")}>
-            <Feather name="compass" size={24} color="black" />
-
-            <TextStyle2>Discover</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("More")}>
-            <Feather name="menu" size={24} color="black" />
-
-            <TextStyle2>More</TextStyle2>
-          </IconButton>
-        </FooterContainer>
+ 
+        
       </Container>
     </KeyboardAvoidingView>
   );

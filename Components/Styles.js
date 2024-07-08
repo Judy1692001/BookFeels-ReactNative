@@ -398,10 +398,10 @@ export const Emotion = styled(TouchableOpacity)`
     flex: 1;
 `; 
 
-/* export const CorrectIcon = styled(TouchableOpacity)`
+export const CorrectIcon = styled(TouchableOpacity)`
 margin-right: 19%;
 margin-bottom: 18%;
-`; */ 
+`;
 
 //used
 export const TextStyle2 = styled.Text`

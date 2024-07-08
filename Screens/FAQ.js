@@ -143,6 +143,7 @@ import { Colors } from '../Components/Styles';
 import { Feather } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+
 const { primary } = Colors;
 
 const ExpandableFAQ = ({ title, content }) => {
@@ -223,24 +224,7 @@ export default function FAQ({ navigation }) {
                     </PageContent>
 
                 </ScrollView>
-
-                <FooterContainer>
-                    <IconButton onPress={() => navigation.navigate('Homepage')}>
-                        <Feather name="home" size={24} color="black" />
-                        <TextStyle2>Home</TextStyle2>
-                    </IconButton>
-
-                    <IconButton onPress={() => navigation.navigate('Discover')}>
-                        <Feather name="compass" size={24} color="black" />
-                        <TextStyle2>Discover</TextStyle2>
-                    </IconButton>
-
-                    <IconButton onPress={() => navigation.navigate('More')}>
-                        <Feather name="menu" size={24} color="black" />
-                        <TextStyle2>More</TextStyle2>
-                    </IconButton>
-                </FooterContainer>
-
+               
             </Container>
 
         </KeyboardAvoidingView>

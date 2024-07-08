@@ -1,12 +1,10 @@
 import React, { useState, useContext } from "react";
-import { StatusBar } from "expo-status-bar";
-import { View, ActivityIndicator } from "react-native";
+import { StatusBar, View, ActivityIndicator } from "react-native";
 import {
   Container,
   PageContent,
-  HeadingStyle,
-  PageTitle,
   PageLogo,
+  PageTitle,
   SubTitle,
   StyleForm,
   StyleInputLabel,
@@ -18,45 +16,26 @@ import {
   ButtonWrapper,
   NavBox,
   Line,
-  GoogleButton,
-  GoogleButtonText,
-  Link,
-  TextLink,
   StylingLinkView,
   StylingLinkText,
   ValidationText,
   ButtonWrapper2,
 } from "../Components/Styles";
 import { Formik } from "formik";
-
-// Yup is a JavaScript schema builder for value parsing and validation.
-import * as Yup from "yup";
-//icons
-import { Octicons, Ionicons, Fontisto } from "@expo/vector-icons";
-
+import { Octicons, Ionicons } from "@expo/vector-icons";
 import KeyboardAvoidingWrapper from "./../Components/KeyboardAvoidingWrapper";
 import { useNavigation } from "@react-navigation/native";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CredentialsContext } from "../Components/CredentialsContext";
+import * as Yup from "yup";
+import axios from "axios";
+import { baseURL } from "../config";
 
-//color
-const { secondary, text, heading, dark_primary,notvalid } = Colors;
+const { secondary, text } = Colors;
 
-//API 
-import axios from 'axios';
-import { baseURL } from '../config';
-
-
-
-//Sign up validation
 const SignupSchema = Yup.object().shape({
-  username: Yup.string().required(
-    "Please Enter your Full Name without spaces."
-  ),
-  email: Yup.string()
-    .email("Invalid Email")
-    .required("Please Enter your Email AAddress."),
+  username: Yup.string().required("Please Enter your Full Name without spaces."),
+  email: Yup.string().email("Invalid Email").required("Please Enter your Email Address."),
   password: Yup.string()
     .min(8)
     .required("Please Enter your Password.")
@@ -67,95 +46,60 @@ const SignupSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .min(8, "Must contain minimum 8 characters.")
     .oneOf([Yup.ref("password")], "Your Passwords does not match.")
-
-    .required("Confirm Password is Requird"),
+    .required("Confirm Password is Required"),
 });
-const Signup = ({ navigation }) => {
-  //hide password or not hook
-  const [hidePassword, sethidePassword] = useState(true);
-  //state variable to store the error message.
+
+const Signup = () => {
+  const [hidePassword, setHidePassword] = useState(true);
   const [message, setMessage] = useState();
-  //error message,success message
   const [messageType, setMessageType] = useState();
+  const { setStoredCredentials } = useContext(CredentialsContext);
+  const navigation = useNavigation();
 
-  //Destructure the values stored in Credentials using useContext
-  const { storedCredentials, setStoredCredentials } =
-    useContext(CredentialsContext);
-  const navi = useNavigation();
-
-  const HandleSignup = async (credentials, setSubmitting) => {
-    //clear the message whenever the button is pressed
-    HandleMessage(null);
-    setSubmitting(false);
+  const handleSignup = async (credentials, setSubmitting) => {
+    setMessage(null);
+    setSubmitting(true);
     const url = `${baseURL}api/register/`;
-    console.log("credintials", credentials);
-    //  try {
-    let formdata = new FormData();
-    formdata.append("username", credentials.username);
-    formdata.append("email", credentials.email);
-    formdata.append("password", credentials.password);
-    formdata.append("confirm_password", credentials.confirmPassword);
-    console.log("formdata", formdata);
-    axios
-      .post(url, formdata, {
+    const formData = new FormData();
+    formData.append("username", credentials.username);
+    formData.append("email", credentials.email);
+    formData.append("password", credentials.password);
+    formData.append("confirm_password", credentials.confirmPassword);
+
+    try {
+      const response = await axios.post(url, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      })
-      .then((res) => {
-        console.log("res", res);
-        setSubmitting(false);
-        //navigation.navigate('WelcomeScreen');
-        //const result = res.data;
-        //destructure from the result.
-        //const {user,token,status,message} = result;
-
-        if (res.data.status !== "SUCCESS") {
-          console.log("Error Message:", res.data.message);
-          HandleMessage(res.data.message, res.data.status);
-        } else {
-          if (res.data.message) {
-            console.log("Message:", res.data.message);
-            HandleMessage(res.data.message, res.data.status);
-            // Optionally show the message to the user
-           navigation.replace('Homepage');
-            keepMeLogedIn(
-              { ...res.data },
-              res.data.message,
-              res.data.status
-            );
-          }
-        }
-        // setSubmitting(false);
-      })
-      .catch((err) => {
-        console.log("ERROR", err);
-        let op = err?.response?.data?.errors;
-        let val = op[Object.keys(op)[0]][0];
-        console.log("Val", val);
-        //console.log("Error", err?.response?.Error?.data?.errors);
-        setSubmitting(false);
-        HandleMessage(val);
       });
-  };
-  //Function to handle the message
-  const HandleMessage = (message, type = "FAILED") => {
-    setMessage(message);
-    setMessageType(type);
+
+      if (response.data.status === "SUCCESS") {
+        const userData = response.data.data;
+        AsyncStorage.setItem("BookFeelsCredentials", JSON.stringify(userData))
+          .then(() => {
+            setMessage(response.data.message);
+            setMessageType(response.data.status);
+            setStoredCredentials(userData);
+            navigation.replace("HomePage"); // Redirect to Homepage on successful signup
+          })
+          .catch((error) => {
+            console.error("Failed to store credentials", error);
+            setMessage("Failed to keep you logged in");
+            setMessageType("FAILED");
+          });
+      } else {
+        setMessage(response.data.message);
+        setMessageType("FAILED");
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      setMessage("An error occurred. Please try again later.");
+      setMessageType("FAILED");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  const keepMeLogedIn = (credentials, message, status) => {
-    AsyncStorage.setItem("BookFeelsCredentials", JSON.stringify(credentials))
-      .then(() => {
-        HandleMessage(message, status);
-        setStoredCredentials(credentials);
-        console.log("Stored Credentials", storedCredentials);
-      })
-      .catch((error) => {
-        console.log("ERROR", error);
-        HandleMessage("Failed to keep you logged in");
-      });
-  };
   return (
     <KeyboardAvoidingWrapper>
       <Container>
@@ -172,7 +116,7 @@ const Signup = ({ navigation }) => {
             }}
             validationSchema={SignupSchema}
             onSubmit={(values, { setSubmitting }) => {
-              HandleSignup(values, setSubmitting);
+              handleSignup(values, setSubmitting);
             }}
           >
             {({
@@ -182,7 +126,6 @@ const Signup = ({ navigation }) => {
               values,
               isSubmitting,
               errors,
-              setFieldTouched,
               touched,
               isValid,
             }) => (
@@ -193,12 +136,8 @@ const Signup = ({ navigation }) => {
                   placeholder="Enter your full name"
                   placeholderTextColor={text}
                   onChangeText={handleChange("username")}
-                  onBlur={() => {
-                    setFieldTouched("username");
-                  }}
-                  //onBlur={handleBlur('hhh')}
+                  onBlur={handleBlur("username")}
                   value={values.username}
-                  //autoCapitalize={false}
                 />
                 {touched.username && errors.username && (
                   <ValidationText>{errors.username}</ValidationText>
@@ -209,10 +148,7 @@ const Signup = ({ navigation }) => {
                   placeholder="Enter your email address"
                   placeholderTextColor={text}
                   onChangeText={handleChange("email")}
-                  onBlur={() => {
-                    setFieldTouched("email");
-                  }}
-                  // onBlur={handleBlur('email')}
+                  onBlur={handleBlur("email")}
                   value={values.email}
                   keyboardType="email-address"
                   autoCapitalize={false}
@@ -226,16 +162,12 @@ const Signup = ({ navigation }) => {
                   placeholder="Enter your password"
                   placeholderTextColor={text}
                   onChangeText={handleChange("password")}
-                  onBlur={() => {
-                    setFieldTouched("password");
-                  }}
-                  // onBlur={handleBlur('password')}
+                  onBlur={handleBlur("password")}
                   value={values.password}
                   secureTextEntry={hidePassword}
                   isPassword={true}
                   hidePassword={hidePassword}
-                  sethidePassword={sethidePassword}
-                  autoCapitalize={false}
+                  setHidePassword={setHidePassword}
                 />
                 {touched.password && errors.password && (
                   <ValidationText>{errors.password}</ValidationText>
@@ -246,50 +178,32 @@ const Signup = ({ navigation }) => {
                   placeholder="Confirm your password"
                   placeholderTextColor={text}
                   onChangeText={handleChange("confirmPassword")}
-                  onBlur={() => {
-                    setFieldTouched("confirmPassword");
-                  }}
-                  //onBlur={handleBlur('confirmPassword')}
+                  onBlur={handleBlur("confirmPassword")}
                   value={values.confirmPassword}
                   secureTextEntry={hidePassword}
                   isPassword={true}
                   hidePassword={hidePassword}
-                  sethidePassword={sethidePassword}
-                  autoCapitalize={false}
+                  setHidePassword={setHidePassword}
                 />
                 {touched.confirmPassword && errors.confirmPassword && (
                   <ValidationText>{errors.confirmPassword}</ValidationText>
                 )}
-                {/* msg box to output the msg   disabled={!isValid}*/}
                 <NavBox type={messageType}>{message}</NavBox>
-                {!isSubmitting && (
+                {!isSubmitting ? (
                   <ButtonWrapper2 onPress={handleSubmit} disabled={!isValid}>
                     <ButtonText>Signup</ButtonText>
                   </ButtonWrapper2>
-                )}
-                {isSubmitting && (
+                ) : (
                   <ButtonWrapper2 disabled={true}>
                     <ActivityIndicator size="large" color={secondary} />
                   </ButtonWrapper2>
                 )}
                 <Line />
-                {/* <GoogleButton google={true} onPress={handleSubmit}>
-                  <Fontisto name="google" size={25} color={heading} />
-                  <GoogleButtonText google={true}>
-                    Signup with Google
-                  </GoogleButtonText>
-                </GoogleButton> */}
                 <StylingLinkView>
                   <StylingLinkText>Already have an account?</StylingLinkText>
-                  <Link>
-                    <TextLink
-                      onPress={() => {
-                        navigation.navigate("Login");
-                      }}
-                    >
-                      Login
-                    </TextLink>
-                  </Link>
+                  <TextLink onPress={() => navigation.navigate("Login")}>
+                    Login
+                  </TextLink>
                 </StylingLinkView>
               </StyleForm>
             )}
@@ -305,7 +219,7 @@ const LoginTextInput = ({
   icon,
   isPassword,
   hidePassword,
-  sethidePassword,
+  setHidePassword,
   ...props
 }) => {
   return (
@@ -316,7 +230,7 @@ const LoginTextInput = ({
       <StyleInputLabel>{label}</StyleInputLabel>
       <StyleTextInput {...props} />
       {isPassword && (
-        <StyleRightIcon onPress={() => sethidePassword(!hidePassword)}>
+        <StyleRightIcon onPress={() => setHidePassword(!hidePassword)}>
           <Ionicons
             name={hidePassword ? "eye-off" : "eye"}
             size={30}

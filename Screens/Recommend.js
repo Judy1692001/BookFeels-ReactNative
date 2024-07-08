@@ -24,6 +24,8 @@ import {
 import StarRating from "../Components/StarRating";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+
+
 const { secondary, text, primary, inText ,heading,historyColor} = Colors;
 export default function Recommend({ route }) {
     const { books } = route.params;
@@ -65,25 +67,8 @@ export default function Recommend({ route }) {
                 />
             </PageContent>
 
-            <FooterContainer>
-          <IconButton onPress={() => navigation.navigate("Homepage")}>
-            <Feather name="home" size={24} color="black" />
 
-            <TextStyle2>Home</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("Discover")}>
-            <Feather name="compass" size={24} color="black" />
-
-            <TextStyle2>Discover</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("More")}>
-            <Feather name="menu" size={24} color="black" />
-
-            <TextStyle2>More</TextStyle2>
-          </IconButton>
-        </FooterContainer>
+            
           </Container>
         );
 }

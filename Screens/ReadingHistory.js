@@ -67,6 +67,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { baseURL } from "../config";
 import StarRating from "../Components/StarRating";
 import axios from "axios";
+
 const { inText, quoteBox, moreColor, primary, text, secondary,heading } = Colors;
 
 export default function ReadingHistory({ navigation }) {
@@ -206,25 +207,8 @@ export default function ReadingHistory({ navigation }) {
           </View>
         </PageContent>
 
-        <FooterContainer>
-          <IconButton onPress={() => navigation.navigate("Homepage")}>
-            <Feather name="home" size={24} color="black" />
-
-            <TextStyle2>Home</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("Discover")}>
-            <Feather name="compass" size={24} color="black" />
-
-            <TextStyle2>Discover</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("More")}>
-            <Feather name="menu" size={24} color="black" />
-
-            <TextStyle2>More</TextStyle2>
-          </IconButton>
-        </FooterContainer>
+ 
+       
       </Container>
     </KeyboardAvoidingView>
   );

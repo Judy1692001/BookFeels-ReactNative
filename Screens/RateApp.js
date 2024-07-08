@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { baseURL } from '../config';
 
+
 export default function RateApp({ navigation }) {
     const [rating, setRating] = useState(0);
     const [userToken, setUserToken] = useState("");
@@ -82,7 +83,7 @@ export default function RateApp({ navigation }) {
                         <RateSubmitButton onPress={handleSubmit}>
                             <SubmitText> Submit </SubmitText>
                         </RateSubmitButton>
-                        <RejectionTextContainer onPress={() => navigation.navigate('Homepage')}>
+                        <RejectionTextContainer onPress={() => navigation.navigate('HomePage')}>
                             <RejectionText> No Thanks </RejectionText>
                             <FeedbackTextContainer>
 
@@ -92,20 +93,9 @@ export default function RateApp({ navigation }) {
                         </RejectionTextContainer>
                     </PageContent>
                 </ScrollView>
-                <FooterContainer>
-                    <IconButton onPress={() => navigation.navigate('Homepage')}>
-                        <Feather name="home" size={24} color="black" />
-                        <TextStyle2>Home</TextStyle2>
-                    </IconButton>
-                    <IconButton onPress={() => navigation.navigate('Discover')}>
-                        <Feather name="compass" size={24} color="black" />
-                        <TextStyle2>Discover</TextStyle2>
-                    </IconButton>
-                    <IconButton onPress={() => navigation.navigate('More')}>
-                        <Feather name="menu" size={24} color="black" />
-                        <TextStyle2>More</TextStyle2>
-                    </IconButton>
-                </FooterContainer>
+                
+    
+
             </Container>
         </KeyboardAvoidingView>
     );

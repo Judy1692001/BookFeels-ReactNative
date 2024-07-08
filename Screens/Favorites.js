@@ -37,6 +37,8 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { RemoveFromBookShelf, baseURL } from "../config";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
 const { secondary, text, primary, inText, heading } = Colors;
 
 //colors
@@ -165,25 +167,8 @@ export default function Favorites({ navigation }) {
           />
         </PageContent>
      
-        <FooterContainer>
-          <IconButton onPress={() => navigation.navigate("Homepage")}>
-            <Feather name="home" size={24} color="black" />
 
-            <TextStyle2>Home</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("Discover")}>
-            <Feather name="compass" size={24} color="black" />
-
-            <TextStyle2>Discover</TextStyle2>
-          </IconButton>
-
-          <IconButton onPress={() => navigation.navigate("More")}>
-            <Feather name="menu" size={24} color="black" />
-
-            <TextStyle2>More</TextStyle2>
-          </IconButton>
-        </FooterContainer>
+         
       </Container>
     </KeyboardAvoidingView>
   );

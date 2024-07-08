@@ -1,18 +1,13 @@
-import * as React from "react";
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import WelcomeScreen from "./../Screens/WelcomeScreen";
-import Login from "./../Screens/Login";
-import Signup from "./../Screens/Signup";
+import WelcomeScreen from "../Screens/WelcomeScreen";
+import Login from "../Screens/Login";
+import Signup from "../Screens/Signup";
 import HomePage from "../Screens/HomePage";
 import Profile from "../Screens/Profile";
 import Recommend from "../Screens/Recommend";
-import DiscoverBooks from "../Screens/DiscoverBooks";
-import More from "../Screens/More";
-import { Colors } from "./../Components/Styles";
 import BookDetails from "../Screens/BookDetails";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { CredentialsContext } from "../Components/CredentialsContext";
 import Favorites from '../Screens/Favorites'
 import ReadingHistory from '../Screens/ReadingHistory'
 import FAQ from '../Screens/FAQ'
@@ -21,31 +16,23 @@ import RateApp from '../Screens/RateApp'
 import ReviewRate from '../Screens/ReviewRate';
 import ViewReviewsRates from "../Screens/ViewReviewsRates.js";
 import Feedback from "../Screens/Feedback";
-// import BottomNavigator from './Navigation/BottomNaviagtor';
-//color
-const { secondary, text, heading, dark_primary } = Colors;
+import DiscoverBooks from "../Screens/DiscoverBooks";
+import More from "../Screens/More";
+import BottomNavigator from './BottomNavigator';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { CredentialsContext } from "../Components/CredentialsContext";
+import { Colors } from "../Components/Styles";
+import BottomTabNavigator from "./BottomTabNavigator";
+
+const { secondary } = Colors;
 const Stack = createNativeStackNavigator();
 
-export default function RootNavigator() {
-  //   const [userData, setUserData] = useState({});
-  //   useEffect(() => {
-  //     const user = AsyncStorage.getItem("BookFeelsCredentials").then((res) => {
-  //       console.log("res", res);
-  //       const userdata = JSON.parse(res);
-
-  //       console.log("USERDATA", userdata);
-  //       setUserData(userdata);
-
-  //    // const username = userData.username;
-  //   }); // Get the user data from AsyncStorage
-  // }, []);
+const RootNavigator = () => {
   return (
-    //to consume(access )the values stored in the context.
     <CredentialsContext.Consumer>
-      {/* child of a consumer should be a function */}
       {({ storedCredentials }) => (
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <NavigationContainer>
+       
             <Stack.Navigator
               screenOptions={{
                 headerStyle: {
@@ -55,14 +42,14 @@ export default function RootNavigator() {
                 headerTransparent: true,
                 headerTitle: "",
                 headerLeftContainerStyle: {
-                paddingLeft: 20,
+                  paddingLeft: 20,
                 },
               }}
               initialRouteName="Get Started"
             >
-              {/* check the value of credentials and if set move to homepage */}
               {storedCredentials ? (
-                <Stack.Screen name="Homepage" component={HomePage} />
+                
+                <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} />
               ) : (
                 <>
                   <Stack.Screen name="Get Started" component={WelcomeScreen} />
@@ -70,35 +57,25 @@ export default function RootNavigator() {
                   <Stack.Screen name="Signup" component={Signup} />
                 </>
               )}
-
-              {/* <Stack.Screen name="Get Started" component={WelcomeScreen} />
-                  <Stack.Screen name="Login" component={Login} />
-              <Stack.Screen name="Signup" component={Signup} />
-              <Stack.Screen name="Homepage" component={HomePage} /> */}
-              {/* <Stack.Screen name="navBar" component={BottomNavigator} /> */}
+              
               <Stack.Screen name="Profile" component={Profile} />
+              
               <Stack.Screen name="Recommend" component={Recommend} />
-              <Stack.Screen name="Discover" component={DiscoverBooks} />
-              <Stack.Screen name="More" component={More} />
               <Stack.Screen name="BookDetails" component={BookDetails} />
-              <Stack.Screen
-                name="Feedback"
-                component={Feedback}
-              />
+              <Stack.Screen name="Feedback" component={Feedback} />
               <Stack.Screen name="Favorites" component={Favorites} />
               <Stack.Screen name="ReviewRate" component={ReviewRate} />
               <Stack.Screen name="FAQ" component={FAQ} />
               <Stack.Screen name="About" component={About} />
               <Stack.Screen name="RateApp" component={RateApp} />
               <Stack.Screen name="ReadingHistory" component={ReadingHistory} />
-              <Stack.Screen
-                name="ViewReviewsRates"
-                component={ViewReviewsRates}
-              />
+              <Stack.Screen name="ViewReviewsRates" component={ViewReviewsRates} />
             </Stack.Navigator>
-          </NavigationContainer>
+  
         </GestureHandlerRootView>
       )}
     </CredentialsContext.Consumer>
   );
-}
+};
+
+export default RootNavigator;
