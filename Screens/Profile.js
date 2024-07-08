@@ -66,6 +66,7 @@ export default function Profile({ navigation }) {
   const [editOrAdd, setEditOrAdd] = useState(false);
   const [userToken, setUserToken] = useState("");
   const [books, setBooks] = useState([]);
+  const [bookCount, setBookCount] = useState(0);
   //Destructure the values stored in Credentials using useContext
   const { storedCredentials, setStoredCredentials } =
     useContext(CredentialsContext);
@@ -161,6 +162,7 @@ export default function Profile({ navigation }) {
         if (res.data.status !== "SUCCESS") {
           console.log("Error Message:", res.data.message);
           Alert.alert(res.data.message);
+          
         } else {
           console.log("Message:", res.data.message);
           Alert.alert(res.data.message);
@@ -228,10 +230,11 @@ export default function Profile({ navigation }) {
           console.log("No results found or 'results' is not an array.");
         }
         setBooks(res.data.data.books || []);
+        setBookCount(res.data.books_count);
         // setBookTitle(res.data.data.books.Title);
       })
       .catch((err) => {
-        console.log("ERRROR", err);
+        console.log("ERROR", err);
         setLoading(false);
       })
       .finally(() => {
@@ -286,9 +289,9 @@ export default function Profile({ navigation }) {
               <RightFlex>
                 <TopFlex>
                 <Group>
-                    <Number>4</Number>
+                    <Number>{bookCount}</Number>
 
-                    <GroupText>Books</GroupText>
+                    <GroupText>Books In Shelf</GroupText>
                   </Group>
                 
                 </TopFlex>

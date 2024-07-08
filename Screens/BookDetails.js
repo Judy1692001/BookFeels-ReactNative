@@ -106,7 +106,7 @@ const BookDetails = ({ route }) => {
   //     const storedStatus = JSON.parse(res);
   //     setBookInShelf(JSON.parse(storedStatus));
   //   });
-  // }, []);
+  // }, [bookInShelf]);
 
   // console.log("stored status", bookInShelf);
   const fetchBookDetails = async () => {
@@ -128,6 +128,9 @@ const BookDetails = ({ route }) => {
         }
 
         setBookDetails(data.data);
+        //saveBookShelfState(data.is_on_shelf);
+        setBookInShelf(data.is_on_shelf);
+        console.log("Inside details", bookInShelf);
       })
       .catch((err) => {
         console.log("ERROR", err);
@@ -144,9 +147,9 @@ const BookDetails = ({ route }) => {
     //clear the message whenever the button is pressed
     HandleMessage(null);
     setLoading(true);
-    console.log("UserData", userData);
-    console.log("Name", userData.username);
-    console.log("token", userToken);
+    // console.log("UserData", userData);
+    // console.log("Name", userData.username);
+    // console.log("token", userToken);
 
     const url = `${baseURL}api/bookshelf/add/`;
     console.log("credintials", bookTitle);
@@ -173,8 +176,8 @@ const BookDetails = ({ route }) => {
             HandleMessage(res.data.message, res.data.status);
             console.log("Books", res.data.data);
             console.log("Bookshelf", bookTitle, "user", userData.username);
-            console.log("Book In Shelf", res.data.data.is_on_shelf);
-            setBookInShelf(res.data.data.is_on_shelf);
+            
+            fetchBookDetails();
            //saveBookShelfState(res.data.data.is_on_shelf); //to ensure that the book is added to bookshelf
           }
         }
@@ -239,10 +242,8 @@ const BookDetails = ({ route }) => {
       } else {
         console.log("res:", res);
         console.log("Bookshelf", bookTitle, "user", userData.username);
-        console.log("Book In Shelf", res.data.is_on_shelf);
-        setBookInShelf(res.data.is_on_shelf);
-       // saveBookShelfState(res.data.is_on_shelf);
-        //to ensure that the book is removed from bookshelf
+        fetchBookDetails();
+      
       }
     } catch (error) {
       console.log("ERROR", error);
@@ -301,8 +302,7 @@ const BookDetails = ({ route }) => {
                 }
                 mode="outlined"
                 color={bookInShelf ? "gray" : "#A67FBF"} // if true dark_Primary else secondary
-                onPress={
-                  bookInShelf ? HandleRemoveFromBookShelf : HandleAddToBookShelf
+                onPress={()=>{bookInShelf ?  HandleRemoveFromBookShelf() : HandleAddToBookShelf()}
                 }
                 style={styles.button}
               ></Button>

@@ -61,7 +61,7 @@ export default function RootNavigator() {
               initialRouteName="Get Started"
             >
               {/* check the value of credentials and if set move to homepage */}
-              {storedCredentials ? (
+              {/* {storedCredentials ? (
                 <Stack.Screen name="Homepage" component={HomePage} />
               ) : (
                 <>
@@ -69,12 +69,12 @@ export default function RootNavigator() {
                   <Stack.Screen name="Login" component={Login} />
                   <Stack.Screen name="Signup" component={Signup} />
                 </>
-              )}
+              )} */}
 
-              {/* <Stack.Screen name="Get Started" component={WelcomeScreen} />
+              <Stack.Screen name="Get Started" component={WelcomeScreen} />
                   <Stack.Screen name="Login" component={Login} />
               <Stack.Screen name="Signup" component={Signup} />
-              <Stack.Screen name="Homepage" component={HomePage} /> */}
+              <Stack.Screen name="Homepage" component={HomePage} />
               {/* <Stack.Screen name="navBar" component={BottomNavigator} /> */}
               <Stack.Screen name="Profile" component={Profile} />
               <Stack.Screen name="Recommend" component={Recommend} />

@@ -28,36 +28,101 @@ export default function RateApp({ navigation }) {
     const handleStarPress = (rate) => {
         setRating(rate);
     };
+    
+    useEffect(() => {
+        ViewAppRates();
+    }, [userToken]);
+    const ViewAppRates = async () => {
+        setLoading(true);
+        console.log("userToken", userToken);
+        await axios
+            .get(`${baseURL}api/viewrateapp/`, {
+                headers: { Authorization: `Bearer ${userToken}` },
+            })
+            .then((res) => {
+                console.log("Res", res);
+                console.log("Res.data", res.data);
+                if (res.data.status !== "SUCCESS") {
+                    console.log("Error Message:", res.data.message);
+                } else {
+                    console.log("Message:", res.data.message);
+                    console.log("ViewRates:", res.data.data);
+                    setRating(res.data.data.rating);
+                }
+            })
+            .catch((err) => {
+                console.log("ERROR View", err);
+                setLoading(false);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    };
 
-    const handleSubmit = async () => {
-    if (!userToken) {
-        Alert.alert('Error', 'You must be logged in to rate the app.');
-        return;
-    }
-
-    setLoading(true);
-    try {
-        const response = await axios.post(`${baseURL}/api/rateapp/`, {
-            rating: rating,
-        }, {
-            headers: {
-                "Authorization": `Bearer ${userToken}`,
-                "Content-Type": "application/json", // Ensure correct content type
-            },
-        });
-        console.log("Response:", response); // Log response for debugging
-        if (response.data.status === "SUCCESS") {
-            Alert.alert('Success', 'Thank you for your rating!');
-            // Optionally, update user profile with the new rating
+    const RateApp = async () => {
+        setLoading(true);
+    await axios
+      .post(
+        `${baseURL}api/rateapp/`,
+        {
+          rating: rating,
+        },
+        { headers: { Authorization: `Bearer ${userToken}` } }
+      )
+      .then((res) => {
+        console.log("Res", res);
+        console.log("Res.data", res.data);
+        if (res.data.status !== "SUCCESS") {
+          console.log("Error Message:", res.data.message);
+          // HandleMessage(res.data.message, res.data.status);
         } else {
-            Alert.alert('Error', 'Failed to submit rating. Please try again later.');
+          console.log("Message:", res.data.message);
+          
+          setRating(res.data.data.rating);
+          Alert.alert("Rating Added Successfully");
+         
+          ViewAppRates();
         }
-    } catch (error) {
-        Alert.alert('Sorry', 'You have already rated.');
-    } finally {
+      })
+      .catch((err) => {
+        console.log("ERROR Add", err);
         setLoading(false);
-    }
-};
+        Alert.alert("Rate ia already added!");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    };
+//     const handleSubmit = async () => {
+//     if (!userToken) {
+//         Alert.alert('Error', 'You must be logged in to rate the app.');
+//         return;
+//     }
+
+//     setLoading(true);
+//     try {
+//         const response = await axios.post(`${baseURL}/api/rateapp/`, {
+//             rating: rating,
+//         }, {
+//             headers: {
+//                 "Authorization": `Bearer ${userToken}`,
+//                 "Content-Type": "application/json", // Ensure correct content type
+//             },
+//         });
+//         console.log("Response:", response); // Log response for debugging
+//         if (response.data.status === "SUCCESS") {
+//             Alert.alert('Success', 'Thank you for your rating!');
+//             ViewAppRates();
+//             // Optionally, update user profile with the new rating
+//         } else {
+//             Alert.alert('Error', 'Failed to submit rating. Please try again later.');
+//         }
+//     } catch (error) {
+//         Alert.alert('Sorry', 'You have already rated.');
+//     } finally {
+//         setLoading(false);
+//     }
+// };
 
 
     return (
@@ -79,7 +144,7 @@ export default function RateApp({ navigation }) {
                                 </TouchableOpacity>
                             ))}
                         </StarContainer>
-                        <RateSubmitButton onPress={handleSubmit}>
+                        <RateSubmitButton onPress={RateApp}>
                             <SubmitText> Submit </SubmitText>
                         </RateSubmitButton>
                         <RejectionTextContainer onPress={() => navigation.navigate('Homepage')}>
