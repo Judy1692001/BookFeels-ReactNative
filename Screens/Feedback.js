@@ -25,7 +25,7 @@ const FeedbackInput = styled.TextInput`
   border-width: 1px;
   border-color: ${faqPar};
   padding: 10px;
-  margin-left: 30px;
+  margin-left: 40px;
   margin-bottom: 20px;
   width: 80%;
   height: 30%;
@@ -40,7 +40,7 @@ const SubmitButton = styled.TouchableOpacity`
   border-radius: 25px;
   align-items: center;
   border: 1px solid black;
-  margin-left: 120px;
+  margin-left: 138px;
   width: 30%;
 `;
 

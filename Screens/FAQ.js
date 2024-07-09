@@ -172,7 +172,7 @@ const ExpandableFAQ = ({ title, content }) => {
         <View>
             <TouchableOpacity onPress={toggleExpand} style={styles.faqFlex}>
                 <Text style={styles.faqFlexText}>{title}</Text>
-                <Icon name={expanded ? "remove" : "add"} size={25} color="#4B3B3B" />
+                {/* <Icon name={expanded ? "remove" : "add"} size={25} color="#4B3B3B" /> */}
             </TouchableOpacity>
             <Animated.View style={{ height: heightInterpolate, overflow: 'hidden' }}>
                 <Text style={styles.faqParagraph}>{content}</Text>
@@ -208,15 +208,33 @@ export default function FAQ({ navigation }) {
                         <FAQLine />
 
                         <ExpandableFAQ
-                            title="FAQ1: Why we built BookFeels ? "
-                            content="To enhance your reading experience and recommend books that align with your emotional needs."
+                            title="How does the app recommend books based on my emotions?"
+
+                            content="The app uses advanced emotional intelligence, Natural Language Processing (NLP),
+                            and Machine Learning (ML) techniques to analyze your input.
+                            When you select an emotion you want to feel or type in your insights,
+                            the app processes this information and matches it with a curated database of books.
+                            These books have been analyzed for their emotional content, themes,
+                            and overall impact on readers. By understanding the emotional triggers
+                            in the books, the app can recommend titles that are likely to evoke the
+                            desired emotions, helping you find the perfect read to suit your mood."
                         />
 
                         <FAQLine2 />
 
                         <ExpandableFAQ
-                            title="FAQ2: "
-                            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                            title="Can I trust the book recommendations to be accurate?"
+
+                            content="Yes, the book recommendations provided by the app are
+                            designed to be highly accurate and tailored to your emotional
+                            preferences. The app's recommendation system is built on a robust
+                            algorithm that combines user input, emotional content analysis,
+                            and user feedback to continually improve its suggestions.
+                            While individual experiences with books can vary,
+                            the system aims to offer personalized recommendations that
+                            align with your emotional goals. Additionally, user reviews and
+                            ratings are factored into the recommendation process, ensuring a
+                            community-driven approach to discovering emotionally resonant books."
                         />
 
                         <FAQLine2 />
@@ -245,18 +263,18 @@ const styles = StyleSheet.create({
     faqParagraph: {
         padding: 10,
         fontSize: 15,
-        backgroundColor: '#F5F1F8',
+        // backgroundColor: '#F5F1F8',
     },
-    faqButton: {
+    /* faqButton: {
         padding: 15,
         marginTop: 10,
         alignItems: 'center',
         borderRadius: 5,
         backgroundColor: '#4b3b3b',
-    },
-    faqSubmitText: {
+    }, */
+  /*   faqSubmitText: {
         color: 'white',
         fontSize: 16,
         fontWeight: 'bold',
-    },
+    }, */
 });

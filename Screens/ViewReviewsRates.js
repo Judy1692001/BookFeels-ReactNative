@@ -238,6 +238,7 @@ const styles = StyleSheet.create({
   reviewsContainer: {
     flex: 1,
     padding: 10,
+    marginLeft: 50
   },
   reviewItem: {
     borderBottomWidth: 1,
@@ -255,7 +256,9 @@ const styles = StyleSheet.create({
   },
   title: {
   color: heading,
-  marginLeft:35,
+  marginLeft:60,
+  marginTop:70,
+  marginBottom:50,
     fontWeight: "bold",
     fontSize: 18,
     textAlign: "center",

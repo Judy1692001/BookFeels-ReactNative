@@ -119,7 +119,7 @@ const DiscoverBooks = () => {
             placeholderTextColor="gray"
             onChangeText={onChangeSearch}
             value={searchQuery}
-            style={{ flex: 1, margin: 20, backgroundColor: inText }}
+            style={{ flex: 1, marginTop: 5, marginLeft: 40, backgroundColor: inText }}
           />
         </NavBarContainer>
 

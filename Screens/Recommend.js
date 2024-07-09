@@ -99,12 +99,15 @@ const styles = StyleSheet.create({
     title: {
       fontWeight: "bold",
         fontSize: 17,
-      color:historyColor
+      color:historyColor,
+    
     },  screenTitle: {
         fontWeight: "bold",
           fontSize: 25,
         color: heading,
-        marginLeft:35,
+  
+        paddingTop: 50,
+      paddingLeft: 35
         
       },
     authors: {
@@ -122,7 +125,9 @@ const styles = StyleSheet.create({
       shadowRadius: 4,
       elevation: 10,
       backgroundColor: primary,
-      marginTop: 20,
+      marginTop: 50,
+      marginLeft: 10,
+      width: 380
     },
     footer: {
       width: "90%",

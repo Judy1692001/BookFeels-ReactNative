@@ -150,12 +150,15 @@ export default function RateApp({ navigation }) {
                         </RateSubmitButton>
                         <RejectionTextContainer onPress={() => navigation.navigate('HomePage')}>
                             <RejectionText> No Thanks </RejectionText>
-                            <FeedbackTextContainer>
+                            
+                        </RejectionTextContainer>
+
+                        <FeedbackTextContainer>
 
                                 <FeedbackText onPress={() => navigation.navigate('Feedback')}> Give Feedback? </FeedbackText>
 
                             </FeedbackTextContainer>
-                        </RejectionTextContainer>
+                            
                     </PageContent>
                 </ScrollView>
                 

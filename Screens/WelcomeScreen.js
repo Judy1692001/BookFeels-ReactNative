@@ -10,7 +10,7 @@ import {
 import {
   Container, PageContent, HeadingStyle, PageTitle,PageLogo, SubTitle, StyleForm, ButtonText, ButtonWrapper,
   TextStyle,WelcomePageLogo,HeaderImage1,HeaderImage2,
-  ImageContainer,PageContainer
+  ImageContainer,PageContainer, HeadingStyle1
 
 } from '../Components/Styles';
 export default function WelcomeScreen({ navigation }) {
@@ -24,11 +24,11 @@ export default function WelcomeScreen({ navigation }) {
           accessible={true}
           accessibilityLabel={'Reading Time Logo'}
               />
-        <HeadingStyle>
+        <HeadingStyle1>
         Welcome to BookFeels 
-        </HeadingStyle>
+        </HeadingStyle1>
         <TextStyle>
-        Enter an Emotion & enjoy your Reading Session {'.'}
+        Enter an Emotion & enjoy your Reading Session
         </TextStyle>
       </PageContent>
       <ButtonWrapper onPress={() => {navigation.navigate("Login");}}>

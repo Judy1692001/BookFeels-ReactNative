@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   },
   reviewsContainer: {
     flex: 1,
-    padding: 10,
+    width: 400
   },
   reviewItem: {
     borderBottomWidth: 1,
@@ -280,6 +280,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: heading,
     marginLeft: 35,
+    marginTop: 70,
+    marginBottom: 35,
   },
   details: {
     flex: 1,

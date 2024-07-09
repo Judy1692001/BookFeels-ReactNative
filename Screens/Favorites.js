@@ -145,7 +145,7 @@ export default function Favorites({ navigation }) {
         <PageContent>
         <NavBarContainer>
            
-           <Text style={styles.screenTitle}>       My BookShelf </Text>
+           <Text style={styles.screenTitle}> My BookShelf </Text>
              
            </NavBarContainer>
           <View >
@@ -176,7 +176,8 @@ export default function Favorites({ navigation }) {
 
 const styles = StyleSheet.create({
     list: {
-      padding: 10,
+      paddingLeft: 50,
+      paddingTop: 50
     },
     pagination: {
       flexDirection: "row",
@@ -214,7 +215,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 25,
     color: heading,
-    marginLeft: 35,
+    marginLeft: 95,
+    marginTop: 65,
   },
     title: {
       fontWeight: "bold",

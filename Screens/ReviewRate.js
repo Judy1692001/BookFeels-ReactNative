@@ -255,9 +255,9 @@ const ReviewRate = ({ route }) => {
               />
              
             </StarContainer>
-            <Text style={styles.text}>Write your Review</Text>
+            {/* <Text style={styles.text}>Write your Review</Text> */}
             <QuoteBox
-              style={{ marginTop: 10, marginBottom: 30 }}
+              style={{ marginTop: 40, marginBottom: 40, marginRight: 90 }}
               placeholder="Write Your Review"
               multiline
               value={review}

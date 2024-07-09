@@ -16,7 +16,8 @@ import {
   IconButton,
   TextStyle2,
   FooterContainer,
-  Emotion
+  Emotion,
+  HeadingStyle2
 } from '../Components/Styles';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { Searchbar } from 'react-native-paper';
@@ -124,11 +125,11 @@ const HomePage = () => {
                 onChangeText={onChangeSearch}
                 onFocus={handleDiscoverPress}
                 value={searchQuery}
-                style={{ flex: 1, marginTop: 20, marginLeft: 50, backgroundColor: '#fff' }}
+                style={{ flex: 1, marginTop: 5, marginLeft: 50, backgroundColor: '#fff' }}
               />
             </NavBarContainer>
 
-            <HeadingStyle>Pick an emotion and get started</HeadingStyle>
+            <HeadingStyle2>Pick an emotion and get started</HeadingStyle2>
 
             <EmotionContainer>
               <View style={{ flexDirection: 'row' }}>
@@ -139,17 +140,17 @@ const HomePage = () => {
 
                 <Emotion onPress={() => onChangeEmotion('attracted')}>
                   <EmotionText>😍</EmotionText>
-                  <EmotionName>Attracted</EmotionName>
+                  <EmotionName>Attraction</EmotionName>
                 </Emotion>
 
                 <Emotion onPress={() => onChangeEmotion('sad')}>
                   <EmotionText>😢</EmotionText>
-                  <EmotionName>Sad</EmotionName>
+                  <EmotionName>Sadness</EmotionName>
                 </Emotion>
 
                 <Emotion onPress={() => onChangeEmotion('focused')}>
                   <EmotionText>🎯</EmotionText>
-                  <EmotionName>Focused</EmotionName>
+                  <EmotionName>Focus</EmotionName>
                 </Emotion>
               </View>
 
@@ -166,12 +167,12 @@ const HomePage = () => {
 
                 <Emotion onPress={() => onChangeEmotion('anxious')}>
                   <EmotionText>😰</EmotionText>
-                  <EmotionName>Anxious</EmotionName>
+                  <EmotionName>Anxiety</EmotionName>
                 </Emotion>
 
                 <Emotion onPress={() => onChangeEmotion('angry')}>
                   <EmotionText>😡</EmotionText>
-                  <EmotionName>Angry</EmotionName>
+                  <EmotionName>Anger</EmotionName>
                 </Emotion>
               </View>
             </EmotionContainer>
@@ -184,7 +185,8 @@ const HomePage = () => {
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: 'space-around',
+                marginLeft: 80,
+                marginBottom: 100
               }}
             >
               <InsightInput

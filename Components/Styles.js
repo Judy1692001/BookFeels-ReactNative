@@ -73,14 +73,15 @@ export const WelcomePageLogo = styled.Image`
     height: 199px;
     width: 314px;
     margin-top:150px;
-    margin-left: 4%;
+    margin-left: 10%;
 `;
 
 //used
 export const PageLogo = styled.Image`
     height: 150px;
     width: 300px;
-    margin-left: 50px;
+    margin-left: 55px;
+    margin-top: 50px;
 `;
 export const HeaderImage1 = styled.Image`
       width: 200px;
@@ -96,19 +97,33 @@ export const HeaderImage2 = styled.Image`
 `;
 
 //used
-export const HeadingStyle = styled.Text`
+export const HeadingStyle1 = styled.Text`
     padding-top: 20%;
-    padding-left: 3%;
-    fontSize: 25px;
+    padding-left: 25%;
+    padding-bottom: 20%;
+    fontSize: 20px;
     color: ${heading};
     text-align: center;
-    font-weight: 700;
+    font-weight: 600;
+`;
+
+//used
+export const HeadingStyle2 = styled.Text`
+    padding-top: 20%;
+    padding-left: 15%;
+    padding-bottom: 20%;
+    fontSize: 20px;
+    color: ${heading};
+    text-align: center;
+    font-weight: 600;
 `;
 
 //used
 export const TextStyle = styled.Text`
-    padding: 25px;
-    fontSize: 20px;
+    padding-top: 5px;
+    padding-left: 30px;
+    fontSize: 15px;
+    font-weight: 700;
     color: ${text};
     text-align: center;
 `;
@@ -123,7 +138,7 @@ export const ButtonWrapper = styled.TouchableOpacity`
     alignItems:center;
     background-color: ${({ disabled }) => (disabled ? notvalid : secondary)};
     margin-left:72px;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
     height:60px;
     
 `;
@@ -200,7 +215,7 @@ export const SubTitle = styled.Text`
     margin-bottom:30px;
     letter-spacing:1px;
     margin-top: 25px;
-    margin-left: 140px;
+    margin-left: 150px;
 `;
 
 //used
@@ -303,7 +318,7 @@ background-color: ${primary};
 
 //used
 export const ProfileIcon = styled.TouchableOpacity`
-  padding-top: 5%;
+  padding-top: 2%;
   padding-left: 5%;
 `;
 
@@ -345,7 +360,10 @@ export const StyleOr = styled.Text`
 color: ${text};
 padding: 20px;
 padding-left: 47%;
-${'' /* fontSize:16px; */}
+padding-bottom: 15%;
+padding-top: 15%;
+font-size: 20px;
+
 `; 
 
 //used
@@ -354,7 +372,7 @@ height:1px;
 width:100%;
 backgroundColor:${inText};
 ${'' /* margin-vertical:10px; */}
-margin-top: 10%;
+/* margin-top: 10%; */
 `; 
 
 //used
@@ -365,9 +383,9 @@ export const InsightInput = styled.TextInput`
   padding-left: 15px;
   backgroundColor: ${inText};
   height: 80px;
-  margin-left: 70px;
-  margin-right: 5%;
-  margin-bottom: 5%;
+  margin-left: 0px;
+
+  margin-bottom: 10%;
   fontSize:16px;
 
 `;
@@ -382,13 +400,16 @@ export const FooterContainer = styled.View`
 
 //used
 export const IconButton = styled(TouchableOpacity)`
-  flex: 1;
+ margin-right: 20%;
   align-items: center;
+  margin-left: 5%;
+margin-bottom: 10%;
+
 `;
 
 //used
 export const IconButton2 = styled(TouchableOpacity)`
-  margin-left: 10%;
+  margin-left: 16%;
   margin-bottom: 11%;
   margin-right: 10%;
 `;
@@ -396,10 +417,11 @@ export const IconButton2 = styled(TouchableOpacity)`
 export const Emotion = styled(TouchableOpacity)`
     align-items: center;
     flex: 1;
+    margin-bottom: 15%;
 `; 
 
 export const CorrectIcon = styled(TouchableOpacity)`
-margin-right: 19%;
+margin-right: 9%;
 margin-bottom: 18%;
 `;
 
@@ -435,6 +457,7 @@ export const BioSection = styled.View`
 flex-direction: row;
 ${'' /* padding-left: 10%; */}
 padding-top: 10%;
+margin-bottom: 10%;
 `;
 
 //used
@@ -442,6 +465,8 @@ export const LeftFlex = styled.View`
 flex-direction: column;
 justify-content: space-between;
 margin-right: 10%;
+margin-left: 10%;
+margin-top: 15%;
 `;
 
 //used
@@ -477,7 +502,7 @@ font-weight: semi-bold;
 export const RightFlex = styled.View`
 flex-direction: row;
 justify-content: space-between;
-margin-top:30px;
+margin-top:20%;
 `;
 
 //used
@@ -489,7 +514,7 @@ flex-direction: column;
 export const UserName = styled.Text`
 font-size: 18px;
 font-weight: bold;
-padding-top: 15px;
+padding-top: 13px;
 padding-left: 5px;
 `;
 
@@ -515,8 +540,8 @@ export const Group = styled.View`
 flex-direction: column;
 justify-content: space-between;
 flex-wrap: wrap;
-margin-left: 1px;
-margin-top: 7px;
+margin-left: 30%;
+margin-top: 15px;
 `;
 
 //used
@@ -524,6 +549,7 @@ export const Number = styled.Text`
 font-size: 17px;
 font-weight: bold;
 text-align: center;
+padding-bottom: 15px;
 `;
 
 //used
@@ -539,6 +565,7 @@ font-size: 16px;
 font-weight: bold;
 margin-top: 10%;
 margin-left: 31%;
+margin-bottom: 10%;
 color: ${subHeader};
 `;
 
@@ -600,7 +627,7 @@ flex-direction: row;
 width: 70%;
 height: 100px;
 align-content: center; 
-${'' /* margin-left: 1%; */}
+margin-left: 14%;
 margin-top: 1%;
 
 `;
@@ -609,6 +636,7 @@ margin-top: 1%;
 export const SubHeaderGroup = styled.View`
 flex-direction: column;
 width: 80%;
+margin-bottom: 15%;
 `;
 
 //used
@@ -667,8 +695,8 @@ height: 109px;
 background-color: ${quoteBox};
 ${'' /* margin-left: 10px; */}
 padding: 20px;
-${'' /* margin-left: 3%; */}
-
+ margin-left: 25%;
+ margin-bottom: 25%;
 fontSize:17px;
 `;
 
@@ -995,6 +1023,7 @@ font-size: 16px;
 color: ${faqPar};
 margin-top: 10%;
 margin-left: 1.5%;
+margin-bottom: 10%;
 `;
 
 export const RateHeader = styled.Text`
@@ -1006,10 +1035,10 @@ margin-left: 12%;
 `;
 
 export const RateParagraph = styled.Text`
-font-size: 18px;
+font-size: 16px;
 color: ${faqPar};
 margin-top: 10%;
-margin-left: 3%;
+margin-left: 2%;
 text-align: center;
 `;
 
@@ -1042,7 +1071,7 @@ padding-right: 5%;
 export const RejectionTextContainer = styled.TouchableOpacity`
 width: 50%;
 margin-top: 1%;
-margin-left: 21%;
+margin-left: 19%;
 `;
 
 export const RejectionText = styled.Text`
@@ -1058,8 +1087,8 @@ width: 100%;
 export const FeedbackText = styled.Text`
 font-size: 18px;
 color: ${faqPar};
-padding-top: 15%;
-padding-left: 30%;
+padding-top: 35%;
+padding-left: 34%;
 `;
 
 export const FeedbackTitle = styled.Text`
@@ -1068,12 +1097,12 @@ export const FeedbackTitle = styled.Text`
     font-weight: 500;
     margin-bottom:50px;
     margin-top: 50px;
-    margin-left: 30px;
+    margin-left: 20px;
 `;
 
 export const FeedbackImage = styled.Image`
-height: 205px;
-width: 60%;
+height: 275px;
+width: 70%;
 margin-top: 80px;
-margin-left: 70px;
+margin-left: 60px;
 `;

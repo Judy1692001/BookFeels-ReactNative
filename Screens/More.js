@@ -92,7 +92,7 @@ export default function More({ navigation }) {
     navigation.navigate('Profile', { username: userData.username });
   };
 
-   /* const handleLogout = () => {
+   const handleLogout = () => {
     AsyncStorage.removeItem("BookFeelsCredentials").then(() => {
       setStoredCredentials(null);
       navigation.reset({
@@ -100,7 +100,7 @@ export default function More({ navigation }) {
         routes: [{ name: 'Get Started' }],
       });
     }).catch(error => console.error(error));
-  }; */
+  };
 
   // const handleLogout = () => {
   //   AsyncStorage.removeItem("BookFeelsCredentials").then(() => {
@@ -151,7 +151,8 @@ export default function More({ navigation }) {
 //         setLoading(false);
 //       });
 // };
-  console.log("Refresh", userRefresh);
+  /* console.log("Refresh", userRefresh);
+
 const handleLogout = async () => {
   setLoading(true);
   const url = `${baseURL}api/logout/`;
@@ -184,7 +185,7 @@ const handleLogout = async () => {
   }
 };
   console.log("AfterCleaning token", userToken);
-
+ */
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <Container>

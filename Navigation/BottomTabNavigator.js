@@ -10,7 +10,8 @@ const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
   return (
-    <Tab.Navigator
+  
+      <Tab.Navigator
       initialRouteName="HomePage"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
@@ -26,8 +27,12 @@ const BottomTabNavigator = () => {
 
           return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
         },
+        tabBarActiveTintColor: '#C8A2C8', // Lilac color for active icons
+        tabBarInactiveTintColor: '#C8A2C4', // Color for inactive icons
+        tabBarStyle: { backgroundColor: 'white' }, // Lilac color for the background
       })}
     >
+    
       <Tab.Screen name="HomePage" component={HomePage} />
       <Tab.Screen name="Discover" component={DiscoverBooks} />
       <Tab.Screen name="More" component={More} />

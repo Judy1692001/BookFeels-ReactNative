@@ -298,19 +298,19 @@ export default function Profile({ navigation }) {
                   </Group>
                 
                 </TopFlex>
-
+{/* 
                 <BottomFlex>
                 <FollowButton>
                   <FollowText>Reading History</FollowText>
             </FollowButton>
                 
-                </BottomFlex>
+                </BottomFlex> */}
               </RightFlex>
             </BioSection>
             
             <TouchableOpacity onPress={()=> navigation.navigate('Favorites')}>
             <SubHeader>{userData.username}'s BookShelf</SubHeader>
-              <Line3 />
+              {/* <Line3 /> */}
               </TouchableOpacity>
               <FlatList
             data={books}
@@ -324,7 +324,7 @@ export default function Profile({ navigation }) {
             <SubHeaderGroup>
               <SubHeader2>{userData.username}'s Quote</SubHeader2>
 
-              <Line4 />
+              {/* <Line4 /> */}
             </SubHeaderGroup>
 
             <FlewRow>
